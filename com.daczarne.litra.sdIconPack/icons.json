@@ -300,5 +300,213 @@
       "off",
       "red"
     ]
+  },
+  {
+    "path": "brightness-navy.svg",
+    "name": "Brightness (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "sun",
+      "light"
+    ]
+  },
+  {
+    "path": "brightness-low-navy.svg",
+    "name": "Brightness low (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "sun",
+      "dim"
+    ]
+  },
+  {
+    "path": "temperature-navy.svg",
+    "name": "Temperature (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin"
+    ]
+  },
+  {
+    "path": "temperature-cool-navy.svg",
+    "name": "Temperature cool (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin",
+      "snowflake",
+      "cold"
+    ]
+  },
+  {
+    "path": "temperature-warm-navy.svg",
+    "name": "Temperature warm (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin",
+      "sun",
+      "warm"
+    ]
+  },
+  {
+    "path": "temperature-hot-navy.svg",
+    "name": "Temperature hot (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin",
+      "flame",
+      "hot"
+    ]
+  },
+  {
+    "path": "power-on-navy.svg",
+    "name": "Power on (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "power"
+    ]
+  },
+  {
+    "path": "power-off-navy.svg",
+    "name": "Power off (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "power"
+    ]
+  },
+  {
+    "path": "power-red-navy.svg",
+    "name": "Power red (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "power",
+      "off",
+      "red"
+    ]
+  },
+  {
+    "path": "brightness-aubergine.svg",
+    "name": "Brightness (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "sun",
+      "light"
+    ]
+  },
+  {
+    "path": "brightness-low-aubergine.svg",
+    "name": "Brightness low (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "sun",
+      "dim"
+    ]
+  },
+  {
+    "path": "temperature-aubergine.svg",
+    "name": "Temperature (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin"
+    ]
+  },
+  {
+    "path": "temperature-cool-aubergine.svg",
+    "name": "Temperature cool (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin",
+      "snowflake",
+      "cold"
+    ]
+  },
+  {
+    "path": "temperature-warm-aubergine.svg",
+    "name": "Temperature warm (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin",
+      "sun",
+      "warm"
+    ]
+  },
+  {
+    "path": "temperature-hot-aubergine.svg",
+    "name": "Temperature hot (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin",
+      "flame",
+      "hot"
+    ]
+  },
+  {
+    "path": "power-on-aubergine.svg",
+    "name": "Power on (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "power"
+    ]
+  },
+  {
+    "path": "power-off-aubergine.svg",
+    "name": "Power off (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "power"
+    ]
+  },
+  {
+    "path": "power-red-aubergine.svg",
+    "name": "Power red (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "power",
+      "off",
+      "red"
+    ]
   }
 ]

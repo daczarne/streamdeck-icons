@@ -10,7 +10,7 @@ export const WHITE = "#F2F2F2";
 /** The dark ink of glyphs and text, on the `grey` tile. */
 export const INK = "#24262B";
 
-/** Tile backgrounds. The comments say what each was first used for, on the monitor keys. */
+/** Tile backgrounds. The comments say what each was first used for, on the monitor keys or the Litra keys. */
 export const TILES = {
   teal: "#3F6E6E", // the left monitor
   blue: "#4C5F86", // the center monitor
@@ -20,6 +20,7 @@ export const TILES = {
   green: "#3E6B4A", // desk mode, while it's off
   red: "#D64541", // desk mode, while it's on, framed in `ACCENTS.amber`
   navy: "#2E4A6B", // the lock, with its slot in `ACCENTS.cobalt`
+  aubergine: "#3E2F45", // a darker `plum`, for the Litra keys, dark enough for gold and scarlet glyphs
   charcoal: "#2B2E33", // the dark neutral keys, with `WHITE` glyphs
   grey: "#9AA0A8", // the light neutral keys, the charcoal ones inverted, with `INK` glyphs
 };

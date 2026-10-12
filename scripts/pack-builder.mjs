@@ -17,6 +17,8 @@ import { svgDoc } from "../src/svg.mjs";
 const TILE_SCHEMES = [
   { name: "charcoal", tile: TILES.charcoal, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
   { name: "grey", tile: TILES.grey, ink: INK, lit: ACCENTS.ochre, red: ACCENTS.crimson },
+  { name: "navy", tile: TILES.navy, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
+  { name: "aubergine", tile: TILES.aubergine, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
 ];
 
 // How far an off glyph fades toward its tile: dimmer than an on one, and still readable.
