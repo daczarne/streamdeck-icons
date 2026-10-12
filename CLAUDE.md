@@ -62,7 +62,7 @@ Daniel treats supply-chain risk as a hard requirement. The package has no depend
 - Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when Daniel asks.
 - `.github/workflows/main.yaml` runs Markdown lint, CSpell, the packs' check, and a regeneration that must change nothing, on every pull request and on `main`. Locally, `/lint` and the `Lint` VS Code task run the same checks.
 - Write the pull request title and description with the `pr-description` skill.
-- Draft issues with the `github-issues` skill, and post them only when Daniel asks.
+- Draft issues with the `github-issues` skill, and post them only when Daniel asks. The skill works on the issues of both this repository and `daczarne/streamdeck-litra`, whichever the session started in.
 
 ## Style
 
