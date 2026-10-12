@@ -1,7 +1,7 @@
 /**
  * Builds an icon pack from its definition in `scripts/packs/`: its icons, and an `icons.json` written from the same
  * list, so every icon has its entry and the reverse. A definition lists its icons, or builds the list with the helpers
- * here, such as {@link glyphSets} for a glyph plain and on every tile of {@link TILE_SCHEMES}.
+ * here, such as {@link plainGlyphs} and {@link tiledGlyphs} for a glyph plain and on every tile of {@link TILE_SCHEMES}.
  */
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";

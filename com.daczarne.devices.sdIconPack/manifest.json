@@ -1,7 +1,7 @@
 {
   "Name": "Devices",
   "Version": "1.0.0",
-  "Description": "Icons for devices: keys to switch monitor inputs and set their brightness, each on its monitor's color, with a desk mode key and a lock.",
+  "Description": "Icons for the devices around the Deck: keys to switch monitor inputs and set their brightness, each on its monitor's color, desk mode keys, locks, and keys to switch between speakers and headphones.",
   "Author": "Daniel Czarnievicz",
   "URL": "https://github.com/daczarne/streamdeck-icons",
   "Icon": "icon.svg"
