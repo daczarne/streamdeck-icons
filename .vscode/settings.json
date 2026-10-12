@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "**/*.json": "jsonc",
+    // Claude Code skills are plain Markdown, not VS Code's own skill language, which flags Claude Code's attributes.
+    "**/SKILL.md": "markdown",
+  },
+}

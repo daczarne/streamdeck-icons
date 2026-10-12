@@ -1,0 +1,6 @@
+evenodd
+linecap
+linejoin
+sdpi
+showlabels
+valuechange

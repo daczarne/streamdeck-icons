@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // The default build task, so "Tasks: Run Build Task" runs it. Linked packs need no restart: Stream Deck shows the
+    // new icons the next time the Icon Library opens.
+    {
+      "label": "Build packs",
+      "detail": "Regenerate every icon pack, then check them",
+      "type": "shell",
+      "command": "npm run icons && npm run check:icons",
+      "group": {
+        "kind": "build",
+        "isDefault": true,
+      },
+      "problemMatcher": [ ],
+    },
+    // Unlike CI, which runs its jobs in parallel, the compound task stops at the first check that fails.
+    {
+      "label": "Lint",
+      "detail": "Run every linter and the packs' check",
+      "dependsOn": [
+        "Lint: Markdown",
+        "Lint: spelling",
+        "Lint: packs",
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": [ ],
+    },
+    {
+      "label": "Lint: Markdown",
+      "type": "shell",
+      "command": "markdownlint-cli2 --config .markdownlint.yaml .",
+      "problemMatcher": [ ],
+    },
+    {
+      "label": "Lint: spelling",
+      "type": "shell",
+      "command": "cspell lint --config .cspell.json --dot --no-progress .",
+      "problemMatcher": [ ],
+    },
+    {
+      "label": "Lint: packs",
+      "type": "shell",
+      "command": "npm run check:icons",
+      "problemMatcher": [ ],
+    },
+  ],
+}

@@ -1,0 +1,38 @@
+{
+  "name": "@daczarne/streamdeck-icons",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Stream Deck icon packs, and the glyphs and palette they share with Stream Deck plugins.",
+  "license": "MIT",
+  "author": "Daniel Czarnievicz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daczarne/streamdeck-icons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daczarne/streamdeck-icons/issues"
+  },
+  "homepage": "https://github.com/daczarne/streamdeck-icons#readme",
+  "keywords": [
+    "streamdeck",
+    "elgato",
+    "icons",
+    "icon-pack"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "icons": "node scripts/generate-packs.mjs",
+    "check:icons": "node scripts/check-packs.mjs",
+    "link": "node scripts/link-packs.mjs",
+    "unlink": "node scripts/link-packs.mjs --unlink"
+  },
+  "engines": {
+    "node": "24.15.0"
+  }
+}
