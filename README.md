@@ -12,11 +12,12 @@ Not an official Elgato or Logitech product.
 
 ## Packs
 
-| Pack                            | Icons                                                                                                       |
-|---------------------------------|-------------------------------------------------------------------------------------------------------------|
-| `com.daczarne.litra.sdIconPack` | Logitech Litra lights: brightness, temperature (cool, warm, hot) and power, used by the Litra plugin's keys |
+| Pack                               | Icons                                                                                                       |
+|------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `com.daczarne.litra.sdIconPack`    | Logitech Litra lights: brightness, temperature (cool, warm, hot) and power, used by the Litra plugin's keys |
+| `com.daczarne.monitors.sdIconPack` | Monitor input switching: a label, a laptop and a computer per monitor, brightness, desk mode and a lock     |
 
-Every glyph of a pack comes in three sets: white on transparent, and on a charcoal or a grey tile that fills the key. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set.
+The Litra pack's glyphs come in three sets: white on transparent, and on a charcoal or a grey tile that fills the key. The monitors pack puts each key on its monitor's color, as the keys on the Deck are. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
 
 ## Using the glyphs in a plugin
 
@@ -57,11 +58,15 @@ Stream Deck only finds a new pack when it starts, so quit and reopen it after th
 - `src/` is what plugins import: the glyphs (`glyphs.mjs`), the palette (`palette.mjs`) and `svgDoc` (`svg.mjs`).
 - `scripts/packs/` holds one definition per pack: its glyphs, their names, tags and sizes. `scripts/pack-builder.mjs` turns a definition into the pack's icons, plain and on every tile, and its `icons.json`.
 - Each `*.sdIconPack/` folder at the root is a pack, as Stream Deck loads it. Its `manifest.json` is written by hand, and everything else in it is generated.
+- `fonts/` holds the font labels are drawn from, Noto Sans Bold, with its license. `scripts/text.mjs` lays a label out from it with [opentype.js][opentype], the repository's one dependency, and writes each letter as a path. `npm run check:icons` checks the font against its pinned hash.
 
 ## Credits
 
-The first glyphs (the power symbol, the lamp and the action-list icons) come from Seth Sheppard's original Litra plugin, and the rest were drawn here. The package is MIT licensed: see [`LICENSE`][license].
+The first glyphs (the power symbol, the lamp and the action-list icons) come from Seth Sheppard's original Litra plugin, and the rest were drawn here. The package is MIT licensed: see [`LICENSE`][license]. The labels are set in [Noto Sans][noto], by the Noto Project Authors, under the SIL Open Font License: see [`fonts/OFL.txt`][ofl].
 
 [icon-packs]: docs/icon_packs.md
 [license]: LICENSE
+[noto]: https://notofonts.github.io
+[ofl]: fonts/OFL.txt
+[opentype]: https://github.com/opentypejs/opentype.js
 [packs-test]: docs/manual_testing/packs.md

@@ -15,6 +15,7 @@ import {
   warmGlyph,
 } from "../../src/glyphs.mjs";
 import { TILES } from "../../src/palette.mjs";
+import { plainGlyphs, tiledGlyphs } from "../pack-builder.mjs";
 
 const glyphs = [
   { id: "brightness", name: "Brightness", tags: ["sun", "light"], draw: brightnessGlyph, span: 0.865, packSpan: 0.57 },
@@ -84,8 +85,11 @@ const glyphs = [
 export default {
   folder: "com.daczarne.litra.sdIconPack",
   tag: "litra",
-  glyphs,
-  extras: [{ path: "lamp.svg", name: "Lamp", tags: ["light"], draw: categoryGlyph }],
+  icons: [
+    ...plainGlyphs(glyphs),
+    { path: "lamp.svg", name: "Lamp", tags: ["light"], draw: categoryGlyph },
+    ...tiledGlyphs(glyphs),
+  ],
   // The lamp, like the plugin's category.
   logo: categoryGlyph,
 };

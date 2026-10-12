@@ -6,9 +6,20 @@
  * - every icons.json entry has a path, a name and tags, and its file exists, at 144 × 144 px if it's an SVG
  * - every file in icons/ is listed in icons.json
  * - no file name is longer than Elgato's limit
+ * It also checks the vendored font that text is drawn from against its pinned hash, with its license next to it.
  */
+import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
+
+// Noto Sans Bold, the static TTF from the Noto project's distribution, notofonts/notofonts.github.io at
+// 4690144b8523e3adfbd34f1a148576f32b95d848, fonts/NotoSans/unhinted/ttf/NotoSans-Bold.ttf. Its license, OFL.txt, comes
+// from the font's source, notofonts/latin-greek-cyrillic at 71cf6f3ca9c185d809dd800ce9a9e58e1c16f1b1.
+const FONT = {
+  file: "fonts/NotoSans-Bold.ttf",
+  sha256: "87cb2d84472a7d66da659ee47b6cdb9552326e8c128245231f191b6ac72529d9",
+  license: "fonts/OFL.txt",
+};
 
 // From Elgato's API glossary for icon packs and its icon guidelines.
 const REQUIRED_MANIFEST_MEMBERS = ["Name", "Author", "Version", "Icon"];
@@ -87,6 +98,14 @@ function checkPack(pack) {
   }
 }
 
+if (!existsSync(FONT.license)) {
+  errors.push(`${FONT.license}: missing, and the font's license has to ship with it`);
+}
+const fontHash = existsSync(FONT.file) ? createHash("sha256").update(readFileSync(FONT.file)).digest("hex") : "missing";
+if (fontHash !== FONT.sha256) {
+  errors.push(`${FONT.file}: sha256 ${fontHash} does not match pinned ${FONT.sha256}`);
+}
+
 const packs = readdirSync(".").filter((name) => name.endsWith(".sdIconPack"));
 if (packs.length === 0) {
   errors.push("no *.sdIconPack folder found");
@@ -97,4 +116,6 @@ if (errors.length > 0) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log(`check-packs: OK (${packs.join(", ")}: manifest complete, every icon listed, sized and present)`);
+console.log(
+  `check-packs: OK (${packs.join(", ")}: manifest complete, every icon listed, sized and present; font pinned)`,
+);

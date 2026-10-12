@@ -29,7 +29,8 @@ Daniel knows little about design, and expects Claude to lead on colors, sizes an
 - `src/` is what plugins import, through `src/index.mjs`: the glyphs in `glyphs.mjs`, the palette in `palette.mjs`, and `svgDoc` in `svg.mjs`. Each glyph takes the size of its canvas and options such as `color`, and returns SVG markup. A new option keeps the old behavior as its default, so plugins that update draw the same images.
 - `scripts/packs/` holds one definition per pack: its glyphs, their names, tags and sizes (`span` and `packSpan`). `scripts/pack-builder.mjs` turns a definition into the pack's icons, plain and on every tile scheme, and its `icons.json`. `scripts/generate-packs.mjs` lists the packs to build.
 - Each `*.sdIconPack/` folder at the root is a pack: `manifest.json`, written by hand, and `icons.json`, `icons/` and `icon.svg`, generated and committed.
-- `scripts/check-packs.mjs` checks every pack, and `scripts/link-packs.mjs` links them into Stream Deck.
+- `scripts/check-packs.mjs` checks every pack, and the font against its hash, and `scripts/link-packs.mjs` links them into Stream Deck.
+- Text goes on icons as paths, never as SVG `<text>`, which Stream Deck would draw with whatever fonts the machine has. `scripts/text.mjs` lays it out from `fonts/NotoSans-Bold.ttf` with `opentype.js`, at the cap height and line spacing measured on the monitor keys. It lives in `scripts/`, not `src/`, so plugins that import the glyphs don't need the font or the library.
 
 ## Commands
 
@@ -46,7 +47,7 @@ To see a change before showing Daniel, render the SVGs to a contact sheet in the
 
 ## Supply chain
 
-Daniel treats supply-chain risk as a hard requirement. The package has no dependencies, and a new one is flagged and justified, with a narrower alternative offered. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
+Daniel treats supply-chain risk as a hard requirement. The package's one dependency is `opentype.js`, a development dependency with no dependencies of its own, used only to build the packs. A new one is flagged and justified, with a narrower alternative offered. The font in `fonts/` is vendored from the Noto project's distribution, pinned to a commit there and to its hash in `scripts/check-packs.mjs`, and replaced only deliberately, like a dependency. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
 
 ## Testing on the hardware
 

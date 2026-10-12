@@ -23,6 +23,7 @@
 *.jpg binary
 *.pdf binary
 *.png binary
+*.ttf binary
 
 *.cfg linguist-detectable
 *.ini linguist-detectable

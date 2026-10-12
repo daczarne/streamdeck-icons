@@ -233,3 +233,79 @@ export function warmGlyph(size, { color = "#FFFFFF" } = {}) {
 export function hotGlyph(size, { color = "#FFFFFF" } = {}) {
   return thermometerWith(size, color, 1, flame);
 }
+
+/*
+ * The glyphs of the monitor keys. Unlike those above, which fill a plugin's key, they're drawn at the size they take on
+ * a tile, as measured on the monitor icons: each spans a little over half of it, with strokes of about 6%.
+ */
+
+// The stroke of the monitor keys' line glyphs, as a share of the canvas.
+const MONITOR_STROKE = 0.06;
+
+/** A laptop: its screen's outline, open at the bottom, over a solid base with rounded lower corners. */
+export function laptopGlyph(size, { color = "#FFFFFF" } = {}) {
+  const at = (share) => share * size;
+  const sw = at(MONITOR_STROKE);
+  // The screen's outline, drawn along the middle of its stroke.
+  const [left, right, top, bottom, r] = [0.284, 0.72, 0.316, 0.56, 0.035].map(at);
+  // The base: a flat top, and rounded lower corners.
+  const [baseLeft, baseRight, baseTop, baseBottom, br] = [0.196, 0.808, 0.625, 0.719, 0.07].map(at);
+  return `<path d="M ${left} ${bottom} V ${top + r} A ${r} ${r} 0 0 1 ${left + r} ${top}
+    H ${right - r} A ${r} ${r} 0 0 1 ${right} ${top + r} V ${bottom}"
+    stroke="${color}" stroke-width="${sw}" stroke-linejoin="round"/>
+    <path d="M ${baseLeft} ${baseTop} H ${baseRight} V ${baseBottom - br}
+    A ${br} ${br} 0 0 1 ${baseRight - br} ${baseBottom} H ${baseLeft + br}
+    A ${br} ${br} 0 0 1 ${baseLeft} ${baseBottom - br} Z" fill="${color}"/>`;
+}
+
+/**
+ * A desktop computer: a monitor's outline, open on the right where the tower stands in front of it, its foot, and the
+ * tower, with two drive slots and a power light cut out of it.
+ */
+export function computerGlyph(size, { color = "#FFFFFF" } = {}) {
+  const at = (share) => share * size;
+  const sw = at(MONITOR_STROKE);
+  // The monitor's outline, drawn along the middle of its stroke.
+  const [left, right, top, bottom, r] = [0.249, 0.553, 0.316, 0.595, 0.035].map(at);
+  const [footLeft, footRight, footY, footH] = [0.317, 0.553, 0.6965, 0.045].map(at);
+  const [towerLeft, towerRight, towerTop, towerBottom, tr] = [0.594, 0.781, 0.286, 0.714, 0.035].map(at);
+  const [slotLeft, slotRight, slotH] = [0.643, 0.732, 0.049].map(at);
+  const slotTops = [0.344, 0.438].map(at);
+  const [lightX, lightY, lightR] = [0.688, 0.583, 0.03].map(at);
+  const roundedRect = (x0, y0, x1, y1, rr) => `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
+    V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
+    V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
+  const slots = slotTops.map((y) => roundedRect(slotLeft, y, slotRight, y + slotH, slotH / 2)).join(" ");
+  const light = `M ${lightX - lightR} ${lightY} A ${lightR} ${lightR} 0 1 0 ${lightX + lightR} ${lightY}
+    A ${lightR} ${lightR} 0 1 0 ${lightX - lightR} ${lightY} Z`;
+  return `<path d="M ${right} ${top} H ${left + r} A ${r} ${r} 0 0 0 ${left} ${top + r}
+    V ${bottom - r} A ${r} ${r} 0 0 0 ${left + r} ${bottom} H ${right}"
+    stroke="${color}" stroke-width="${sw}" stroke-linejoin="round"/>
+    <line x1="${footLeft + footH / 2}" y1="${footY}" x2="${footRight - footH / 2}" y2="${footY}"
+    stroke="${color}" stroke-width="${footH}" stroke-linecap="round"/>
+    <path d="${roundedRect(towerLeft, towerTop, towerRight, towerBottom, tr)} ${slots} ${light}"
+    fill="${color}" fill-rule="evenodd"/>`;
+}
+
+/**
+ * A padlock: a shackle over a solid body with a slot across it. The slot is cut out, showing the tile behind it, unless
+ * `slot` gives it a color of its own, as the monitor keys' lock does.
+ */
+export function lockGlyph(size, { color = "#FFFFFF", slot } = {}) {
+  const at = (share) => share * size;
+  const sw = at(0.062);
+  // The shackle, drawn along the middle of its stroke, down into the body.
+  const [shackleLeft, shackleRight, shackleTop, shackleBottom] = [0.4065, 0.5935, 0.255, 0.43].map(at);
+  const arcR = (shackleRight - shackleLeft) / 2;
+  const [bodyLeft, bodyRight, bodyTop, bodyBottom, br] = [0.3125, 0.6875, 0.411, 0.754, 0.06].map(at);
+  const [slotLeft, slotRight, slotTop, slotBottom, sr] = [0.4025, 0.5975, 0.577, 0.636, 0.016].map(at);
+  const roundedRect = (x0, y0, x1, y1, rr) => `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
+    V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
+    V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
+  const slotPath = roundedRect(slotLeft, slotTop, slotRight, slotBottom, sr);
+  return `<path d="M ${shackleLeft} ${shackleBottom} V ${shackleTop + arcR}
+    A ${arcR} ${arcR} 0 0 1 ${shackleRight} ${shackleTop + arcR} V ${shackleBottom}"
+    stroke="${color}" stroke-width="${sw}"/>
+    <path d="${roundedRect(bodyLeft, bodyTop, bodyRight, bodyBottom, br)}${slot ? "" : ` ${slotPath}`}"
+    fill="${color}" fill-rule="evenodd"/>${slot ? `\n    <path d="${slotPath}" fill="${slot}"/>` : ""}`;
+}

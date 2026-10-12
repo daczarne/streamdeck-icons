@@ -1,3 +1,5 @@
 killall
 Noto
+notofonts
 osascript
+unhinted
