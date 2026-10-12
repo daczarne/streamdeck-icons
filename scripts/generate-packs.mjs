@@ -5,9 +5,9 @@
  */
 import { writePack } from "./pack-builder.mjs";
 import litra from "./packs/litra.mjs";
-import monitors from "./packs/monitors.mjs";
+import devices from "./packs/devices.mjs";
 
-const PACKS = [litra, monitors];
+const PACKS = [litra, devices];
 
 for (const pack of PACKS) {
   writePack(pack);

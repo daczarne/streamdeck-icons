@@ -1,8 +1,0 @@
-{
-  "Name": "Monitors",
-  "Version": "1.0.0",
-  "Description": "Keys to switch monitor inputs and set their brightness, each on its monitor's color, with a desk mode key and a lock.",
-  "Author": "Daniel Czarnievicz",
-  "URL": "https://github.com/daczarne/streamdeck-icons",
-  "Icon": "icon.svg"
-}

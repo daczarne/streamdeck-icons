@@ -3,7 +3,7 @@
     "path": "left-tile.svg",
     "name": "Left tile",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "left",
       "tile",
@@ -14,7 +14,7 @@
     "path": "left-label.svg",
     "name": "Left label",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "left",
       "label"
@@ -24,7 +24,7 @@
     "path": "left-laptop.svg",
     "name": "Left laptop",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "left",
       "laptop",
@@ -35,7 +35,7 @@
     "path": "left-computer.svg",
     "name": "Left computer",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "left",
       "computer",
@@ -47,7 +47,7 @@
     "path": "left-brightness.svg",
     "name": "Left brightness",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "left",
       "sun",
@@ -58,7 +58,7 @@
     "path": "left-brightness-low.svg",
     "name": "Left brightness low",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "left",
       "sun",
@@ -70,7 +70,7 @@
     "path": "center-tile.svg",
     "name": "Center tile",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "center",
       "tile",
@@ -81,7 +81,7 @@
     "path": "center-label.svg",
     "name": "Center label",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "center",
       "label"
@@ -91,7 +91,7 @@
     "path": "center-laptop.svg",
     "name": "Center laptop",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "center",
       "laptop",
@@ -102,7 +102,7 @@
     "path": "center-computer.svg",
     "name": "Center computer",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "center",
       "computer",
@@ -114,7 +114,7 @@
     "path": "center-brightness.svg",
     "name": "Center brightness",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "center",
       "sun",
@@ -125,7 +125,7 @@
     "path": "center-brightness-low.svg",
     "name": "Center brightness low",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "center",
       "sun",
@@ -137,7 +137,7 @@
     "path": "top-right-tile.svg",
     "name": "Top right tile",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "top",
       "right",
@@ -149,7 +149,7 @@
     "path": "top-right-label.svg",
     "name": "Top right label",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "top",
       "right",
@@ -160,7 +160,7 @@
     "path": "top-right-laptop.svg",
     "name": "Top right laptop",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "top",
       "right",
@@ -172,7 +172,7 @@
     "path": "top-right-computer.svg",
     "name": "Top right computer",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "top",
       "right",
@@ -185,7 +185,7 @@
     "path": "top-right-brightness.svg",
     "name": "Top right brightness",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "top",
       "right",
@@ -197,7 +197,7 @@
     "path": "top-right-brightness-low.svg",
     "name": "Top right brightness low",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "top",
       "right",
@@ -210,7 +210,7 @@
     "path": "bottom-right-tile.svg",
     "name": "Bottom right tile",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "bottom",
       "right",
@@ -222,7 +222,7 @@
     "path": "bottom-right-label.svg",
     "name": "Bottom right label",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "bottom",
       "right",
@@ -233,7 +233,7 @@
     "path": "bottom-right-laptop.svg",
     "name": "Bottom right laptop",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "bottom",
       "right",
@@ -245,7 +245,7 @@
     "path": "bottom-right-computer.svg",
     "name": "Bottom right computer",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "bottom",
       "right",
@@ -258,7 +258,7 @@
     "path": "bottom-right-brightness.svg",
     "name": "Bottom right brightness",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "bottom",
       "right",
@@ -270,7 +270,7 @@
     "path": "bottom-right-brightness-low.svg",
     "name": "Bottom right brightness low",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "bottom",
       "right",
@@ -283,7 +283,7 @@
     "path": "all-tile.svg",
     "name": "All tile",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "all",
       "tile",
@@ -294,7 +294,7 @@
     "path": "all-label.svg",
     "name": "All label",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "all",
       "label"
@@ -304,7 +304,7 @@
     "path": "all-laptop.svg",
     "name": "All laptop",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "all",
       "laptop",
@@ -315,7 +315,7 @@
     "path": "all-computer.svg",
     "name": "All computer",
     "tags": [
-      "monitors",
+      "devices",
       "monitor",
       "all",
       "computer",
@@ -327,7 +327,7 @@
     "path": "desk-mode-off.svg",
     "name": "Desk mode off",
     "tags": [
-      "monitors",
+      "devices",
       "desk",
       "mode",
       "off"
@@ -337,7 +337,7 @@
     "path": "desk-mode-on.svg",
     "name": "Desk mode on",
     "tags": [
-      "monitors",
+      "devices",
       "desk",
       "mode",
       "on"
@@ -347,7 +347,7 @@
     "path": "lock.svg",
     "name": "Lock",
     "tags": [
-      "monitors",
+      "devices",
       "lock"
     ]
   }

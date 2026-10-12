@@ -1,6 +1,6 @@
 /**
- * The monitors pack: the keys that switch monitor inputs and set their brightness, each on its monitor's color, with
- * the desk mode key and the lock, which go with them. Labels are text written as paths (see `scripts/text.mjs`), and
+ * The devices pack: icons for the devices around the Deck. So far, the keys that switch monitor inputs and set their
+ * brightness, each on its monitor's color, with the desk mode key and the lock, which go with them. Labels are text written as paths (see `scripts/text.mjs`), and
  * the glyphs are sized as on the monitor keys, where the suns span a little over half of the tile.
  */
 import { brightnessGlyph, computerGlyph, dimGlyph, laptopGlyph, lockGlyph } from "../../src/glyphs.mjs";
@@ -70,8 +70,8 @@ function monitorIcons(monitor) {
 }
 
 export default {
-  folder: "com.daczarne.monitors.sdIconPack",
-  tag: "monitors",
+  folder: "com.daczarne.devices.sdIconPack",
+  tag: "devices",
   // Each monitor's keys together, then the keys that go with them.
   icons: [
     ...MONITORS.flatMap(monitorIcons),
