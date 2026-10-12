@@ -1,10 +1,18 @@
 /**
  * The devices pack: icons for the devices around the Deck. So far, the keys that switch monitor inputs and set their
- * brightness, each on its monitor's color, with the desk mode key and the locks, which go with them. Labels are text
- * written as paths (see `scripts/text.mjs`), and the glyphs are sized as on the monitor keys, where the suns span a
- * little over half of the tile.
+ * brightness, each on its monitor's color, with the desk mode key and the locks, which go with them, and the keys that
+ * switch the sound between speakers and headphones. Labels are text written as paths (see `scripts/text.mjs`), and the
+ * glyphs are sized as on the monitor keys, where the suns span a little over half of the tile.
  */
-import { brightnessGlyph, computerGlyph, dimGlyph, laptopGlyph, lockGlyph } from "../../src/glyphs.mjs";
+import {
+  brightnessGlyph,
+  computerGlyph,
+  dimGlyph,
+  headphonesGlyph,
+  laptopGlyph,
+  lockGlyph,
+  speakerGlyph,
+} from "../../src/glyphs.mjs";
 import { ACCENTS, TILES, WHITE } from "../../src/palette.mjs";
 import { scaled, tile } from "../pack-builder.mjs";
 import { textGlyph } from "../text.mjs";
@@ -139,6 +147,20 @@ export default {
         ${textGlyph(size, ["Desk", "Mode", "ON"], { color: WHITE })}`,
     },
     ...LOCK_TILES.flatMap(lockIcons),
+    {
+      path: "speakers.svg",
+      name: "Speakers",
+      tags: ["audio", "sound", "speakers", "output"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${speakerGlyph(size, { color: WHITE })}`,
+    },
+    {
+      path: "headphones.svg",
+      name: "Headphones",
+      tags: ["audio", "sound", "headphones", "output"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${headphonesGlyph(size, { color: WHITE })}`,
+    },
   ],
   logo: (size) => scaled(size, computerGlyph(size), COMPUTER_SPAN, LOGO_SPAN),
 };

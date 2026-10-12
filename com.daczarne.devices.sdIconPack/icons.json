@@ -515,5 +515,27 @@
       "red",
       "unsafe"
     ]
+  },
+  {
+    "path": "speakers.svg",
+    "name": "Speakers",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output"
+    ]
+  },
+  {
+    "path": "headphones.svg",
+    "name": "Headphones",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output"
+    ]
   }
 ]
