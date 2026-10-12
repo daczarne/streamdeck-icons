@@ -612,5 +612,109 @@
       "off",
       "red"
     ]
+  },
+  {
+    "path": "brightness-honey.svg",
+    "name": "Brightness (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "sun",
+      "light"
+    ]
+  },
+  {
+    "path": "brightness-low-honey.svg",
+    "name": "Brightness low (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "sun",
+      "dim"
+    ]
+  },
+  {
+    "path": "temperature-honey.svg",
+    "name": "Temperature (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin"
+    ]
+  },
+  {
+    "path": "temperature-cool-honey.svg",
+    "name": "Temperature cool (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin",
+      "snowflake",
+      "cold"
+    ]
+  },
+  {
+    "path": "temperature-warm-honey.svg",
+    "name": "Temperature warm (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin",
+      "sun",
+      "warm"
+    ]
+  },
+  {
+    "path": "temperature-hot-honey.svg",
+    "name": "Temperature hot (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin",
+      "flame",
+      "hot"
+    ]
+  },
+  {
+    "path": "power-on-honey.svg",
+    "name": "Power on (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "power"
+    ]
+  },
+  {
+    "path": "power-off-honey.svg",
+    "name": "Power off (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "power"
+    ]
+  },
+  {
+    "path": "power-red-honey.svg",
+    "name": "Power red (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "power",
+      "off",
+      "red"
+    ]
   }
 ]

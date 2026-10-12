@@ -1,7 +1,8 @@
 /**
  * Builds an icon pack from its definition in `scripts/packs/`: its icons, and an `icons.json` written from the same
  * list, so every icon has its entry and the reverse. A definition lists its icons, or builds the list with the helpers
- * here, such as {@link plainGlyphs} and {@link tiledGlyphs} for a glyph plain and on every tile of {@link TILE_SCHEMES}.
+ * here, such as {@link plainGlyphs} and {@link tiledGlyphs} for a glyph plain and on every tile of
+ * {@link TILE_SCHEMES}.
  */
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -20,6 +21,9 @@ const TILE_SCHEMES = [
   { name: "navy", tile: TILES.navy, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
   { name: "aubergine", tile: TILES.aubergine, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
   { name: "forest", tile: TILES.forest, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
+  // Already the color of light, so lights that are on are drawn in the ink, against the faded ink of those that are
+  // off.
+  { name: "honey", tile: TILES.honey, ink: INK, lit: INK, red: ACCENTS.crimson },
 ];
 
 // How far an off glyph fades toward its tile: dimmer than an on one, and still readable.
