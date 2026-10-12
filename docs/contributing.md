@@ -51,7 +51,7 @@ Every dependency is pinned, and every upgrade is a deliberate change of its own.
 - An upgrade is `npm install <package>@<version>`, followed by a review of the lockfile diff. Exact versions don't pin transitive dependencies, only the lockfile does, so it stays committed and installs use `npm ci`.
 - GitHub Actions are pinned to full commit SHAs, with the version as a trailing comment, checked against the release tag. Like npm packages, they're upgraded by hand.
 
-The package has no dependencies today: the packs ship SVGs, which need no rendering. A new dependency is flagged and justified in its pull request.
+The package has one dependency, `opentype.js`, which lays text out from the font when building the packs. It's a development dependency, so plugins that import the glyphs don't install it. A new dependency is flagged and justified in its pull request. The font in `fonts/` is vendored rather than installed, and pinned by its hash in `scripts/check-packs.mjs`: replacing it is a deliberate change of its own, like an upgrade.
 
 ## Unused code
 

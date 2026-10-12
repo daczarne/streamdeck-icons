@@ -1,0 +1,354 @@
+[
+  {
+    "path": "left-tile.svg",
+    "name": "Left tile",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "tile",
+      "blank"
+    ]
+  },
+  {
+    "path": "left-label.svg",
+    "name": "Left label",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "label"
+    ]
+  },
+  {
+    "path": "left-laptop.svg",
+    "name": "Left laptop",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "laptop",
+      "input"
+    ]
+  },
+  {
+    "path": "left-computer.svg",
+    "name": "Left computer",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "computer",
+      "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "left-brightness.svg",
+    "name": "Left brightness",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "sun",
+      "brightness"
+    ]
+  },
+  {
+    "path": "left-brightness-low.svg",
+    "name": "Left brightness low",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "sun",
+      "brightness",
+      "dim"
+    ]
+  },
+  {
+    "path": "center-tile.svg",
+    "name": "Center tile",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "tile",
+      "blank"
+    ]
+  },
+  {
+    "path": "center-label.svg",
+    "name": "Center label",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "label"
+    ]
+  },
+  {
+    "path": "center-laptop.svg",
+    "name": "Center laptop",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "laptop",
+      "input"
+    ]
+  },
+  {
+    "path": "center-computer.svg",
+    "name": "Center computer",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "computer",
+      "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "center-brightness.svg",
+    "name": "Center brightness",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "sun",
+      "brightness"
+    ]
+  },
+  {
+    "path": "center-brightness-low.svg",
+    "name": "Center brightness low",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "sun",
+      "brightness",
+      "dim"
+    ]
+  },
+  {
+    "path": "top-right-tile.svg",
+    "name": "Top right tile",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "tile",
+      "blank"
+    ]
+  },
+  {
+    "path": "top-right-label.svg",
+    "name": "Top right label",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "label"
+    ]
+  },
+  {
+    "path": "top-right-laptop.svg",
+    "name": "Top right laptop",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "laptop",
+      "input"
+    ]
+  },
+  {
+    "path": "top-right-computer.svg",
+    "name": "Top right computer",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "computer",
+      "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "top-right-brightness.svg",
+    "name": "Top right brightness",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "sun",
+      "brightness"
+    ]
+  },
+  {
+    "path": "top-right-brightness-low.svg",
+    "name": "Top right brightness low",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "sun",
+      "brightness",
+      "dim"
+    ]
+  },
+  {
+    "path": "bottom-right-tile.svg",
+    "name": "Bottom right tile",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "tile",
+      "blank"
+    ]
+  },
+  {
+    "path": "bottom-right-label.svg",
+    "name": "Bottom right label",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "label"
+    ]
+  },
+  {
+    "path": "bottom-right-laptop.svg",
+    "name": "Bottom right laptop",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "laptop",
+      "input"
+    ]
+  },
+  {
+    "path": "bottom-right-computer.svg",
+    "name": "Bottom right computer",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "computer",
+      "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "bottom-right-brightness.svg",
+    "name": "Bottom right brightness",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "sun",
+      "brightness"
+    ]
+  },
+  {
+    "path": "bottom-right-brightness-low.svg",
+    "name": "Bottom right brightness low",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "sun",
+      "brightness",
+      "dim"
+    ]
+  },
+  {
+    "path": "all-tile.svg",
+    "name": "All tile",
+    "tags": [
+      "devices",
+      "monitor",
+      "all",
+      "tile",
+      "blank"
+    ]
+  },
+  {
+    "path": "all-label.svg",
+    "name": "All label",
+    "tags": [
+      "devices",
+      "monitor",
+      "all",
+      "label"
+    ]
+  },
+  {
+    "path": "all-laptop.svg",
+    "name": "All laptop",
+    "tags": [
+      "devices",
+      "monitor",
+      "all",
+      "laptop",
+      "input"
+    ]
+  },
+  {
+    "path": "all-computer.svg",
+    "name": "All computer",
+    "tags": [
+      "devices",
+      "monitor",
+      "all",
+      "computer",
+      "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "desk-mode-off.svg",
+    "name": "Desk mode off",
+    "tags": [
+      "devices",
+      "desk",
+      "mode",
+      "off"
+    ]
+  },
+  {
+    "path": "desk-mode-on.svg",
+    "name": "Desk mode on",
+    "tags": [
+      "devices",
+      "desk",
+      "mode",
+      "on"
+    ]
+  },
+  {
+    "path": "lock.svg",
+    "name": "Lock",
+    "tags": [
+      "devices",
+      "lock"
+    ]
+  }
+]
