@@ -11,6 +11,7 @@ import {
   headphonesGlyph,
   laptopGlyph,
   lockGlyph,
+  macStudioGlyph,
   speakerGlyph,
 } from "../../src/glyphs.mjs";
 import { ACCENTS, TILES, WHITE } from "../../src/palette.mjs";
@@ -51,6 +52,12 @@ function monitorIcons(monitor) {
       name: "computer",
       tags: ["computer", "desktop", "input"],
       draw: (size) => computerGlyph(size, { color: WHITE }),
+    },
+    {
+      kind: "mac-studio",
+      name: "Mac Studio",
+      tags: ["computer", "desktop", "mac", "input"],
+      draw: (size) => macStudioGlyph(size, { color: WHITE }),
     },
     ...(monitor.suns
       ? [

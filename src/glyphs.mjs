@@ -242,6 +242,20 @@ export function hotGlyph(size, { color = "#FFFFFF" } = {}) {
 // The stroke of the monitor keys' line glyphs, as a share of the canvas.
 const MONITOR_STROKE = 0.06;
 
+/**
+ * The monitor the desktop computers stand in front of, the same in each so that only the computer changes between
+ * them: its outline, drawn along the middle of its stroke (left, right, top, bottom, corner radius), its foot (left,
+ * right, middle, thickness), and the gap its strokes leave before the computer. The outline's right is where the tower
+ * cuts it. The monitor goes on behind the tower, to `hiddenRight`, and shows there behind a computer that covers less
+ * of it.
+ */
+const DESK_MONITOR = {
+  outline: [0.249, 0.553, 0.316, 0.595, 0.035],
+  hiddenRight: 0.633,
+  foot: [0.317, 0.553, 0.6965, 0.045],
+  gap: 0.041,
+};
+
 /** A laptop: its screen's outline, open at the bottom, over a solid base with rounded lower corners. */
 export function laptopGlyph(size, { color = "#FFFFFF" } = {}) {
   const at = (share) => share * size;
@@ -265,9 +279,8 @@ export function laptopGlyph(size, { color = "#FFFFFF" } = {}) {
 export function computerGlyph(size, { color = "#FFFFFF" } = {}) {
   const at = (share) => share * size;
   const sw = at(MONITOR_STROKE);
-  // The monitor's outline, drawn along the middle of its stroke.
-  const [left, right, top, bottom, r] = [0.249, 0.553, 0.316, 0.595, 0.035].map(at);
-  const [footLeft, footRight, footY, footH] = [0.317, 0.553, 0.6965, 0.045].map(at);
+  const [left, right, top, bottom, r] = DESK_MONITOR.outline.map(at);
+  const [footLeft, footRight, footY, footH] = DESK_MONITOR.foot.map(at);
   const [towerLeft, towerRight, towerTop, towerBottom, tr] = [0.594, 0.781, 0.286, 0.714, 0.035].map(at);
   const [slotLeft, slotRight, slotH] = [0.643, 0.732, 0.049].map(at);
   const slotTops = [0.344, 0.438].map(at);
@@ -380,4 +393,50 @@ export function headphonesGlyph(size, { color = "#FFFFFF" } = {}) {
     stroke="${color}" stroke-width="${sw}"/>
     ${cup(left)}
     ${cup(right)}`;
+}
+
+/**
+ * A Mac Studio in front of a monitor, as {@link computerGlyph} has its tower: the monitor's outline, open where the Mac
+ * stands in front of its lower right corner, and its foot. The Mac is a squat box with its two ports, card slot and
+ * light cut out low on its front, over a narrower base. The monitor's foot and the Mac's base stand on one line.
+ */
+export function macStudioGlyph(size, { color = "#FFFFFF" } = {}) {
+  const at = (share) => share * size;
+  const sw = at(MONITOR_STROKE);
+  // The Mac covers less of the monitor than the tower does, so the monitor shows up to its full width.
+  const [left, , top, bottom, r] = DESK_MONITOR.outline.map(at);
+  const right = at(DESK_MONITOR.hiddenRight);
+  const [footLeft, footRight, footY, footH] = DESK_MONITOR.foot.map(at);
+  const gap = at(DESK_MONITOR.gap);
+  // The Mac's box, its right edge where the tower's is, over its base, which ends where the monitor's foot does.
+  const floor = footY + footH / 2;
+  const [macWidth, macHeight, macRight, mr, baseInset, baseGap, baseH] = [0.35, 0.17, 0.781, 0.035, 0.045, 0.014, 0.018]
+    .map(at);
+  const macBottom = floor - baseH - baseGap;
+  const [macLeft, macTop] = [macRight - macWidth, macBottom - macHeight];
+  // The front's details, low on it, by their centers: the ports from the box's left edge, the slot from its left edge
+  // and the light from its right edge, the slot and the light on one line.
+  const [portXs, portW, portH, portY] = [[0.042, 0.066].map(at), at(0.014), at(0.042), macBottom - at(0.052)];
+  const [slotLeft, slotRight, slotH] = [macLeft + at(0.098), macLeft + at(0.196), at(0.014)];
+  const [lightX, lightR, detailY] = [macRight - at(0.042), at(0.01), macBottom - at(0.032)];
+  const roundedRect = (x0, y0, x1, y1, rr) => `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
+    V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
+    V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
+  const pill = (cx, cy, w, h) => roundedRect(cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2, Math.min(w, h) / 2);
+  const ports = portXs.map((x) => pill(macLeft + x, portY, portW, portH)).join(" ");
+  const slot = pill((slotLeft + slotRight) / 2, detailY, slotRight - slotLeft, slotH);
+  const light = `M ${lightX - lightR} ${detailY} A ${lightR} ${lightR} 0 1 0 ${lightX + lightR} ${detailY}
+    A ${lightR} ${lightR} 0 1 0 ${lightX - lightR} ${detailY} Z`;
+  // Where the monitor's outline and its foot stop, the gap short of the Mac's top and of its left side.
+  const [rightEnd, bottomEnd] = [macTop - gap, macLeft - gap];
+  const footEnd = Math.min(footRight, bottomEnd);
+  return `<path d="M ${right} ${rightEnd} V ${top + r} A ${r} ${r} 0 0 0 ${right - r} ${top} H ${left + r}
+    A ${r} ${r} 0 0 0 ${left} ${top + r} V ${bottom - r} A ${r} ${r} 0 0 0 ${left + r} ${bottom} H ${bottomEnd}"
+    stroke="${color}" stroke-width="${sw}" stroke-linejoin="round"/>
+    <line x1="${footLeft + footH / 2}" y1="${footY}" x2="${footEnd - footH / 2}" y2="${footY}"
+    stroke="${color}" stroke-width="${footH}" stroke-linecap="round"/>
+    <path d="${roundedRect(macLeft, macTop, macRight, macBottom, mr)} ${ports} ${slot} ${light}"
+    fill="${color}" fill-rule="evenodd"/>
+    <rect x="${macLeft + baseInset}" y="${floor - baseH}" width="${macWidth - 2 * baseInset}"
+    height="${baseH}" rx="${baseH / 2}" fill="${color}"/>`;
 }

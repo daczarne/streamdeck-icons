@@ -44,6 +44,19 @@
     ]
   },
   {
+    "path": "left-mac-studio.svg",
+    "name": "Left Mac Studio",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "computer",
+      "desktop",
+      "mac",
+      "input"
+    ]
+  },
+  {
     "path": "left-brightness.svg",
     "name": "Left brightness",
     "tags": [
@@ -107,6 +120,19 @@
       "center",
       "computer",
       "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "center-mac-studio.svg",
+    "name": "Center Mac Studio",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "computer",
+      "desktop",
+      "mac",
       "input"
     ]
   },
@@ -178,6 +204,20 @@
       "right",
       "computer",
       "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "top-right-mac-studio.svg",
+    "name": "Top right Mac Studio",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "computer",
+      "desktop",
+      "mac",
       "input"
     ]
   },
@@ -255,6 +295,20 @@
     ]
   },
   {
+    "path": "bottom-right-mac-studio.svg",
+    "name": "Bottom right Mac Studio",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "computer",
+      "desktop",
+      "mac",
+      "input"
+    ]
+  },
+  {
     "path": "bottom-right-brightness.svg",
     "name": "Bottom right brightness",
     "tags": [
@@ -320,6 +374,19 @@
       "all",
       "computer",
       "desktop",
+      "input"
+    ]
+  },
+  {
+    "path": "all-mac-studio.svg",
+    "name": "All Mac Studio",
+    "tags": [
+      "devices",
+      "monitor",
+      "all",
+      "computer",
+      "desktop",
+      "mac",
       "input"
     ]
   },
