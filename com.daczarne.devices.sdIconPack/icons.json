@@ -350,5 +350,170 @@
       "devices",
       "lock"
     ]
+  },
+  {
+    "path": "lock-keyhole.svg",
+    "name": "Lock with keyhole",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "locked"
+    ]
+  },
+  {
+    "path": "unlock-keyhole.svg",
+    "name": "Unlocked with keyhole",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-short.svg",
+    "name": "Unlocked with keyhole, low shackle",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-side.svg",
+    "name": "Unlocked with keyhole, shackle to the side",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
+    "path": "lock-green.svg",
+    "name": "Lock (green)",
+    "tags": [
+      "devices",
+      "lock",
+      "green",
+      "safe"
+    ]
+  },
+  {
+    "path": "lock-keyhole-green.svg",
+    "name": "Lock with keyhole (green)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "locked",
+      "green",
+      "safe"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-green.svg",
+    "name": "Unlocked with keyhole (green)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open",
+      "green",
+      "safe"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-short-green.svg",
+    "name": "Unlocked with keyhole, low shackle (green)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open",
+      "green",
+      "safe"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-side-green.svg",
+    "name": "Unlocked with keyhole, shackle to the side (green)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open",
+      "green",
+      "safe"
+    ]
+  },
+  {
+    "path": "lock-red.svg",
+    "name": "Lock (red)",
+    "tags": [
+      "devices",
+      "lock",
+      "red",
+      "unsafe"
+    ]
+  },
+  {
+    "path": "lock-keyhole-red.svg",
+    "name": "Lock with keyhole (red)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "locked",
+      "red",
+      "unsafe"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-red.svg",
+    "name": "Unlocked with keyhole (red)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open",
+      "red",
+      "unsafe"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-short-red.svg",
+    "name": "Unlocked with keyhole, low shackle (red)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open",
+      "red",
+      "unsafe"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-side-red.svg",
+    "name": "Unlocked with keyhole, shackle to the side (red)",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open",
+      "red",
+      "unsafe"
+    ]
   }
 ]

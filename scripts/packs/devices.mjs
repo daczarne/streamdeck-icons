@@ -1,7 +1,8 @@
 /**
  * The devices pack: icons for the devices around the Deck. So far, the keys that switch monitor inputs and set their
- * brightness, each on its monitor's color, with the desk mode key and the lock, which go with them. Labels are text written as paths (see `scripts/text.mjs`), and
- * the glyphs are sized as on the monitor keys, where the suns span a little over half of the tile.
+ * brightness, each on its monitor's color, with the desk mode key and the locks, which go with them. Labels are text
+ * written as paths (see `scripts/text.mjs`), and the glyphs are sized as on the monitor keys, where the suns span a
+ * little over half of the tile.
  */
 import { brightnessGlyph, computerGlyph, dimGlyph, laptopGlyph, lockGlyph } from "../../src/glyphs.mjs";
 import { ACCENTS, TILES, WHITE } from "../../src/palette.mjs";
@@ -69,6 +70,51 @@ function monitorIcons(monitor) {
   }));
 }
 
+/** The locks: the original with its bar, then the keyhole lock, locked and in each unlocked style. */
+const LOCKS = [
+  { id: "lock", name: "Lock", tags: ["lock"], options: {}, bar: true },
+  { id: "lock-keyhole", name: "Lock with keyhole", tags: ["lock", "keyhole", "locked"], options: {} },
+  {
+    id: "unlock-keyhole",
+    name: "Unlocked with keyhole",
+    tags: ["lock", "keyhole", "unlocked", "open"],
+    options: { open: "up" },
+  },
+  {
+    id: "unlock-keyhole-short",
+    name: "Unlocked with keyhole, low shackle",
+    tags: ["lock", "keyhole", "unlocked", "open"],
+    options: { open: "short" },
+  },
+  {
+    id: "unlock-keyhole-side",
+    name: "Unlocked with keyhole, shackle to the side",
+    tags: ["lock", "keyhole", "unlocked", "open"],
+    options: { open: "side" },
+  },
+];
+
+/**
+ * The tiles every lock comes on, each with the shade its slot or keyhole takes, a step from the tile's own color. Navy
+ * is the original lock's. Green, as desk mode off, and red, as desk mode on, mark a safe and an unsafe state.
+ */
+const LOCK_TILES = [
+  { suffix: "", name: "", tags: [], tile: TILES.navy, slot: ACCENTS.cobalt },
+  { suffix: "-green", name: " (green)", tags: ["green", "safe"], tile: TILES.green, slot: ACCENTS.sage },
+  { suffix: "-red", name: " (red)", tags: ["red", "unsafe"], tile: TILES.red, slot: ACCENTS.scarlet },
+];
+
+/** The locks on one of {@link LOCK_TILES}. */
+function lockIcons({ suffix, name, tags, tile: color, slot }) {
+  return LOCKS.map((lock) => ({
+    path: `${lock.id}${suffix}.svg`,
+    name: `${lock.name}${name}`,
+    tags: [...lock.tags, ...tags],
+    draw: (size) => `${tile(size, color)}
+      ${lockGlyph(size, { color: WHITE, slot, keyhole: !lock.bar, ...lock.options })}`,
+  }));
+}
+
 export default {
   folder: "com.daczarne.devices.sdIconPack",
   tag: "devices",
@@ -92,13 +138,7 @@ export default {
         fill="${TILES.red}" stroke="${ACCENTS.amber}" stroke-width="${FRAME * size}"/>
         ${textGlyph(size, ["Desk", "Mode", "ON"], { color: WHITE })}`,
     },
-    {
-      path: "lock.svg",
-      name: "Lock",
-      tags: ["lock"],
-      draw: (size) => `${tile(size, TILES.navy)}
-        ${lockGlyph(size, { color: WHITE, slot: ACCENTS.cobalt })}`,
-    },
+    ...LOCK_TILES.flatMap(lockIcons),
   ],
   logo: (size) => scaled(size, computerGlyph(size), COMPUTER_SPAN, LOGO_SPAN),
 };

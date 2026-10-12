@@ -32,7 +32,9 @@ export const ACCENTS = {
   gold: "#F5C542", // lights on: the Power key, and a power symbol on a dark tile
   ochre: "#B07A00", // lights on, on the `grey` tile, where gold would wash out
   orange: "#E5892E", // the background of the dial's touch strip
-  scarlet: "#E8584F", // a red glyph on the `charcoal` tile, brighter than `TILES.red` to stand out on it
+  sage: "#4A7C59", // a step lighter than `TILES.green`, for a slot or keyhole on it, as `cobalt` is on `navy`
+  // A red glyph on the `charcoal` tile, brighter than `TILES.red` to stand out on it, and a keyhole on `TILES.red`.
+  scarlet: "#E8584F",
   umber: "#2E1F12", // text on the touch strip's orange
 };
 

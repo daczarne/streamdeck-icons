@@ -288,24 +288,57 @@ export function computerGlyph(size, { color = "#FFFFFF" } = {}) {
 }
 
 /**
- * A padlock: a shackle over a solid body with a slot across it. The slot is cut out, showing the tile behind it, unless
- * `slot` gives it a color of its own, as the monitor keys' lock does.
+ * A padlock: a shackle over a solid body with a slot across it, or a keyhole with `keyhole`. The slot or keyhole is cut
+ * out, showing the tile behind it, unless `slot` gives it a color of its own, as the monitor keys' lock does.
+ *
+ * `open` unlocks it, in one of three styles: `"up"` lifts the shackle, its right leg out of the body; `"short"` keeps
+ * the shackle at its locked height, its right leg stopping short above the body; `"side"` swings the shackle right,
+ * its left leg in the body's right side and its right leg hanging free past the body's edge. The first two leave the
+ * body where the locked one is, so a key switching between them only moves the shackle. The side-opened lock is wider,
+ * so it's centered as a whole.
  */
-export function lockGlyph(size, { color = "#FFFFFF", slot } = {}) {
+export function lockGlyph(size, { color = "#FFFFFF", slot, keyhole = false, open = false } = {}) {
   const at = (share) => share * size;
   const sw = at(0.062);
-  // The shackle, drawn along the middle of its stroke, down into the body.
-  const [shackleLeft, shackleRight, shackleTop, shackleBottom] = [0.4065, 0.5935, 0.255, 0.43].map(at);
+  // The shackle, drawn along the middle of its stroke, down into the body. Swung to the side, it moves right by its
+  // own width. Lifted, it rises by `LOCK_LIFT`. Open, its right leg stops `LOCK_GAP` above the body, or level with the
+  // body's top once it hangs past the body's edge.
+  const [lockedLeft, lockedRight, shackleTop, shackleBottom] = [0.4065, 0.5935, 0.255, 0.43].map(at);
+  const swing = open === "side" ? lockedRight - lockedLeft : 0;
+  const [shackleLeft, shackleRight] = [lockedLeft + swing, lockedRight + swing];
+  const lift = open === "up" ? at(LOCK_LIFT) : 0;
   const arcR = (shackleRight - shackleLeft) / 2;
   const [bodyLeft, bodyRight, bodyTop, bodyBottom, br] = [0.3125, 0.6875, 0.411, 0.754, 0.06].map(at);
-  const [slotLeft, slotRight, slotTop, slotBottom, sr] = [0.4025, 0.5975, 0.577, 0.636, 0.016].map(at);
+  const rightLegBottom = !open ? shackleBottom : open === "side" ? bodyTop : bodyTop - at(LOCK_GAP);
+  // The side-opened lock spans from the body's left edge to the outside of the free leg: moved left by half of what
+  // that adds, it's centered again.
+  const shift = open === "side" ? -(shackleRight + sw / 2 - bodyRight) / 2 : 0;
   const roundedRect = (x0, y0, x1, y1, rr) => `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
     V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
     V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
-  const slotPath = roundedRect(slotLeft, slotTop, slotRight, slotBottom, sr);
-  return `<path d="M ${shackleLeft} ${shackleBottom} V ${shackleTop + arcR}
-    A ${arcR} ${arcR} 0 0 1 ${shackleRight} ${shackleTop + arcR} V ${shackleBottom}"
-    stroke="${color}" stroke-width="${sw}"/>
-    <path d="${roundedRect(bodyLeft, bodyTop, bodyRight, bodyBottom, br)}${slot ? "" : ` ${slotPath}`}"
-    fill="${color}" fill-rule="evenodd"/>${slot ? `\n    <path d="${slotPath}" fill="${slot}"/>` : ""}`;
+  const hole = keyhole ? keyholePath(at) : roundedRect(...[0.4025, 0.577, 0.5975, 0.636, 0.016].map(at));
+  const lock = `<path d="M ${shackleLeft} ${shackleBottom} V ${shackleTop - lift + arcR}
+    A ${arcR} ${arcR} 0 0 1 ${shackleRight} ${shackleTop - lift + arcR} V ${rightLegBottom}"
+    stroke="${color}" stroke-width="${sw}"${open ? ' stroke-linecap="round"' : ""}/>
+    <path d="${roundedRect(bodyLeft, bodyTop, bodyRight, bodyBottom, br)}${slot ? "" : ` ${hole}`}"
+    fill="${color}" fill-rule="evenodd"/>${slot ? `\n    <path d="${hole}" fill="${slot}"/>` : ""}`;
+  return shift ? `<g transform="translate(${shift} 0)">${lock}</g>` : lock;
+}
+
+// How far an open lock's shackle is lifted, and how far its free leg stops above the body, as shares of the canvas.
+const LOCK_LIFT = 0.07;
+const LOCK_GAP = 0.045;
+
+/**
+ * A keyhole in the lock's body, as one outline, so it can be cut out of the body: a round head, and below it a stem
+ * that widens toward its rounded foot. `at` turns shares of the canvas into its units.
+ */
+function keyholePath(at) {
+  const [cx, cy, r] = [0.5, 0.562, 0.043].map(at);
+  const [topHalf, footHalf, foot, footR] = [0.018, 0.032, 0.686, 0.011].map(at);
+  // Where the stem's sides leave the head, on its lower half.
+  const join = cy + Math.sqrt(r ** 2 - topHalf ** 2);
+  return `M ${cx - topHalf} ${join} A ${r} ${r} 0 1 1 ${cx + topHalf} ${join}
+    L ${cx + footHalf} ${foot - footR} A ${footR} ${footR} 0 0 1 ${cx + footHalf - footR} ${foot}
+    H ${cx - footHalf + footR} A ${footR} ${footR} 0 0 1 ${cx - footHalf} ${foot - footR} Z`;
 }
