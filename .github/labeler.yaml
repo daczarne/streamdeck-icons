@@ -1,3 +1,8 @@
+build:
+  - changed-files:
+      - any-glob-to-any-file:
+          - scripts/*.mjs
+          - fonts/**
 dependencies:
   - changed-files:
       - any-glob-to-any-file:
@@ -6,21 +11,27 @@ dependencies:
 devices:
   - changed-files:
       - any-glob-to-any-file:
-          - com.daczarne.devices.sdIconPack
+          - com.daczarne.devices.sdIconPack/**
           - scripts/packs/devices.mjs
 docs:
   - changed-files:
       - any-glob-to-any-file:
           - docs/**
           - README.md
+          - CLAUDE.md
+glyphs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/**
 litra:
   - changed-files:
       - any-glob-to-any-file:
-          - com.daczarne.litra.sdIconPack
+          - com.daczarne.litra.sdIconPack/**
           - scripts/packs/litra.mjs
 tools:
   - changed-files:
       - any-glob-to-any-file:
+          - .claude/**
           - .cspell.json
           - .cspell/**
           - .editorconfig
@@ -28,6 +39,8 @@ tools:
           - .gitignore
           - .markdownlint-cli2.yaml
           - .markdownlint.yaml
+          - .node-version
+          - .npmrc
           - .vscode/**
 workflows:
   - changed-files:

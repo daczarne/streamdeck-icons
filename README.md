@@ -52,7 +52,7 @@ npm run unlink            # remove the links
 
 Stream Deck only finds a new pack when it starts, so quit and reopen it after the first link. After that, a change shows the next time the Icon Library is opened. In VS Code, the `Build packs` task regenerates the packs and checks them.
 
-[`docs/icon_packs.md`][icon-packs] describes the format and how Stream Deck loads a pack, and [`docs/manual_testing/packs.md`][packs-test] the checks to run on the Deck.
+[`docs/icon_packs.md`][icon-packs] describes the format and how Stream Deck loads a pack, [`docs/adding_a_pack.md`][adding-a-pack] how to add one, and [`docs/manual_testing/packs.md`][packs-test] the checks to run on the Deck.
 
 ## Text on icons
 
@@ -77,6 +77,7 @@ To update or replace the font:
 
 The first glyphs (the power symbol, the lamp and the action-list icons) come from Seth Sheppard's original Litra plugin, and the rest were drawn here. The package is MIT licensed: see [`LICENSE`][license]. The labels are set in [Noto Sans][noto], by the Noto Project Authors, under the SIL Open Font License: see [`fonts/OFL.txt`][ofl].
 
+[adding-a-pack]: docs/adding_a_pack.md
 [icon-packs]: docs/icon_packs.md
 [license]: LICENSE
 [noto]: https://notofonts.github.io

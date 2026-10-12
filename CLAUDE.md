@@ -22,6 +22,7 @@ Daniel knows little about design, and expects Claude to lead on colors, sizes an
 - `docs/contributing.md`: how work is done here. Changes go through pull requests, come with their checks, and dependencies are pinned. It also explains why the exports are a contract with the plugins.
 - `docs/style_guide.md`: the conventions the linters don't enforce (see [Style](#style)).
 - `docs/icon_packs.md`: the icon pack format, and how Stream Deck loads and shows a pack, checked on the Deck. Add to it when a change finds out something new.
+- `docs/adding_a_pack.md`: how to add a pack, from its manifest to its label and its first check on the Deck. Each pack gets its own label.
 - `docs/manual_testing/packs.md`: the checks that only the Deck can prove. Before asking Daniel to look at the Deck, point to them.
 
 ## Layout
