@@ -3,11 +3,21 @@ dependencies:
       - any-glob-to-any-file:
           - package.json
           - package-lock.json
+devices:
+  - changed-files:
+      - any-glob-to-any-file:
+          - com.daczarne.devices.sdIconPack
+          - scripts/packs/devices.mjs
 docs:
   - changed-files:
       - any-glob-to-any-file:
           - docs/**
           - README.md
+litra:
+  - changed-files:
+      - any-glob-to-any-file:
+          - com.daczarne.litra.sdIconPack
+          - scripts/packs/litra.mjs
 tools:
   - changed-files:
       - any-glob-to-any-file:
