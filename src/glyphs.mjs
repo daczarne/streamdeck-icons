@@ -342,3 +342,42 @@ function keyholePath(at) {
     L ${cx + footHalf} ${foot - footR} A ${footR} ${footR} 0 0 1 ${cx + footHalf - footR} ${foot}
     H ${cx - footHalf + footR} A ${footR} ${footR} 0 0 1 ${cx - footHalf} ${foot - footR} Z`;
 }
+
+
+/** A speaker: its cabinet's outline, with a small ring for the tweeter near the top and a larger one for the woofer. */
+export function speakerGlyph(size, { color = "#FFFFFF" } = {}) {
+  const at = (share) => share * size;
+  const sw = at(MONITOR_STROKE);
+  // The rings take a thinner stroke, which keeps the tweeter's hole open.
+  const ringSw = at(SPEAKER_RING_STROKE);
+  // The cabinet's outline and the rings, drawn along the middle of their strokes.
+  const [left, right, top, bottom, r] = [0.3, 0.7, 0.22, 0.78, 0.05].map(at);
+  const [cx, tweeterY, tweeterR, wooferY, wooferR] = [0.5, 0.36, 0.055, 0.6, 0.1].map(at);
+  return `<rect x="${left}" y="${top}" width="${right - left}" height="${bottom - top}" rx="${r}"
+    stroke="${color}" stroke-width="${sw}"/>
+    <circle cx="${cx}" cy="${tweeterY}" r="${tweeterR}" stroke="${color}" stroke-width="${ringSw}"/>
+    <circle cx="${cx}" cy="${wooferY}" r="${wooferR}" stroke="${color}" stroke-width="${ringSw}"/>`;
+}
+
+const SPEAKER_RING_STROKE = 0.05;
+
+/**
+ * Headphones: a headband arching over two ear cups, each a solid pill standing apart from it, inside its ends and
+ * reaching below them.
+ */
+export function headphonesGlyph(size, { color = "#FFFFFF" } = {}) {
+  const at = (share) => share * size;
+  const sw = at(MONITOR_STROKE);
+  // The headband, drawn along the middle of its stroke: a half circle whose ends run straight down.
+  const [cx, arcY, arcR, bandBottom] = [0.5, 0.48, 0.25, 0.66].map(at);
+  // The cups, by their outer edges: each a gap inside the band's end.
+  const [gap, cupWidth, cupTop, cupBottom, cr] = [0.025, 0.15, 0.5, 0.78, 0.065].map(at);
+  const left = cx - arcR + sw / 2 + gap;
+  const right = cx + arcR - sw / 2 - gap - cupWidth;
+  const cup = (x0) => `<rect x="${x0}" y="${cupTop}" width="${cupWidth}" height="${cupBottom - cupTop}" rx="${cr}"
+    fill="${color}"/>`;
+  return `<path d="M ${cx - arcR} ${bandBottom} V ${arcY} A ${arcR} ${arcR} 0 0 1 ${cx + arcR} ${arcY} V ${bandBottom}"
+    stroke="${color}" stroke-width="${sw}"/>
+    ${cup(left)}
+    ${cup(right)}`;
+}
