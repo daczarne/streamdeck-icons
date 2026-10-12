@@ -31,7 +31,7 @@ The first time a pack is linked, quit and reopen Stream Deck: it only finds a ne
 2. **Every icon shows.** Expand the pack: its icons show in the order of `icons.json`. Hovering over an icon shows its name and the pack's name.
 3. **Search finds the icons.** Searching for an icon's name finds it, and so does searching for one of its tags. Searching for the pack's own tag (such as "litra") finds every icon in the pack.
 4. **An icon works on a key.** Assign one of the pack's icons to a key: the key shows it on the Deck, with the same colors as in the library.
-5. **Tiles fill the key.** Assign a charcoal and a grey icon to keys: each tile fills its key on the Deck, with no ring around it, though the Icon Library shows one. Its glyph is the same size as the plain icon's, and the colored glyphs (such as the power symbols' amber and red) read clearly on both tiles.
+5. **Tiles fill the key.** Assign tiled icons to keys (such as a charcoal and a grey Litra icon, or a monitor's from the devices pack): each tile fills its key on the Deck, with no ring around it, though the Icon Library shows one. Colored glyphs (such as the power symbols' amber and red) read clearly on their tile, and where a glyph also comes plain, it's the same size on both.
 6. **Text reads.** On a key, a label (such as "BOTTOM RIGHT" or "Desk Mode ON") is crisp and fits the key, set in the same font as in the Icon Library.
 
 [icon-packs]: ../icon_packs.md

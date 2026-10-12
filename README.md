@@ -56,7 +56,7 @@ Stream Deck only finds a new pack when it starts, so quit and reopen it after th
 ## Layout
 
 - `src/` is what plugins import: the glyphs (`glyphs.mjs`), the palette (`palette.mjs`) and `svgDoc` (`svg.mjs`).
-- `scripts/packs/` holds one definition per pack: its glyphs, their names, tags and sizes. `scripts/pack-builder.mjs` turns a definition into the pack's icons, plain and on every tile, and its `icons.json`.
+- `scripts/packs/` holds one definition per pack: its icons, their names and tags, in the order the Icon Library shows them. `scripts/pack-builder.mjs` writes a definition out as the pack's icons and `icons.json`, with helpers for common patterns, such as each glyph plain and on every tile.
 - Each `*.sdIconPack/` folder at the root is a pack, as Stream Deck loads it. Its `manifest.json` is written by hand, and everything else in it is generated.
 - `fonts/` holds the font labels are drawn from, Noto Sans Bold, with its license. `scripts/text.mjs` lays a label out from it with [opentype.js][opentype], the repository's one dependency, and writes each letter as a path. `npm run check:icons` checks the font against its pinned hash.
 
