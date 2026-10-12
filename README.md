@@ -7,6 +7,7 @@ Not an official Elgato or Logitech product.
 - [Packs](#packs)
 - [Using the glyphs in a plugin](#using-the-glyphs-in-a-plugin)
 - [Working on the packs](#working-on-the-packs)
+- [Text on icons](#text-on-icons)
 - [Layout](#layout)
 - [Credits](#credits)
 
@@ -53,6 +54,18 @@ Stream Deck only finds a new pack when it starts, so quit and reopen it after th
 
 [`docs/icon_packs.md`][icon-packs] describes the format and how Stream Deck loads a pack, and [`docs/manual_testing/packs.md`][packs-test] the checks to run on the Deck.
 
+## Text on icons
+
+Text goes on icons as paths, never as SVG text: Stream Deck would draw `<text>` with whatever fonts the machine has, and a label would change font from one machine to the next. `textGlyph` in `scripts/text.mjs` lays each line out from the vendored font and writes its letters as shapes, so a label looks the same everywhere, like a glyph.
+
+A label is a list of lines, split by hand, such as `["BOTTOM", "RIGHT"]`. Every label gets the same size, the one the monitor keys were designed with: capitals 15% of the icon tall, and lines about 29% apart, with the block centered. Labels stay alike that way, so a long word goes on a line of its own rather than in smaller letters. A label whose letters would come within 5% of an icon's edge stops `npm run icons` with an error naming the line, rather than run off the key: "BOTTOM" is about as wide as a line can be, and three lines as many as fit.
+
+To update or replace the font:
+
+1. Download the new file from a pinned commit of the Noto project's distribution, [`notofonts/notofonts.github.io`][noto-dist], rather than from `main`, so the address always serves the same file. Its license comes from the font's source repository, at a pinned commit too.
+2. Update the hash and the source comment of `FONT` in `scripts/check-packs.mjs`, and the license in `fonts/OFL.txt` if it changed.
+3. Run `npm run icons` and review the labels: a new font, even a new version of the same one, can move every letter. Check them on the Deck with [`docs/manual_testing/packs.md`][packs-test].
+
 ## Layout
 
 - `src/` is what plugins import: the glyphs (`glyphs.mjs`), the palette (`palette.mjs`) and `svgDoc` (`svg.mjs`).
@@ -67,6 +80,7 @@ The first glyphs (the power symbol, the lamp and the action-list icons) come fro
 [icon-packs]: docs/icon_packs.md
 [license]: LICENSE
 [noto]: https://notofonts.github.io
+[noto-dist]: https://github.com/notofonts/notofonts.github.io
 [ofl]: fonts/OFL.txt
 [opentype]: https://github.com/opentypejs/opentype.js
 [packs-test]: docs/manual_testing/packs.md

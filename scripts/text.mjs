@@ -22,10 +22,15 @@ const LINE_PITCH = 0.286;
 // Decimal places kept in the paths: far below a pixel at any size Stream Deck shows, and short to store.
 const DECIMALS = 2;
 
+// The margin a label's letters keep from every edge of the icon, as a share of it. The key's frame and rounded corners
+// cover the very edge, and "BOTTOM", the widest label so far, keeps about 6.7%.
+const MARGIN = 0.05;
+
 /**
  * Lines of text, each centered across an icon of `size`, and the block centered down it, from the top of its first
  * line's capitals to its last line's baseline. Every label gets the same size, so labels look alike whatever their
- * length.
+ * length, and lines are split by the caller. A label whose letters would come within {@link MARGIN} of an edge stops
+ * the build, rather than run off the key: it needs shorter lines, or fewer.
  */
 export function textGlyph(size, lines, { color = "#FFFFFF" } = {}) {
   const capHeight = font.tables.os2.sCapHeight / font.unitsPerEm;
@@ -38,6 +43,12 @@ export function textGlyph(size, lines, { color = "#FFFFFF" } = {}) {
       const glyphs = font.getPath(line, (size - width) / 2, firstBaseline + i * LINE_PITCH * size, fontSize, {
         kerning: true,
       });
+      const ink = glyphs.getBoundingBox();
+      const [low, high] = [MARGIN * size, (1 - MARGIN) * size];
+      if (ink.x1 < low || ink.x2 > high || ink.y1 < low || ink.y2 > high) {
+        const label = lines.join(" / ");
+        throw new Error(`"${label}" doesn't fit an icon: "${line}" comes within ${MARGIN * 100}% of its edge`);
+      }
       return `<path d="${glyphs.toPathData(DECIMALS)}" fill="${color}"/>`;
     })
     .join("\n");
