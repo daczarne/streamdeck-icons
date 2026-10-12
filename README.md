@@ -13,10 +13,10 @@ Not an official Elgato or Logitech product.
 
 ## Packs
 
-| Pack                              | Icons                                                                                                                   |
-|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot) and power, used by the Litra plugin's keys             |
-| `com.daczarne.devices.sdIconPack` | Devices. So far, monitor input switching: a label, a laptop and a computer per monitor, brightness, desk mode and locks |
+| Pack                              | Icons                                                                                                                                                         |
+|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot) and power, used by the Litra plugin's keys                                                   |
+| `com.daczarne.devices.sdIconPack` | Devices around the Deck: monitor input switching (a label, a laptop and a computer per monitor, brightness and desk mode), locks, and speakers and headphones |
 
 The Litra pack's glyphs come in three sets: white on transparent, and on a charcoal or a grey tile that fills the key. The devices pack puts each monitor key on its monitor's color, as the keys on the Deck are. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
 
