@@ -21,6 +21,7 @@ export const TILES = {
   red: "#D64541", // desk mode, while it's on, framed in `ACCENTS.amber`
   navy: "#2E4A6B", // the lock, with its slot in `ACCENTS.cobalt`
   aubergine: "#3E2F45", // a darker `plum`, for the Litra keys, dark enough for gold and scarlet glyphs
+  forest: "#2F4A3A", // a darker `green`, for the Litra keys, like `aubergine`
   charcoal: "#2B2E33", // the dark neutral keys, with `WHITE` glyphs
   grey: "#9AA0A8", // the light neutral keys, the charcoal ones inverted, with `INK` glyphs
 };

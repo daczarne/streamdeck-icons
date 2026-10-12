@@ -508,5 +508,109 @@
       "off",
       "red"
     ]
+  },
+  {
+    "path": "brightness-forest.svg",
+    "name": "Brightness (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "sun",
+      "light"
+    ]
+  },
+  {
+    "path": "brightness-low-forest.svg",
+    "name": "Brightness low (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "sun",
+      "dim"
+    ]
+  },
+  {
+    "path": "temperature-forest.svg",
+    "name": "Temperature (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin"
+    ]
+  },
+  {
+    "path": "temperature-cool-forest.svg",
+    "name": "Temperature cool (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin",
+      "snowflake",
+      "cold"
+    ]
+  },
+  {
+    "path": "temperature-warm-forest.svg",
+    "name": "Temperature warm (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin",
+      "sun",
+      "warm"
+    ]
+  },
+  {
+    "path": "temperature-hot-forest.svg",
+    "name": "Temperature hot (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin",
+      "flame",
+      "hot"
+    ]
+  },
+  {
+    "path": "power-on-forest.svg",
+    "name": "Power on (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "power"
+    ]
+  },
+  {
+    "path": "power-off-forest.svg",
+    "name": "Power off (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "power"
+    ]
+  },
+  {
+    "path": "power-red-forest.svg",
+    "name": "Power red (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "power",
+      "off",
+      "red"
+    ]
   }
 ]

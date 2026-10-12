@@ -19,6 +19,7 @@ const TILE_SCHEMES = [
   { name: "grey", tile: TILES.grey, ink: INK, lit: ACCENTS.ochre, red: ACCENTS.crimson },
   { name: "navy", tile: TILES.navy, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
   { name: "aubergine", tile: TILES.aubergine, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
+  { name: "forest", tile: TILES.forest, ink: WHITE, lit: ACCENTS.gold, red: ACCENTS.scarlet },
 ];
 
 // How far an off glyph fades toward its tile: dimmer than an on one, and still readable.
