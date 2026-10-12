@@ -28,43 +28,53 @@ const MONITORS = [
   { id: "all", name: "All", label: ["ALL"], color: TILES.slate, suns: false },
 ];
 
-/** One icon per monitor that `only` keeps, drawn by `draw(size, monitor)` on the monitor's tile. */
-function perMonitor(kind, name, tags, draw, only = () => true) {
-  return MONITORS.filter(only).map((monitor) => ({
+/**
+ * The keys of one monitor, each on its tile, in the order the Icon Library shows them: the blank tile, the label, the
+ * inputs, then the brightness keys, for the monitors that have them.
+ */
+function monitorIcons(monitor) {
+  const kinds = [
+    { kind: "tile", name: "tile", tags: ["tile", "blank"], draw: () => "" },
+    { kind: "label", name: "label", tags: ["label"], draw: (size) => textGlyph(size, monitor.label, { color: WHITE }) },
+    { kind: "laptop", name: "laptop", tags: ["laptop", "input"], draw: (size) => laptopGlyph(size, { color: WHITE }) },
+    {
+      kind: "computer",
+      name: "computer",
+      tags: ["computer", "desktop", "input"],
+      draw: (size) => computerGlyph(size, { color: WHITE }),
+    },
+    ...(monitor.suns
+      ? [
+          {
+            kind: "brightness",
+            name: "brightness",
+            tags: ["sun", "brightness"],
+            draw: (size) => scaled(size, brightnessGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
+          },
+          {
+            kind: "brightness-low",
+            name: "brightness low",
+            tags: ["sun", "brightness", "dim"],
+            draw: (size) => scaled(size, dimGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
+          },
+        ]
+      : []),
+  ];
+  return kinds.map(({ kind, name, tags, draw }) => ({
     path: `${monitor.id}-${kind}.svg`,
     name: `${monitor.name} ${name}`,
     tags: ["monitor", ...monitor.id.split("-"), ...tags],
     draw: (size) => `${tile(size, monitor.color)}
-      ${draw(size, monitor)}`,
+      ${draw(size)}`,
   }));
 }
-
-const withSuns = (monitor) => monitor.suns;
 
 export default {
   folder: "com.daczarne.monitors.sdIconPack",
   tag: "monitors",
-  // In the order of the keys on the Deck: the labels, the inputs, the brightness keys, then the rest.
+  // Each monitor's keys together, then the keys that go with them.
   icons: [
-    ...perMonitor("label", "label", ["label"], (size, { label }) => textGlyph(size, label, { color: WHITE })),
-    ...perMonitor("laptop", "laptop", ["laptop", "input"], (size) => laptopGlyph(size, { color: WHITE })),
-    ...perMonitor("computer", "computer", ["computer", "desktop", "input"], (size) =>
-      computerGlyph(size, { color: WHITE }),
-    ),
-    ...perMonitor(
-      "brightness",
-      "brightness",
-      ["sun", "brightness"],
-      (size) => scaled(size, brightnessGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
-      withSuns,
-    ),
-    ...perMonitor(
-      "brightness-low",
-      "brightness low",
-      ["sun", "brightness", "dim"],
-      (size) => scaled(size, dimGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
-      withSuns,
-    ),
+    ...MONITORS.flatMap(monitorIcons),
     {
       path: "desk-mode-off.svg",
       name: "Desk mode off",
@@ -89,7 +99,6 @@ export default {
       draw: (size) => `${tile(size, TILES.navy)}
         ${lockGlyph(size, { color: WHITE, slot: ACCENTS.cobalt })}`,
     },
-    ...perMonitor("tile", "tile", ["tile", "blank"], () => ""),
   ],
   logo: (size) => scaled(size, computerGlyph(size), COMPUTER_SPAN, LOGO_SPAN),
 };
