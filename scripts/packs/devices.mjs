@@ -1,7 +1,8 @@
 /**
  * The devices pack: icons for the devices around the Deck. So far, the keys that switch monitor inputs and set their
- * brightness, each on its monitor's color, with the desk mode key and the lock, which go with them. Labels are text written as paths (see `scripts/text.mjs`), and
- * the glyphs are sized as on the monitor keys, where the suns span a little over half of the tile.
+ * brightness, each on its monitor's color, with the desk mode key and the locks, which go with them. Labels are text
+ * written as paths (see `scripts/text.mjs`), and the glyphs are sized as on the monitor keys, where the suns span a
+ * little over half of the tile.
  */
 import { brightnessGlyph, computerGlyph, dimGlyph, laptopGlyph, lockGlyph } from "../../src/glyphs.mjs";
 import { ACCENTS, TILES, WHITE } from "../../src/palette.mjs";
@@ -98,6 +99,34 @@ export default {
       tags: ["lock"],
       draw: (size) => `${tile(size, TILES.navy)}
         ${lockGlyph(size, { color: WHITE, slot: ACCENTS.cobalt })}`,
+    },
+    {
+      path: "lock-keyhole.svg",
+      name: "Lock with keyhole",
+      tags: ["lock", "keyhole", "locked"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${lockGlyph(size, { color: WHITE, slot: ACCENTS.cobalt, keyhole: true })}`,
+    },
+    {
+      path: "unlock-keyhole.svg",
+      name: "Unlocked with keyhole",
+      tags: ["lock", "keyhole", "unlocked", "open"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${lockGlyph(size, { color: WHITE, slot: ACCENTS.cobalt, keyhole: true, open: "up" })}`,
+    },
+    {
+      path: "unlock-keyhole-short.svg",
+      name: "Unlocked with keyhole, low shackle",
+      tags: ["lock", "keyhole", "unlocked", "open"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${lockGlyph(size, { color: WHITE, slot: ACCENTS.cobalt, keyhole: true, open: "short" })}`,
+    },
+    {
+      path: "unlock-keyhole-side.svg",
+      name: "Unlocked with keyhole, shackle to the side",
+      tags: ["lock", "keyhole", "unlocked", "open"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${lockGlyph(size, { color: WHITE, slot: ACCENTS.cobalt, keyhole: true, open: "side" })}`,
     },
   ],
   logo: (size) => scaled(size, computerGlyph(size), COMPUTER_SPAN, LOGO_SPAN),

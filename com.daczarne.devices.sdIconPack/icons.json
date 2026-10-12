@@ -350,5 +350,48 @@
       "devices",
       "lock"
     ]
+  },
+  {
+    "path": "lock-keyhole.svg",
+    "name": "Lock with keyhole",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "locked"
+    ]
+  },
+  {
+    "path": "unlock-keyhole.svg",
+    "name": "Unlocked with keyhole",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-short.svg",
+    "name": "Unlocked with keyhole, low shackle",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-side.svg",
+    "name": "Unlocked with keyhole, shackle to the side",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
   }
 ]
