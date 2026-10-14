@@ -1,5 +1,10 @@
 {
   "version": "2.0.0",
+  // Every task's terminal closes when the task exits, going back to the terminal that was open before. run-task.sh
+  // keeps it open on failure, until Enter is pressed.
+  "presentation": {
+    "close": true,
+  },
   "tasks": [
     // The default build task, so "Tasks: Run Build Task" runs it. Linked packs need no restart: Stream Deck shows the
     // new icons the next time the Icon Library opens.
@@ -7,7 +12,7 @@
       "label": "Build packs",
       "detail": "Regenerate every icon pack, then check them",
       "type": "shell",
-      "command": "npm run icons && npm run check:icons",
+      "command": "sh .vscode/run-task.sh 'npm run icons && npm run check:icons'",
       "group": {
         "kind": "build",
         "isDefault": true,
@@ -29,19 +34,19 @@
     {
       "label": "Lint: Markdown",
       "type": "shell",
-      "command": "markdownlint-cli2 --config .markdownlint.yaml .",
+      "command": "sh .vscode/run-task.sh 'markdownlint-cli2 --config .markdownlint.yaml .'",
       "problemMatcher": [ ],
     },
     {
       "label": "Lint: spelling",
       "type": "shell",
-      "command": "cspell lint --config .cspell.json --dot --no-progress .",
+      "command": "sh .vscode/run-task.sh 'cspell lint --config .cspell.json --dot --no-progress .'",
       "problemMatcher": [ ],
     },
     {
       "label": "Lint: packs",
       "type": "shell",
-      "command": "npm run check:icons",
+      "command": "sh .vscode/run-task.sh 'npm run check:icons'",
       "problemMatcher": [ ],
     },
   ],
