@@ -26,6 +26,7 @@
       "dependsOn": [
         "Lint: Markdown",
         "Lint: spelling",
+        "Lint: code",
         "Lint: packs",
       ],
       "dependsOrder": "sequence",
@@ -41,6 +42,13 @@
       "label": "Lint: spelling",
       "type": "shell",
       "command": "sh .vscode/run-task.sh 'cspell lint --config .cspell.json --dot --no-progress .'",
+      "problemMatcher": [ ],
+    },
+    {
+      "label": "Lint: code",
+      "detail": "Biome: lint, formatting and import order",
+      "type": "shell",
+      "command": "sh .vscode/run-task.sh 'npm run lint'",
       "problemMatcher": [ ],
     },
     {

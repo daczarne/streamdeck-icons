@@ -4,8 +4,8 @@
  * `icons.json` and its own icon. A pack's `manifest.json` is written by hand.
  */
 import { writePack } from "./pack-builder.mjs";
-import litra from "./packs/litra.mjs";
 import devices from "./packs/devices.mjs";
+import litra from "./packs/litra.mjs";
 
 const PACKS = [litra, devices];
 

@@ -31,6 +31,7 @@ Daniel knows little about design, and expects Claude to lead on colors, sizes an
 - `scripts/packs/` holds one definition per pack: its icons, in the order the Icon Library shows them, with their names and tags. `scripts/pack-builder.mjs` writes a definition out as the pack's icons and `icons.json`, and offers helpers to build the list: `plainGlyphs` and `tiledGlyphs` for a glyph plain and on every tile scheme (the Litra pack), `tile` and `scaled` for a pack that places each icon itself (the devices pack). `scripts/generate-packs.mjs` lists the packs to build.
 - Each `*.sdIconPack/` folder at the root is a pack: `manifest.json`, written by hand, and `icons.json`, `icons/` and `icon.svg`, generated and committed.
 - `scripts/check-packs.mjs` checks every pack, and the font against its hash, and `scripts/link-packs.mjs` links them into Stream Deck.
+- Biome lints and formats `src/` and `scripts/`, from `biome.json`, with the same version and settings as the Litra plugin. Its config has to stay at the repository root: from anywhere else, its type-aware rules, such as `noFloatingPromises`, report nothing, without a warning.
 - Text goes on icons as paths, never as SVG `<text>`, which Stream Deck would draw with whatever fonts the machine has. `scripts/text.mjs` lays it out from `fonts/NotoSans-Bold.ttf` with `opentype.js`, at the cap height and line spacing measured on the monitor keys, the same for every label. Lines are split by hand, and a label that comes within 5% of an icon's edge stops the build: it needs shorter lines, not smaller letters. It lives in `scripts/`, not `src/`, so plugins that import the glyphs don't need the font or the library.
 
 ## Commands
@@ -40,6 +41,8 @@ n auto                    # switch to the Node version in .node-version
 npm ci --ignore-scripts   # install from the lockfile, without install scripts
 npm run icons             # regenerate every pack
 npm run check:icons       # every pack: manifest complete, every icon listed, sized and present
+npm run lint              # Biome: lint rules, formatting and import order, without changing anything
+npm run format            # Biome: apply the formatting and the import order
 npm run link              # link every pack into Stream Deck (macOS)
 npm run unlink            # remove the links
 ```
@@ -48,7 +51,7 @@ To see a change before showing Daniel, render the SVGs to a contact sheet in the
 
 ## Supply chain
 
-Daniel treats supply-chain risk as a hard requirement. The package's one dependency is `opentype.js`, a development dependency with no dependencies of its own, used only to build the packs. A new one is flagged and justified, with a narrower alternative offered. The font in `fonts/` is vendored from the Noto project's distribution, pinned to a commit there and to its hash in `scripts/check-packs.mjs`, and replaced only deliberately, like a dependency. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
+Daniel treats supply-chain risk as a hard requirement. The package's dependencies are development dependencies, which plugins that import the glyphs don't install: `opentype.js`, with no dependencies of its own, used only to build the packs, and Biome, a native binary per platform, with no dependencies and no install scripts. A new one is flagged and justified, with a narrower alternative offered. The font in `fonts/` is vendored from the Noto project's distribution, pinned to a commit there and to its hash in `scripts/check-packs.mjs`, and replaced only deliberately, like a dependency. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
 
 ## Testing on the hardware
 
@@ -62,10 +65,10 @@ Daniel treats supply-chain risk as a hard requirement. The package's one depende
 
 - Create branches with `git switch -c`.
 - Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when Daniel asks.
-- `.github/workflows/main.yaml` runs Markdown lint, CSpell, the packs' check, and a regeneration that must change nothing, on every pull request and on `main`. Locally, `/lint` and the `Lint` VS Code task run the same checks.
+- `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the packs' check, and a regeneration that must change nothing, on every pull request and on `main`. Locally, `/lint` and the `Lint` VS Code task run the same checks.
 - Write the pull request title and description with the `pr-description` skill.
 - Draft issues with the `github-issues` skill, and post them only when Daniel asks. The skill works on the issues of both this repository and `daczarne/streamdeck-litra`, whichever the session started in.
 
 ## Style
 
-`docs/style_guide.md`, `.editorconfig`, the Markdown lint configuration and CSpell (with the dictionaries in `.cspell/`) are the authority on style.
+`docs/style_guide.md`, `.editorconfig`, `biome.json`, the Markdown lint configuration and CSpell (with the dictionaries in `.cspell/`) are the authority on style.
