@@ -34,6 +34,7 @@ Commit messages on a branch disappear in the squash. They stay short and accurat
 The icons are drawn by code, and their files are generated from it and committed.
 
 - `npm run check:icons` checks every pack against what Stream Deck's Icon Library needs, and CI regenerates every pack to check that the committed icons are what the code draws. A change to the code is committed with the icons it regenerates.
+- `npm run typecheck` checks the types that the doc comments declare, and `npm run check:docs` that every function has one.
 - What only the Deck can show (how an icon looks on a key, whether the library finds it) is checked by hand, with the checks in [`docs/manual_testing/`][manual-testing]. A change that needs new manual checks adds them there, in the same pull request.
 - A change meant to leave the icons as they are, such as a refactoring, shows it: regenerating the packs changes no file.
 
