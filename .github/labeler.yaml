@@ -23,6 +23,7 @@ glyphs:
   - changed-files:
       - any-glob-to-any-file:
           - src/**
+          - types/**
 litra:
   - changed-files:
       - any-glob-to-any-file:
@@ -42,6 +43,9 @@ tools:
           - .node-version
           - .npmrc
           - .vscode/**
+          - biome.json
+          - tsconfig.json
+          - tsconfig.types.json
 workflows:
   - changed-files:
       - any-glob-to-any-file:

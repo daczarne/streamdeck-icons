@@ -55,7 +55,7 @@ npm run link              # link every pack into Stream Deck's IconPacks folder 
 npm run unlink            # remove the links
 ```
 
-Stream Deck only finds a new pack when it starts, so quit and reopen it after the first link. After that, a change shows the next time the Icon Library is opened. In VS Code, the `Build packs` task regenerates the packs and checks them.
+Stream Deck only finds a new pack when it starts, so quit and reopen it after the first link. After that, a change shows the next time the Icon Library is opened. In VS Code, the `Build packs` task regenerates the packs and the type declarations, and checks the packs.
 
 [`docs/icon_packs.md`][icon-packs] describes the format and how Stream Deck loads a pack, [`docs/adding_a_pack.md`][adding-a-pack] how to add one, and [`docs/manual_testing/packs.md`][packs-test] the checks to run on the Deck.
 

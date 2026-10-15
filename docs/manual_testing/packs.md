@@ -21,7 +21,7 @@ npm run icons
 npm run link
 ```
 
-In VS Code, the `Build packs` task regenerates the packs and checks them.
+In VS Code, the `Build packs` task regenerates the packs and the type declarations, and checks the packs.
 
 The first time a pack is linked, quit and reopen Stream Deck: it only finds a new pack when it starts. After that, a change shows the next time the Icon Library is opened. Open the Icon Library from any key's image menu (the down chevron, then **Open Stream Deck Icon Library**).
 
