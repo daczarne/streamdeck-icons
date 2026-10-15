@@ -1,5 +1,7 @@
+davidanson
 killall
 Noto
 notofonts
 osascript
+redhat
 unhinted
