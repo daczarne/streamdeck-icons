@@ -29,6 +29,8 @@
   "scripts": {
     "icons": "node scripts/generate-packs.mjs",
     "check:icons": "node scripts/check-packs.mjs",
+    "lint": "biome ci",
+    "format": "biome check --write --linter-enabled=false",
     "link": "node scripts/link-packs.mjs",
     "unlink": "node scripts/link-packs.mjs --unlink"
   },
@@ -36,6 +38,7 @@
     "node": "24.15.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "opentype.js": "2.0.0"
   }
 }

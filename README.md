@@ -46,6 +46,8 @@ Use the Node version in `.node-version`, and install from the lockfile without i
 npm ci --ignore-scripts
 npm run icons             # regenerate every pack from its definition in scripts/packs/
 npm run check:icons       # every pack: manifest complete, every icon listed, sized and present
+npm run lint              # Biome: lint rules, formatting and import order, without changing anything
+npm run format            # Biome: apply the formatting and the import order
 npm run link              # link every pack into Stream Deck's IconPacks folder (macOS)
 npm run unlink            # remove the links
 ```
@@ -71,7 +73,7 @@ To update or replace the font:
 - `src/` is what plugins import: the glyphs (`glyphs.mjs`), the palette (`palette.mjs`) and `svgDoc` (`svg.mjs`).
 - `scripts/packs/` holds one definition per pack: its icons, their names and tags, in the order the Icon Library shows them. `scripts/pack-builder.mjs` writes a definition out as the pack's icons and `icons.json`, with helpers for common patterns, such as each glyph plain and on every tile.
 - Each `*.sdIconPack/` folder at the root is a pack, as Stream Deck loads it. Its `manifest.json` is written by hand, and everything else in it is generated.
-- `fonts/` holds the font labels are drawn from, Noto Sans Bold, with its license. `scripts/text.mjs` lays a label out from it with [opentype.js][opentype], the repository's one dependency, and writes each letter as a path. `npm run check:icons` checks the font against its pinned hash.
+- `fonts/` holds the font labels are drawn from, Noto Sans Bold, with its license. `scripts/text.mjs` lays a label out from it with [opentype.js][opentype], and writes each letter as a path. `npm run check:icons` checks the font against its pinned hash.
 
 ## Credits
 
