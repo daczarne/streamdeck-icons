@@ -31,6 +31,11 @@ const MARGIN = 0.05;
  * line's capitals to its last line's baseline. Every label gets the same size, so labels look alike whatever their
  * length, and lines are split by the caller. A label whose letters would come within {@link MARGIN} of an edge stops
  * the build, rather than run off the key: it needs shorter lines, or fewer.
+ *
+ * @param {number} size the side of the icon
+ * @param {string[]} lines
+ * @param {{ color?: string }} [options]
+ * @returns {string} the SVG markup of every line
  */
 export function textGlyph(size, lines, { color = "#FFFFFF" } = {}) {
   const capHeight = font.tables.os2.sCapHeight / font.unitsPerEm;

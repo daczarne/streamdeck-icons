@@ -28,25 +28,34 @@ const MAX_FILE_NAME_LENGTH = 80;
 
 const SVG_SIZE = /<svg\b[^>]*\bwidth="([^"]*)"[^>]*\bheight="([^"]*)"/;
 
+/** @type {string[]} */
 const errors = [];
 
+/**
+ * Checks one pack's manifest, its `icons.json` and the files it lists, and records what's wrong in `errors`.
+ *
+ * @param {string} pack the pack's folder
+ * @returns {void}
+ */
 function checkPack(pack) {
   const packDir = path.resolve(pack);
   const iconsDir = path.join(packDir, "icons");
 
-  function readJson(name) {
+  /** @type {(name: string) => unknown} */
+  const readJson = (name) => {
     try {
       return JSON.parse(readFileSync(path.join(packDir, name), "utf8"));
     } catch (error) {
-      errors.push(`${pack}/${name}: ${error.message}`);
+      errors.push(`${pack}/${name}: ${error instanceof Error ? error.message : String(error)}`);
       return undefined;
     }
-  }
+  };
 
-  const manifest = readJson("manifest.json");
+  const manifest = /** @type {Record<string, unknown> | undefined} */ (readJson("manifest.json"));
   if (manifest !== undefined) {
     for (const member of REQUIRED_MANIFEST_MEMBERS) {
-      if (typeof manifest[member] !== "string" || manifest[member].trim() === "") {
+      const value = manifest[member];
+      if (typeof value !== "string" || value.trim() === "") {
         errors.push(`${pack}/manifest.json: ${member} is required`);
       }
     }
@@ -58,8 +67,8 @@ function checkPack(pack) {
   const icons = readJson("icons.json");
   if (icons !== undefined && !Array.isArray(icons)) {
     errors.push(`${pack}/icons.json: not an array`);
-  } else if (icons !== undefined) {
-    icons.forEach((icon, i) => {
+  } else if (Array.isArray(icons)) {
+    /** @type {Array<Record<string, unknown>>} */ (icons).forEach((icon, i) => {
       const where = `${pack}/icons.json[${i}]`;
       if (typeof icon.path !== "string" || icon.path === "") {
         errors.push(`${where}: path is required`);
