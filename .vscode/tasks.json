@@ -10,9 +10,9 @@
     // new icons the next time the Icon Library opens.
     {
       "label": "Build packs",
-      "detail": "Regenerate every icon pack, then check them",
+      "detail": "Regenerate every icon pack and the type declarations, then check the packs",
       "type": "shell",
-      "command": "sh .vscode/run-task.sh 'npm run icons && npm run check:icons'",
+      "command": "sh .vscode/run-task.sh 'npm run icons && npm run types && npm run check:icons'",
       "group": {
         "kind": "build",
         "isDefault": true,

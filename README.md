@@ -36,7 +36,7 @@ import { brightnessGlyph, svgDoc } from "@daczarne/streamdeck-icons";
 const svg = svgDoc(144, brightnessGlyph(144));
 ```
 
-Each glyph takes the size of its square canvas, and options such as `color`, and returns SVG markup. The package ships only `src/`, as plain ES modules with nothing to build, so it installs without running scripts. A plugin takes a new style by updating the commit it depends on and regenerating its images.
+Each glyph takes the size of its square canvas, and options such as `color`, and returns SVG markup. The package ships `src/`, as plain ES modules with nothing to build, and the type declarations generated from its doc comments, in `types/`, so it installs without running scripts and a plugin can type-check its calls. A plugin takes a new style by updating the commit it depends on and regenerating its images.
 
 ## Working on the packs
 
@@ -45,6 +45,7 @@ Use the Node version in `.node-version`, and install from the lockfile without i
 ```shell
 npm ci --ignore-scripts
 npm run icons             # regenerate every pack from its definition in scripts/packs/
+npm run types             # regenerate the type declarations in types/ from src/'s doc comments
 npm run check:icons       # every pack: manifest complete, every icon listed, sized and present
 npm run lint              # Biome: lint rules, formatting and import order, without changing anything
 npm run format            # Biome: apply the formatting and the import order
@@ -54,7 +55,7 @@ npm run link              # link every pack into Stream Deck's IconPacks folder 
 npm run unlink            # remove the links
 ```
 
-Stream Deck only finds a new pack when it starts, so quit and reopen it after the first link. After that, a change shows the next time the Icon Library is opened. In VS Code, the `Build packs` task regenerates the packs and checks them.
+Stream Deck only finds a new pack when it starts, so quit and reopen it after the first link. After that, a change shows the next time the Icon Library is opened. In VS Code, the `Build packs` task regenerates the packs and the type declarations, and checks the packs.
 
 [`docs/icon_packs.md`][icon-packs] describes the format and how Stream Deck loads a pack, [`docs/adding_a_pack.md`][adding-a-pack] how to add one, and [`docs/manual_testing/packs.md`][packs-test] the checks to run on the Deck.
 

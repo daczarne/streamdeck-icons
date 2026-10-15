@@ -29,6 +29,7 @@ Daniel knows little about design, and expects Claude to lead on colors, sizes an
 
 - `src/` is what plugins import, through `src/index.mjs`: the glyphs in `glyphs.mjs`, the palette in `palette.mjs`, and `svgDoc` in `svg.mjs`. Each glyph takes the size of its canvas and options such as `color`, and returns SVG markup. The Litra plugin's glyphs fill their canvas, as its keys need, and a pack scales them down to its size with `span` and `packSpan`. The glyphs of the devices pack are drawn at the size they take on a tile, and go in as they are. A new option keeps the old behavior as its default, so plugins that update draw the same images.
 - `scripts/packs/` holds one definition per pack: its icons, in the order the Icon Library shows them, with their names and tags. `scripts/pack-builder.mjs` writes a definition out as the pack's icons and `icons.json`, and offers helpers to build the list: `plainGlyphs` and `tiledGlyphs` for a glyph plain and on every tile scheme (the Litra pack), `tile` and `scaled` for a pack that places each icon itself (the devices pack). `scripts/generate-packs.mjs` lists the packs to build.
+- `types/` holds the type declarations of `src/`, generated from its doc comments by `npm run types` (`tsconfig.types.json`) and committed, since plugins install this package from GitHub without running scripts. `package.json`'s `exports` points plugins to them.
 - Each `*.sdIconPack/` folder at the root is a pack: `manifest.json`, written by hand, and `icons.json`, `icons/` and `icon.svg`, generated and committed.
 - `scripts/check-packs.mjs` checks every pack, and the font against its hash, and `scripts/link-packs.mjs` links them into Stream Deck.
 - Biome lints and formats `src/` and `scripts/`, from `biome.json`, with the same version and settings as the Litra plugin. Its config has to stay at the repository root: from anywhere else, its type-aware rules, such as `noFloatingPromises`, report nothing, without a warning.
@@ -41,6 +42,7 @@ Daniel knows little about design, and expects Claude to lead on colors, sizes an
 n auto                    # switch to the Node version in .node-version
 npm ci --ignore-scripts   # install from the lockfile, without install scripts
 npm run icons             # regenerate every pack
+npm run types             # regenerate the type declarations in types/ from src/'s doc comments
 npm run check:icons       # every pack: manifest complete, every icon listed, sized and present
 npm run lint              # Biome: lint rules, formatting and import order, without changing anything
 npm run format            # Biome: apply the formatting and the import order
@@ -68,7 +70,7 @@ Daniel treats supply-chain risk as a hard requirement. The package's dependencie
 
 - Create branches with `git switch -c`.
 - Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when Daniel asks.
-- `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, and a regeneration that must change nothing, on every pull request and on `main`. Locally, `/lint` and the `Lint` VS Code task run the same checks.
+- `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, and a regeneration of the packs and the declarations that must change nothing, on every pull request and on `main`. Locally, `/lint` and the `Lint` VS Code task run the same checks.
 - Write the pull request title and description with the `pr-description` skill.
 - Draft issues with the `github-issues` skill, and post them only when Daniel asks. The skill works on the issues of both this repository and `daczarne/streamdeck-litra`, whichever the session started in.
 

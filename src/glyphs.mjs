@@ -199,7 +199,6 @@ export function actionIconTemperature(size) {
  * Brightness and Temperature icons: white line art on transparent, like Stream Deck's own. Each is both the key image
  * and the dial icon, since Stream Deck's app pictures a dial with the key image.
  *
- *
  * @param {number} size the side of its square canvas
  * @param {GlyphOptions} [options]
  * @returns {string} its SVG markup
@@ -345,7 +344,6 @@ function smallSun(cx, cy, r, sw, color) {
  * A flame of half-height `r`, a tenth taller than the other badges since it's narrower: a rounded base, a main tongue
  * leaning right and a smaller one on the left, with a teardrop cut out of its base. The cut-out keeps a margin of `sw`.
  *
- *
  * @type {Badge}
  */
 function flame(cx, cy, badgeR, sw, color) {
@@ -448,7 +446,6 @@ export function laptopGlyph(size, { color = "#FFFFFF" } = {}) {
  * A desktop computer: a monitor's outline, open on the right where the tower stands in front of it, its foot, and the
  * tower, with two drive slots and a power light cut out of it.
  *
- *
  * @param {number} size the side of its square canvas
  * @param {GlyphOptions} [options]
  * @returns {string} its SVG markup
@@ -484,7 +481,6 @@ export function computerGlyph(size, { color = "#FFFFFF" } = {}) {
  * its left leg in the body's right side and its right leg hanging free past the body's edge. The first two leave the
  * body where the locked one is, so a key switching between them only moves the shackle. The side-opened lock is wider,
  * so it's centered as a whole.
- *
  *
  * @param {number} size the side of its square canvas
  * @param {LockOptions} [options]
@@ -523,7 +519,6 @@ const LOCK_GAP = 0.045;
 /**
  * A keyhole in the lock's body, as one outline, so it can be cut out of the body: a round head, and below it a stem
  * that widens toward its rounded foot.
- *
  *
  * @param {number} size
  * @returns {string}
@@ -566,7 +561,6 @@ const SPEAKER_RING_STROKE = 0.05;
  * Headphones: a headband arching over two ear cups, each a solid pill standing apart from it, inside its ends and
  * reaching below them.
  *
- *
  * @param {number} size the side of its square canvas
  * @param {GlyphOptions} [options]
  * @returns {string} its SVG markup
@@ -594,7 +588,6 @@ export function headphonesGlyph(size, { color = "#FFFFFF" } = {}) {
  * A Mac Studio in front of a monitor, as {@link computerGlyph} has its tower: the monitor's outline, open where the Mac
  * stands in front of its lower right corner, and its foot. The Mac is a squat box with its two ports, card slot and
  * light cut out low on its front, over a narrower base. The monitor's foot and the Mac's base stand on one line.
- *
  *
  * @param {number} size the side of its square canvas
  * @param {GlyphOptions} [options]

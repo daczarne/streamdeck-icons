@@ -33,16 +33,16 @@ Commit messages on a branch disappear in the squash. They stay short and accurat
 
 The icons are drawn by code, and their files are generated from it and committed.
 
-- `npm run check:icons` checks every pack against what Stream Deck's Icon Library needs, and CI regenerates every pack to check that the committed icons are what the code draws. A change to the code is committed with the icons it regenerates.
+- `npm run check:icons` checks every pack against what Stream Deck's Icon Library needs, and CI regenerates every pack and the type declarations to check that the committed files are what the code generates. A change to the code is committed with the icons and declarations it regenerates.
 - `npm run typecheck` checks the types that the doc comments declare, and `npm run check:docs` that every function has one.
 - What only the Deck can show (how an icon looks on a key, whether the library finds it) is checked by hand, with the checks in [`docs/manual_testing/`][manual-testing]. A change that needs new manual checks adds them there, in the same pull request.
-- A change meant to leave the icons as they are, such as a refactoring, shows it: regenerating the packs changes no file.
+- A change meant to leave the icons and the exports as they are, such as a refactoring, shows it: regenerating the packs and the declarations changes no file.
 
 ## Consumers pin a commit
 
 Plugins draw their own images from this package's exports (the glyphs, the palette and `svgDoc`), installed from GitHub and pinned to a commit. A change here reaches a plugin only when the plugin updates the commit it depends on, regenerates its images and commits them, so its history records which icons it was built from.
 
-So the exports are a contract. Renaming or removing one, or changing what a glyph draws by default, breaks or changes a plugin the next time it updates. Such a change says so in its pull request, and adds an option with the old behavior as its default where it can, as the glyphs' `color` and `level` do.
+So the exports are a contract. Renaming or removing one, or changing what a glyph draws by default, breaks or changes a plugin the next time it updates. The type declarations in `types/` are that contract in a form a reviewer can read: a change to an export's name, its parameters or its options shows up in their diff. Such a change says so in its pull request, and adds an option with the old behavior as its default where it can, as the glyphs' `color` and `level` do.
 
 ## Dependencies
 
