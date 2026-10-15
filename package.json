@@ -21,13 +21,18 @@
   ],
   "type": "module",
   "exports": {
-    ".": "./src/index.mjs"
+    ".": {
+      "types": "./types/index.d.mts",
+      "default": "./src/index.mjs"
+    }
   },
   "files": [
-    "src"
+    "src",
+    "types"
   ],
   "scripts": {
     "icons": "node scripts/generate-packs.mjs",
+    "types": "tsc -p tsconfig.types.json",
     "check:icons": "node scripts/check-packs.mjs",
     "lint": "biome ci",
     "typecheck": "tsc -p .",
