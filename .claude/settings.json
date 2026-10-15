@@ -1,16 +1,10 @@
 {
-  "env": {
-    "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1"
-  },
   "permissions": {
     "allow": [
       "Bash(cspell lint *)",
       "Bash(gh issue list --repo daczarne/streamdeck-icons *)",
       "Bash(gh issue list --repo daczarne/streamdeck-icons)",
-      "Bash(gh issue list --repo daczarne/streamdeck-litra *)",
-      "Bash(gh issue list --repo daczarne/streamdeck-litra)",
       "Bash(gh issue view --repo daczarne/streamdeck-icons *)",
-      "Bash(gh issue view --repo daczarne/streamdeck-litra *)",
       "Bash(git add *)",
       "Bash(git cherry-pick *)",
       "Bash(git commit *)",
@@ -23,7 +17,6 @@
     "ask": [
       "Bash(./scripts/*setup_*.zsh*)",
       "Bash(*claude/settings*)",
-      "Bash(/Users/daniel.czarnievicz/.dotfiles/scripts/*setup_*.zsh*)",
       "Bash(~/.dotfiles/scripts/*setup_*.zsh*)",
       "Bash(bash *setup_*.zsh*)",
       "Bash(brew bundle *)",
@@ -80,7 +73,6 @@
       "Bash(./install.sh*)",
       "Bash(*GH_REPO=*)",
       "Bash(*GH_TOKEN=*)",
-      "Bash(/Users/daniel.czarnievicz/.dotfiles/install.sh*)",
       "Bash(~/.dotfiles/install.sh*)",
       "Bash(bash *install.sh*)",
       "Bash(chsh *)",
