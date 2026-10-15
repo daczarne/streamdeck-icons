@@ -356,7 +356,6 @@ function keyholePath(at) {
     H ${cx - footHalf + footR} A ${footR} ${footR} 0 0 1 ${cx - footHalf} ${foot - footR} Z`;
 }
 
-
 /** A speaker: its cabinet's outline, with a small ring for the tweeter near the top and a larger one for the woofer. */
 export function speakerGlyph(size, { color = "#FFFFFF" } = {}) {
   const at = (share) => share * size;
@@ -410,8 +409,9 @@ export function macStudioGlyph(size, { color = "#FFFFFF" } = {}) {
   const gap = at(DESK_MONITOR.gap);
   // The Mac's box, its right edge where the tower's is, over its base, which ends where the monitor's foot does.
   const floor = footY + footH / 2;
-  const [macWidth, macHeight, macRight, mr, baseInset, baseGap, baseH] = [0.35, 0.17, 0.781, 0.035, 0.045, 0.014, 0.018]
-    .map(at);
+  const [macWidth, macHeight, macRight, mr, baseInset, baseGap, baseH] = [
+    0.35, 0.17, 0.781, 0.035, 0.045, 0.014, 0.018,
+  ].map(at);
   const macBottom = floor - baseH - baseGap;
   const [macLeft, macTop] = [macRight - macWidth, macBottom - macHeight];
   // The front's details, low on it, by their centers: the ports from the box's left edge, the slot from its left edge

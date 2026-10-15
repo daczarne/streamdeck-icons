@@ -43,7 +43,14 @@ export function scaled(size, glyph, span, packSpan) {
 function mix(from, to, share) {
   const channels = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
   const [a, b] = [channels(from), channels(to)];
-  return `#${a.map((v, i) => Math.round(v + (b[i] - v) * share).toString(16).padStart(2, "0")).join("").toUpperCase()}`;
+  return `#${a
+    .map((v, i) =>
+      Math.round(v + (b[i] - v) * share)
+        .toString(16)
+        .padStart(2, "0"),
+    )
+    .join("")
+    .toUpperCase()}`;
 }
 
 /** A tile of `color` that fills an icon of `size`, for glyphs and text to go on. The Deck rounds its corners. */

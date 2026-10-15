@@ -6,10 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": [
-      "src/**/*.mjs",
-      "scripts/**/*.mjs"
-    ]
+    "includes": ["src/**/*.mjs", "scripts/**/*.mjs"]
   },
   "formatter": {
     "enabled": true,
