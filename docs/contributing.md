@@ -34,6 +34,7 @@ Commit messages on a branch disappear in the squash. They stay short and accurat
 The icons are drawn by code, and their files are generated from it and committed.
 
 - `npm run check:icons` checks every pack against what Stream Deck's Icon Library needs, and CI regenerates every pack to check that the committed icons are what the code draws. A change to the code is committed with the icons it regenerates.
+- `npm run typecheck` checks the types that the doc comments declare, and `npm run check:docs` that every function has one.
 - What only the Deck can show (how an icon looks on a key, whether the library finds it) is checked by hand, with the checks in [`docs/manual_testing/`][manual-testing]. A change that needs new manual checks adds them there, in the same pull request.
 - A change meant to leave the icons as they are, such as a refactoring, shows it: regenerating the packs changes no file.
 
@@ -51,7 +52,7 @@ Every dependency is pinned, and every upgrade is a deliberate change of its own.
 - An upgrade is `npm install <package>@<version>`, followed by a review of the lockfile diff. Exact versions don't pin transitive dependencies, only the lockfile does, so it stays committed and installs use `npm ci`.
 - GitHub Actions are pinned to full commit SHAs, with the version as a trailing comment, checked against the release tag. Like npm packages, they're upgraded by hand.
 
-The package has two dependencies, both development dependencies, so plugins that import the glyphs install neither: `opentype.js`, which lays text out from the font when building the packs, and Biome, which lints and formats the code. Biome ships as a native binary, one optional dependency per platform, so its upgrades can't be reviewed from source in the lockfile diff, which still shows which packages changed and where they come from. Its type-aware rules, such as `noFloatingPromises`, are in its experimental nursery group, so an upgrade can change what they report: run `npm run lint` on the upgrade and look at what changed. A new dependency is flagged and justified in its pull request. The font in `fonts/` is vendored rather than installed, and pinned by its hash in `scripts/check-packs.mjs`: replacing it is a deliberate change of its own, like an upgrade.
+The package's dependencies are all development dependencies, so plugins that import the glyphs install none of them: `opentype.js`, which lays text out from the font when building the packs, Biome, which lints and formats the code, and TypeScript with `@types/node`, which check its types. `@types/node` is pinned to the newest version whose minor doesn't go past the Node in `.node-version`, since its minor versions don't follow Node's one for one. Biome ships as a native binary, one optional dependency per platform, so its upgrades can't be reviewed from source in the lockfile diff, which still shows which packages changed and where they come from. Its type-aware rules, such as `noFloatingPromises`, are in its experimental nursery group, so an upgrade can change what they report: run `npm run lint` on the upgrade and look at what changed. A new dependency is flagged and justified in its pull request. The font in `fonts/` is vendored rather than installed, and pinned by its hash in `scripts/check-packs.mjs`: replacing it is a deliberate change of its own, like an upgrade.
 
 ## Unused code
 

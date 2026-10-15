@@ -14,6 +14,65 @@ const COLORS = {
   on: ACCENTS.gold,
 };
 
+/**
+ * The options most glyphs take.
+ *
+ * @typedef {object} GlyphOptions
+ * @property {string} [color] the glyph's ink, in place of its own colors
+ */
+
+/**
+ * The options of {@link lockGlyph}.
+ *
+ * @typedef {object} LockOptions
+ * @property {string} [color] the lock's ink
+ * @property {string} [slot] the color of the slot or keyhole, which is cut out without one
+ * @property {boolean} [keyhole] a keyhole in place of the slot
+ * @property {false | "up" | "short" | "side"} [open] how the lock is unlocked, if it is
+ */
+
+/**
+ * A badge drawn next to a thermometer, centered at (`cx`, `cy`) with radius `r` and strokes `sw` wide.
+ *
+ * @typedef {(cx: number, cy: number, r: number, sw: number, color: string) => string} Badge
+ */
+
+/**
+ * Shares of a canvas of `size`, in its units, as many as given, so each can be named.
+ *
+ * @template {readonly number[] | []} T
+ * @param {number} size
+ * @param {T} shares
+ * @returns {{ -readonly [K in keyof T]: number }}
+ */
+function toCanvas(size, shares) {
+  return /** @type {{ -readonly [K in keyof T]: number }} */ (shares.map((share) => share * size));
+}
+
+/**
+ * The outline of a rectangle from (`x0`, `y0`) to (`x1`, `y1`) with corners of radius `rr`, as path data.
+ *
+ * @param {number} x0
+ * @param {number} y0
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} rr
+ * @returns {string}
+ */
+function roundedRect(x0, y0, x1, y1, rr) {
+  return `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
+    V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
+    V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
+}
+
+/**
+ * The Power key's symbol: a ring open at the top, with a stem through the gap and, when `on`, a dot inside for
+ * lights that are on. It's muted grey off and gold on, unless `color` sets both.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {{ on: boolean, color?: string }} options
+ * @returns {string} its SVG markup
+ */
 export function powerGlyph(size, { on, color }) {
   const cx = size / 2;
   const cy = size / 2;
@@ -28,6 +87,13 @@ export function powerGlyph(size, { on, color }) {
     ${on ? `<circle cx="${cx}" cy="${cy + r * 0.15}" r="${size * 0.04}" fill="${color ?? COLORS.on}"/>` : ""}`;
 }
 
+/**
+ * A desk lamp: a shade over a stem and a foot, filled in warm orange, or outlined in white with `mono`.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {{ mono?: boolean }} [options]
+ * @returns {string} its SVG markup
+ */
 export function lampGlyph(size, { mono = false } = {}) {
   const cx = size / 2;
   const cy = size / 2;
@@ -47,15 +113,34 @@ export function lampGlyph(size, { mono = false } = {}) {
     stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round"/>`;
 }
 
+/**
+ * The Litra plugin's marketplace icon: the lamp on a dark rounded tile that fills the canvas.
+ *
+ * @param {number} size the side of its square canvas
+ * @returns {string} its SVG markup
+ */
 export function marketplaceGlyph(size) {
   return `<rect width="${size}" height="${size}" rx="${size * 0.18}" fill="${COLORS.bg}"/> ${lampGlyph(size)}`;
 }
 
+/**
+ * The Litra plugin's category icon, and the Litra pack's own: the lamp, outlined in white on transparent.
+ *
+ * @param {number} size the side of its square canvas
+ * @returns {string} its SVG markup
+ */
 export function categoryGlyph(size) {
   // Monochrome white on transparent: the plugin's category, and the lamp of the icon pack
   return lampGlyph(size, { mono: true });
 }
 
+/**
+ * The Power action's icon in Stream Deck's action list: the power symbol in white, with heavier strokes than
+ * {@link powerGlyph} to read at the list's small size.
+ *
+ * @param {number} size the side of its square canvas
+ * @returns {string} its SVG markup
+ */
 export function actionIconPower(size) {
   const cx = size / 2;
   const cy = size / 2;
@@ -68,6 +153,12 @@ export function actionIconPower(size) {
     stroke="#FFFFFF" stroke-width="${sw}" stroke-linecap="round" fill="none"/>`;
 }
 
+/**
+ * The Brightness action's icon in Stream Deck's action list: a sun in white.
+ *
+ * @param {number} size the side of its square canvas
+ * @returns {string} its SVG markup
+ */
 export function actionIconBrightness(size) {
   const cx = size / 2;
   const cy = size / 2;
@@ -84,6 +175,12 @@ export function actionIconBrightness(size) {
   return `<circle cx="${cx}" cy="${cy}" r="${core}" fill="#FFFFFF"/>\n${rays}`;
 }
 
+/**
+ * The Temperature action's icon in Stream Deck's action list: a thermometer in white.
+ *
+ * @param {number} size the side of its square canvas
+ * @returns {string} its SVG markup
+ */
 export function actionIconTemperature(size) {
   const cx = size / 2;
   const sw = Math.max(1.5, size * 0.1);
@@ -101,6 +198,11 @@ export function actionIconTemperature(size) {
 /**
  * Brightness and Temperature icons: white line art on transparent, like Stream Deck's own. Each is both the key image
  * and the dial icon, since Stream Deck's app pictures a dial with the key image.
+ *
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
  */
 export function brightnessGlyph(size, { color = "#FFFFFF" } = {}) {
   const cx = size / 2;
@@ -119,7 +221,13 @@ export function brightnessGlyph(size, { color = "#FFFFFF" } = {}) {
   return `<circle cx="${cx}" cy="${cy}" r="${core + sw / 2}" fill="${color}"/>\n${rays}`;
 }
 
-/** A thermometer whose bar fills `level` of the tube, from the bulb up: all of it unless a glyph says otherwise. */
+/**
+ * A thermometer whose bar fills `level` of the tube, from the bulb up: all of it unless a glyph says otherwise.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {{ color?: string, level?: number }} [options] `level` is the share of the tube the bar fills, from 0 to 1
+ * @returns {string} its SVG markup
+ */
 export function temperatureGlyph(size, { color = "#FFFFFF", level = 1 } = {}) {
   const cx = size / 2;
   const sw = size * 0.065;
@@ -141,7 +249,13 @@ export function temperatureGlyph(size, { color = "#FFFFFF", level = 1 } = {}) {
     stroke="${color}" stroke-width="${sw}" stroke-linecap="round"/>`;
 }
 
-/** The sun outlined rather than filled, for a lower brightness, with the rays of {@link brightnessGlyph}. */
+/**
+ * The sun outlined rather than filled, for a lower brightness, with the rays of {@link brightnessGlyph}.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
 export function dimGlyph(size, { color = "#FFFFFF" } = {}) {
   const cx = size / 2;
   const cy = size / 2;
@@ -161,7 +275,15 @@ export function dimGlyph(size, { color = "#FFFFFF" } = {}) {
  */
 const BADGE = { thermometerX: 0.28, x: 0.71, y: 0.34, r: 0.18 };
 
-/** The thermometer of {@link temperatureGlyph}, moved left, with a badge drawn by `badge` at its upper right. */
+/**
+ * The thermometer of {@link temperatureGlyph}, moved left, with a badge drawn by `badge` at its upper right.
+ *
+ * @param {number} size
+ * @param {string} color
+ * @param {number} level
+ * @param {Badge} badge
+ * @returns {string}
+ */
 function thermometerWith(size, color, level, badge) {
   const sw = size * 0.038;
   const shift = size * (BADGE.thermometerX - 0.5);
@@ -169,17 +291,34 @@ function thermometerWith(size, color, level, badge) {
     ${badge(size * BADGE.x, size * BADGE.y, size * BADGE.r, sw, color)}`;
 }
 
+/**
+ * A line from (`x1`, `y1`) to (`x2`, `y2`), `sw` wide with round ends, as the badges draw theirs.
+ *
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
+ * @param {number} sw
+ * @param {string} color
+ * @returns {string}
+ */
 function strokeLine(x1, y1, x2, y2, sw, color) {
   return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"
     stroke="${color}" stroke-width="${sw}" stroke-linecap="round"/>`;
 }
 
-/** A snowflake of radius `r`: six arms, each with a pair of branches pointing outward. */
+/**
+ * A snowflake of radius `r`: six arms, each with a pair of branches pointing outward.
+ *
+ * @type {Badge}
+ */
 function snowflake(cx, cy, r, sw, color) {
   return Array.from({ length: 6 }, (_, i) => {
     const a = (i * Math.PI) / 3 - Math.PI / 2;
+    /** @type {(d: number, angle?: number) => [number, number]} */
     const at = (d, angle = a) => [cx + Math.cos(angle) * d, cy + Math.sin(angle) * d];
     const [bx, by] = at(r * 0.62);
+    /** @type {(turn: number) => string} */
     const branch = (turn) => {
       const angle = a + turn;
       return strokeLine(bx, by, bx + Math.cos(angle) * r * 0.3, by + Math.sin(angle) * r * 0.3, sw, color);
@@ -188,7 +327,11 @@ function snowflake(cx, cy, r, sw, color) {
   }).join("\n");
 }
 
-/** A small sun of radius `r`, filled like {@link brightnessGlyph}'s. */
+/**
+ * A small sun of radius `r`, filled like {@link brightnessGlyph}'s.
+ *
+ * @type {Badge}
+ */
 function smallSun(cx, cy, r, sw, color) {
   const rays = Array.from({ length: 8 }, (_, i) => {
     const a = (i * Math.PI) / 4 - Math.PI / 2;
@@ -201,9 +344,13 @@ function smallSun(cx, cy, r, sw, color) {
 /**
  * A flame of half-height `r`, a tenth taller than the other badges since it's narrower: a rounded base, a main tongue
  * leaning right and a smaller one on the left, with a teardrop cut out of its base. The cut-out keeps a margin of `sw`.
+ *
+ *
+ * @type {Badge}
  */
 function flame(cx, cy, badgeR, sw, color) {
   const r = badgeR * 1.1;
+  /** @type {(x: number, y: number) => string} */
   const at = (x, y) => `${cx + x * r} ${cy + y * r}`;
   const outer = `M ${at(0, 1)}
     C ${at(-0.72, 1)} ${at(-0.85, 0.4)} ${at(-0.58, -0.05)}
@@ -219,17 +366,35 @@ function flame(cx, cy, badgeR, sw, color) {
   return `<path d="${outer} ${inner}" fill="${color}" fill-rule="evenodd"/>`;
 }
 
-/** The thermometer with its bar low and a snowflake, for a cool temperature. */
+/**
+ * The thermometer with its bar low and a snowflake, for a cool temperature.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
 export function coolGlyph(size, { color = "#FFFFFF" } = {}) {
   return thermometerWith(size, color, 0.25, snowflake);
 }
 
-/** The thermometer with a sun, for a warm temperature. */
+/**
+ * The thermometer with a sun, for a warm temperature.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
 export function warmGlyph(size, { color = "#FFFFFF" } = {}) {
   return thermometerWith(size, color, 1, smallSun);
 }
 
-/** The thermometer with its bar full and a flame, for a hot temperature. */
+/**
+ * The thermometer with its bar full and a flame, for a hot temperature.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
 export function hotGlyph(size, { color = "#FFFFFF" } = {}) {
   return thermometerWith(size, color, 1, flame);
 }
@@ -249,21 +414,28 @@ const MONITOR_STROKE = 0.06;
  * cuts it. The monitor goes on behind the tower, to `hiddenRight`, and shows there behind a computer that covers less
  * of it.
  */
-const DESK_MONITOR = {
+const DESK_MONITOR = /** @type {const} */ ({
   outline: [0.249, 0.553, 0.316, 0.595, 0.035],
   hiddenRight: 0.633,
   foot: [0.317, 0.553, 0.6965, 0.045],
   gap: 0.041,
-};
+});
 
-/** A laptop: its screen's outline, open at the bottom, over a solid base with rounded lower corners. */
+/**
+ * A laptop: its screen's outline, open at the bottom, over a solid base with rounded lower corners.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
 export function laptopGlyph(size, { color = "#FFFFFF" } = {}) {
+  /** @type {(share: number) => number} */
   const at = (share) => share * size;
   const sw = at(MONITOR_STROKE);
   // The screen's outline, drawn along the middle of its stroke.
-  const [left, right, top, bottom, r] = [0.284, 0.72, 0.316, 0.56, 0.035].map(at);
+  const [left, right, top, bottom, r] = toCanvas(size, [0.284, 0.72, 0.316, 0.56, 0.035]);
   // The base: a flat top, and rounded lower corners.
-  const [baseLeft, baseRight, baseTop, baseBottom, br] = [0.196, 0.808, 0.625, 0.719, 0.07].map(at);
+  const [baseLeft, baseRight, baseTop, baseBottom, br] = toCanvas(size, [0.196, 0.808, 0.625, 0.719, 0.07]);
   return `<path d="M ${left} ${bottom} V ${top + r} A ${r} ${r} 0 0 1 ${left + r} ${top}
     H ${right - r} A ${r} ${r} 0 0 1 ${right} ${top + r} V ${bottom}"
     stroke="${color}" stroke-width="${sw}" stroke-linejoin="round"/>
@@ -275,19 +447,22 @@ export function laptopGlyph(size, { color = "#FFFFFF" } = {}) {
 /**
  * A desktop computer: a monitor's outline, open on the right where the tower stands in front of it, its foot, and the
  * tower, with two drive slots and a power light cut out of it.
+ *
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
  */
 export function computerGlyph(size, { color = "#FFFFFF" } = {}) {
+  /** @type {(share: number) => number} */
   const at = (share) => share * size;
   const sw = at(MONITOR_STROKE);
-  const [left, right, top, bottom, r] = DESK_MONITOR.outline.map(at);
-  const [footLeft, footRight, footY, footH] = DESK_MONITOR.foot.map(at);
-  const [towerLeft, towerRight, towerTop, towerBottom, tr] = [0.594, 0.781, 0.286, 0.714, 0.035].map(at);
-  const [slotLeft, slotRight, slotH] = [0.643, 0.732, 0.049].map(at);
-  const slotTops = [0.344, 0.438].map(at);
-  const [lightX, lightY, lightR] = [0.688, 0.583, 0.03].map(at);
-  const roundedRect = (x0, y0, x1, y1, rr) => `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
-    V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
-    V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
+  const [left, right, top, bottom, r] = toCanvas(size, DESK_MONITOR.outline);
+  const [footLeft, footRight, footY, footH] = toCanvas(size, DESK_MONITOR.foot);
+  const [towerLeft, towerRight, towerTop, towerBottom, tr] = toCanvas(size, [0.594, 0.781, 0.286, 0.714, 0.035]);
+  const [slotLeft, slotRight, slotH] = toCanvas(size, [0.643, 0.732, 0.049]);
+  const slotTops = toCanvas(size, [0.344, 0.438]);
+  const [lightX, lightY, lightR] = toCanvas(size, [0.688, 0.583, 0.03]);
   const slots = slotTops.map((y) => roundedRect(slotLeft, y, slotRight, y + slotH, slotH / 2)).join(" ");
   const light = `M ${lightX - lightR} ${lightY} A ${lightR} ${lightR} 0 1 0 ${lightX + lightR} ${lightY}
     A ${lightR} ${lightR} 0 1 0 ${lightX - lightR} ${lightY} Z`;
@@ -309,27 +484,30 @@ export function computerGlyph(size, { color = "#FFFFFF" } = {}) {
  * its left leg in the body's right side and its right leg hanging free past the body's edge. The first two leave the
  * body where the locked one is, so a key switching between them only moves the shackle. The side-opened lock is wider,
  * so it's centered as a whole.
+ *
+ *
+ * @param {number} size the side of its square canvas
+ * @param {LockOptions} [options]
+ * @returns {string} its SVG markup
  */
 export function lockGlyph(size, { color = "#FFFFFF", slot, keyhole = false, open = false } = {}) {
+  /** @type {(share: number) => number} */
   const at = (share) => share * size;
   const sw = at(0.062);
   // The shackle, drawn along the middle of its stroke, down into the body. Swung to the side, it moves right by its
   // own width. Lifted, it rises by `LOCK_LIFT`. Open, its right leg stops `LOCK_GAP` above the body, or level with the
   // body's top once it hangs past the body's edge.
-  const [lockedLeft, lockedRight, shackleTop, shackleBottom] = [0.4065, 0.5935, 0.255, 0.43].map(at);
+  const [lockedLeft, lockedRight, shackleTop, shackleBottom] = toCanvas(size, [0.4065, 0.5935, 0.255, 0.43]);
   const swing = open === "side" ? lockedRight - lockedLeft : 0;
   const [shackleLeft, shackleRight] = [lockedLeft + swing, lockedRight + swing];
   const lift = open === "up" ? at(LOCK_LIFT) : 0;
   const arcR = (shackleRight - shackleLeft) / 2;
-  const [bodyLeft, bodyRight, bodyTop, bodyBottom, br] = [0.3125, 0.6875, 0.411, 0.754, 0.06].map(at);
+  const [bodyLeft, bodyRight, bodyTop, bodyBottom, br] = toCanvas(size, [0.3125, 0.6875, 0.411, 0.754, 0.06]);
   const rightLegBottom = !open ? shackleBottom : open === "side" ? bodyTop : bodyTop - at(LOCK_GAP);
   // The side-opened lock spans from the body's left edge to the outside of the free leg: moved left by half of what
   // that adds, it's centered again.
   const shift = open === "side" ? -(shackleRight + sw / 2 - bodyRight) / 2 : 0;
-  const roundedRect = (x0, y0, x1, y1, rr) => `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
-    V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
-    V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
-  const hole = keyhole ? keyholePath(at) : roundedRect(...[0.4025, 0.577, 0.5975, 0.636, 0.016].map(at));
+  const hole = keyhole ? keyholePath(size) : roundedRect(...toCanvas(size, [0.4025, 0.577, 0.5975, 0.636, 0.016]));
   const lock = `<path d="M ${shackleLeft} ${shackleBottom} V ${shackleTop - lift + arcR}
     A ${arcR} ${arcR} 0 0 1 ${shackleRight} ${shackleTop - lift + arcR} V ${rightLegBottom}"
     stroke="${color}" stroke-width="${sw}"${open ? ' stroke-linecap="round"' : ""}/>
@@ -344,11 +522,15 @@ const LOCK_GAP = 0.045;
 
 /**
  * A keyhole in the lock's body, as one outline, so it can be cut out of the body: a round head, and below it a stem
- * that widens toward its rounded foot. `at` turns shares of the canvas into its units.
+ * that widens toward its rounded foot.
+ *
+ *
+ * @param {number} size
+ * @returns {string}
  */
-function keyholePath(at) {
-  const [cx, cy, r] = [0.5, 0.562, 0.043].map(at);
-  const [topHalf, footHalf, foot, footR] = [0.018, 0.032, 0.686, 0.011].map(at);
+function keyholePath(size) {
+  const [cx, cy, r] = toCanvas(size, [0.5, 0.562, 0.043]);
+  const [topHalf, footHalf, foot, footR] = toCanvas(size, [0.018, 0.032, 0.686, 0.011]);
   // Where the stem's sides leave the head, on its lower half.
   const join = cy + Math.sqrt(r ** 2 - topHalf ** 2);
   return `M ${cx - topHalf} ${join} A ${r} ${r} 0 1 1 ${cx + topHalf} ${join}
@@ -356,15 +538,22 @@ function keyholePath(at) {
     H ${cx - footHalf + footR} A ${footR} ${footR} 0 0 1 ${cx - footHalf} ${foot - footR} Z`;
 }
 
-/** A speaker: its cabinet's outline, with a small ring for the tweeter near the top and a larger one for the woofer. */
+/**
+ * A speaker: its cabinet's outline, with a small ring for the tweeter near the top and a larger one for the woofer.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
 export function speakerGlyph(size, { color = "#FFFFFF" } = {}) {
+  /** @type {(share: number) => number} */
   const at = (share) => share * size;
   const sw = at(MONITOR_STROKE);
   // The rings take a thinner stroke, which keeps the tweeter's hole open.
   const ringSw = at(SPEAKER_RING_STROKE);
   // The cabinet's outline and the rings, drawn along the middle of their strokes.
-  const [left, right, top, bottom, r] = [0.3, 0.7, 0.22, 0.78, 0.05].map(at);
-  const [cx, tweeterY, tweeterR, wooferY, wooferR] = [0.5, 0.36, 0.055, 0.6, 0.1].map(at);
+  const [left, right, top, bottom, r] = toCanvas(size, [0.3, 0.7, 0.22, 0.78, 0.05]);
+  const [cx, tweeterY, tweeterR, wooferY, wooferR] = toCanvas(size, [0.5, 0.36, 0.055, 0.6, 0.1]);
   return `<rect x="${left}" y="${top}" width="${right - left}" height="${bottom - top}" rx="${r}"
     stroke="${color}" stroke-width="${sw}"/>
     <circle cx="${cx}" cy="${tweeterY}" r="${tweeterR}" stroke="${color}" stroke-width="${ringSw}"/>
@@ -376,16 +565,23 @@ const SPEAKER_RING_STROKE = 0.05;
 /**
  * Headphones: a headband arching over two ear cups, each a solid pill standing apart from it, inside its ends and
  * reaching below them.
+ *
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
  */
 export function headphonesGlyph(size, { color = "#FFFFFF" } = {}) {
+  /** @type {(share: number) => number} */
   const at = (share) => share * size;
   const sw = at(MONITOR_STROKE);
   // The headband, drawn along the middle of its stroke: a half circle whose ends run straight down.
-  const [cx, arcY, arcR, bandBottom] = [0.5, 0.48, 0.25, 0.66].map(at);
+  const [cx, arcY, arcR, bandBottom] = toCanvas(size, [0.5, 0.48, 0.25, 0.66]);
   // The cups, by their outer edges: each a gap inside the band's end.
-  const [gap, cupWidth, cupTop, cupBottom, cr] = [0.025, 0.15, 0.5, 0.78, 0.065].map(at);
+  const [gap, cupWidth, cupTop, cupBottom, cr] = toCanvas(size, [0.025, 0.15, 0.5, 0.78, 0.065]);
   const left = cx - arcR + sw / 2 + gap;
   const right = cx + arcR - sw / 2 - gap - cupWidth;
+  /** @type {(x0: number) => string} */
   const cup = (x0) => `<rect x="${x0}" y="${cupTop}" width="${cupWidth}" height="${cupBottom - cupTop}" rx="${cr}"
     fill="${color}"/>`;
   return `<path d="M ${cx - arcR} ${bandBottom} V ${arcY} A ${arcR} ${arcR} 0 0 1 ${cx + arcR} ${arcY} V ${bandBottom}"
@@ -398,20 +594,27 @@ export function headphonesGlyph(size, { color = "#FFFFFF" } = {}) {
  * A Mac Studio in front of a monitor, as {@link computerGlyph} has its tower: the monitor's outline, open where the Mac
  * stands in front of its lower right corner, and its foot. The Mac is a squat box with its two ports, card slot and
  * light cut out low on its front, over a narrower base. The monitor's foot and the Mac's base stand on one line.
+ *
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
  */
 export function macStudioGlyph(size, { color = "#FFFFFF" } = {}) {
+  /** @type {(share: number) => number} */
   const at = (share) => share * size;
   const sw = at(MONITOR_STROKE);
   // The Mac covers less of the monitor than the tower does, so the monitor shows up to its full width.
-  const [left, , top, bottom, r] = DESK_MONITOR.outline.map(at);
+  const [left, , top, bottom, r] = toCanvas(size, DESK_MONITOR.outline);
   const right = at(DESK_MONITOR.hiddenRight);
-  const [footLeft, footRight, footY, footH] = DESK_MONITOR.foot.map(at);
+  const [footLeft, footRight, footY, footH] = toCanvas(size, DESK_MONITOR.foot);
   const gap = at(DESK_MONITOR.gap);
   // The Mac's box, its right edge where the tower's is, over its base, which ends where the monitor's foot does.
   const floor = footY + footH / 2;
-  const [macWidth, macHeight, macRight, mr, baseInset, baseGap, baseH] = [
-    0.35, 0.17, 0.781, 0.035, 0.045, 0.014, 0.018,
-  ].map(at);
+  const [macWidth, macHeight, macRight, mr, baseInset, baseGap, baseH] = toCanvas(
+    size,
+    [0.35, 0.17, 0.781, 0.035, 0.045, 0.014, 0.018],
+  );
   const macBottom = floor - baseH - baseGap;
   const [macLeft, macTop] = [macRight - macWidth, macBottom - macHeight];
   // The front's details, low on it, by their centers: the ports from the box's left edge, the slot from its left edge
@@ -419,9 +622,7 @@ export function macStudioGlyph(size, { color = "#FFFFFF" } = {}) {
   const [portXs, portW, portH, portY] = [[0.042, 0.066].map(at), at(0.014), at(0.042), macBottom - at(0.052)];
   const [slotLeft, slotRight, slotH] = [macLeft + at(0.098), macLeft + at(0.196), at(0.014)];
   const [lightX, lightR, detailY] = [macRight - at(0.042), at(0.01), macBottom - at(0.032)];
-  const roundedRect = (x0, y0, x1, y1, rr) => `M ${x0 + rr} ${y0} H ${x1 - rr} A ${rr} ${rr} 0 0 1 ${x1} ${y0 + rr}
-    V ${y1 - rr} A ${rr} ${rr} 0 0 1 ${x1 - rr} ${y1} H ${x0 + rr} A ${rr} ${rr} 0 0 1 ${x0} ${y1 - rr}
-    V ${y0 + rr} A ${rr} ${rr} 0 0 1 ${x0 + rr} ${y0} Z`;
+  /** @type {(cx: number, cy: number, w: number, h: number) => string} */
   const pill = (cx, cy, w, h) => roundedRect(cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2, Math.min(w, h) / 2);
   const ports = portXs.map((x) => pill(macLeft + x, portY, portW, portH)).join(" ");
   const slot = pill((slotLeft + slotRight) / 2, detailY, slotRight - slotLeft, slotH);

@@ -44,6 +44,16 @@ Linters usually require a space after the comment character (ruff's `E265`, for 
 
 Comments explain intent and stay general. They don't repeat specifics the code already states (which files, which values, which paths), because such comments go stale the moment the code changes and nobody remembers to update them. They should, however, explain the mechanics of non-obvious code. Code that is hard to read is refactored first. If it can't be, it gets a comment explaining what it is expected to do.
 
+### Doc comments
+
+Every function, class, method and constructor declared at the top of a file, or in a class there, has a doc comment (`/** … */`), in `src/` and `scripts/`. A closure inside a function is read with the function around it and needs none, though it still declares its types (`/** @type {…} */`) where they can't be inferred. `npm run check:docs` checks this over the files Biome covers.
+
+A doc comment says what the declaration does or why it exists, and follows the rules for comments above: it doesn't repeat what the code states. Since the code is JavaScript, the doc comments also carry its types, which `npm run typecheck` checks:
+
+- Every parameter has a `@param` and every function a `@returns`, with its type. A description follows where the name doesn't explain itself.
+- A function that has to match a named function type, such as the thermometer's badges, takes that type with `@type` instead.
+- A shape used in more than one place is named with `@typedef`, next to the code that defines it, and imported elsewhere with `@import`. An object that has to match one, such as a pack definition, says so with `@satisfies`, which checks it without changing its type.
+
 ### Spelling
 
 Every new word must pass CSpell. Real terms go into the matching dictionary under `.cspell/`, in alphabetical order.

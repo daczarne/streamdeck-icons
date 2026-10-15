@@ -18,6 +18,33 @@ import { ACCENTS, TILES, WHITE } from "../../src/palette.mjs";
 import { scaled, tile } from "../pack-builder.mjs";
 import { textGlyph } from "../text.mjs";
 
+/** @import { LockOptions } from "../../src/glyphs.mjs" */
+/** @import { Icon, Pack } from "../pack-builder.mjs" */
+
+/**
+ * A monitor: see {@link MONITORS}.
+ *
+ * @typedef {{ id: string, name: string, label: string[], color: string, suns: boolean }} Monitor
+ */
+
+/**
+ * One of a monitor's keys, before it's placed on the monitor's tile: see {@link monitorIcons}.
+ *
+ * @typedef {{ kind: string, name: string, tags: string[], draw: (size: number) => string }} MonitorKey
+ */
+
+/**
+ * A lock: see {@link LOCKS}.
+ *
+ * @typedef {{ id: string, name: string, tags: string[], options: Pick<LockOptions, "open">, bar?: boolean }} Lock
+ */
+
+/**
+ * A tile the locks come on: see {@link LOCK_TILES}.
+ *
+ * @typedef {{ suffix: string, name: string, tags: string[], tile: string, slot: string }} LockTile
+ */
+
 // The suns as on the monitor keys, from their span on their own canvas to their span on a tile.
 const SUN_SPAN = 0.865;
 const SUN_TILE_SPAN = 0.57;
@@ -30,6 +57,7 @@ const COMPUTER_SPAN = 0.5625;
 const LOGO_SPAN = 0.86;
 
 /** Each monitor, its label and its color. `suns` marks the monitors that have brightness keys. */
+/** @type {Monitor[]} */
 const MONITORS = [
   { id: "left", name: "Left", label: ["LEFT"], color: TILES.teal, suns: true },
   { id: "center", name: "Center", label: ["CENTER"], color: TILES.blue, suns: true },
@@ -41,8 +69,12 @@ const MONITORS = [
 /**
  * The keys of one monitor, each on its tile, in the order the Icon Library shows them: the blank tile, the label, the
  * inputs, then the brightness keys, for the monitors that have them.
+ *
+ * @param {Monitor} monitor
+ * @returns {Icon[]}
  */
 function monitorIcons(monitor) {
+  /** @type {MonitorKey[]} */
   const kinds = [
     { kind: "tile", name: "tile", tags: ["tile", "blank"], draw: () => "" },
     { kind: "label", name: "label", tags: ["label"], draw: (size) => textGlyph(size, monitor.label, { color: WHITE }) },
@@ -60,7 +92,7 @@ function monitorIcons(monitor) {
       draw: (size) => macStudioGlyph(size, { color: WHITE }),
     },
     ...(monitor.suns
-      ? [
+      ? /** @satisfies {MonitorKey[]} */ ([
           {
             kind: "brightness",
             name: "brightness",
@@ -73,7 +105,7 @@ function monitorIcons(monitor) {
             tags: ["sun", "brightness", "dim"],
             draw: (size) => scaled(size, dimGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
           },
-        ]
+        ])
       : []),
   ];
   return kinds.map(({ kind, name, tags, draw }) => ({
@@ -86,6 +118,7 @@ function monitorIcons(monitor) {
 }
 
 /** The locks: the original with its bar, then the keyhole lock, locked and in each unlocked style. */
+/** @type {Lock[]} */
 const LOCKS = [
   { id: "lock", name: "Lock", tags: ["lock"], options: {}, bar: true },
   { id: "lock-keyhole", name: "Lock with keyhole", tags: ["lock", "keyhole", "locked"], options: {} },
@@ -113,13 +146,19 @@ const LOCKS = [
  * The tiles every lock comes on, each with the shade its slot or keyhole takes, a step from the tile's own color. Navy
  * is the original lock's. Green, as desk mode off, and red, as desk mode on, mark a safe and an unsafe state.
  */
+/** @type {LockTile[]} */
 const LOCK_TILES = [
   { suffix: "", name: "", tags: [], tile: TILES.navy, slot: ACCENTS.cobalt },
   { suffix: "-green", name: " (green)", tags: ["green", "safe"], tile: TILES.green, slot: ACCENTS.sage },
   { suffix: "-red", name: " (red)", tags: ["red", "unsafe"], tile: TILES.red, slot: ACCENTS.scarlet },
 ];
 
-/** The locks on one of {@link LOCK_TILES}. */
+/**
+ * The locks on one of {@link LOCK_TILES}.
+ *
+ * @param {LockTile} lockTile
+ * @returns {Icon[]}
+ */
 function lockIcons({ suffix, name, tags, tile: color, slot }) {
   return LOCKS.map((lock) => ({
     path: `${lock.id}${suffix}.svg`,
@@ -130,7 +169,7 @@ function lockIcons({ suffix, name, tags, tile: color, slot }) {
   }));
 }
 
-export default {
+export default /** @satisfies {Pack} */ ({
   folder: "com.daczarne.devices.sdIconPack",
   tag: "devices",
   // Each monitor's keys together, then the keys that go with them.
@@ -170,4 +209,4 @@ export default {
     },
   ],
   logo: (size) => scaled(size, computerGlyph(size), COMPUTER_SPAN, LOGO_SPAN),
-};
+});

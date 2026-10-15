@@ -48,6 +48,8 @@ npm run icons             # regenerate every pack from its definition in scripts
 npm run check:icons       # every pack: manifest complete, every icon listed, sized and present
 npm run lint              # Biome: lint rules, formatting and import order, without changing anything
 npm run format            # Biome: apply the formatting and the import order
+npm run typecheck         # check the JavaScript's types, as its doc comments declare them
+npm run check:docs        # every function, class, method and constructor has a doc comment
 npm run link              # link every pack into Stream Deck's IconPacks folder (macOS)
 npm run unlink            # remove the links
 ```

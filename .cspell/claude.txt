@@ -1,5 +1,6 @@
 chsh
 claude
+codespace
 netrc
 oneline
 pushd

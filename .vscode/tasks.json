@@ -27,6 +27,8 @@
         "Lint: Markdown",
         "Lint: spelling",
         "Lint: code",
+        "Lint: types",
+        "Lint: doc comments",
         "Lint: packs",
       ],
       "dependsOrder": "sequence",
@@ -49,6 +51,21 @@
       "detail": "Biome: lint, formatting and import order",
       "type": "shell",
       "command": "sh .vscode/run-task.sh 'npm run lint'",
+      "problemMatcher": [ ],
+    },
+    {
+      "label": "Lint: types",
+      "type": "shell",
+      "command": "sh .vscode/run-task.sh 'npm run typecheck'",
+      "problemMatcher": [
+        "$tsc",
+      ],
+    },
+    {
+      "label": "Lint: doc comments",
+      "detail": "Every function, class, method and constructor has a doc comment",
+      "type": "shell",
+      "command": "sh .vscode/run-task.sh 'npm run check:docs'",
       "problemMatcher": [ ],
     },
     {
