@@ -60,6 +60,16 @@
     ]
   },
   {
+    "path": "scene.svg",
+    "name": "Scene",
+    "tags": [
+      "litra",
+      "thermometer",
+      "sun",
+      "scene"
+    ]
+  },
+  {
     "path": "power-on.svg",
     "name": "Power on",
     "tags": [
@@ -163,6 +173,18 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "scene-charcoal.svg",
+    "name": "Scene (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "sun",
+      "scene"
     ]
   },
   {
@@ -270,6 +292,18 @@
     ]
   },
   {
+    "path": "scene-grey.svg",
+    "name": "Scene (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "sun",
+      "scene"
+    ]
+  },
+  {
     "path": "power-on-grey.svg",
     "name": "Power on (grey)",
     "tags": [
@@ -371,6 +405,18 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "scene-navy.svg",
+    "name": "Scene (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "sun",
+      "scene"
     ]
   },
   {
@@ -478,6 +524,18 @@
     ]
   },
   {
+    "path": "scene-aubergine.svg",
+    "name": "Scene (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "sun",
+      "scene"
+    ]
+  },
+  {
     "path": "power-on-aubergine.svg",
     "name": "Power on (aubergine)",
     "tags": [
@@ -582,6 +640,18 @@
     ]
   },
   {
+    "path": "scene-forest.svg",
+    "name": "Scene (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "sun",
+      "scene"
+    ]
+  },
+  {
     "path": "power-on-forest.svg",
     "name": "Power on (forest)",
     "tags": [
@@ -683,6 +753,18 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "scene-honey.svg",
+    "name": "Scene (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "sun",
+      "scene"
     ]
   },
   {

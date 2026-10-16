@@ -57,6 +57,14 @@ export function actionIconBrightness(size: number): string;
  */
 export function actionIconTemperature(size: number): string;
 /**
+ * The Scene action's icon in Stream Deck's action list: the thermometer of {@link actionIconTemperature} on the left,
+ * and the sun of {@link actionIconBrightness} on the right, cut down a vertical line, as {@link sceneGlyph} draws them.
+ *
+ * @param {number} size the side of its square canvas
+ * @returns {string} its SVG markup
+ */
+export function actionIconScene(size: number): string;
+/**
  * Brightness and Temperature icons: white line art on transparent, like Stream Deck's own. Each is both the key image
  * and the dial icon, since Stream Deck's app pictures a dial with the key image.
  *
@@ -108,6 +116,16 @@ export function warmGlyph(size: number, { color }?: GlyphOptions): string;
  * @returns {string} its SVG markup
  */
 export function hotGlyph(size: number, { color }?: GlyphOptions): string;
+/**
+ * The Scene key's glyph, for a key that sets the brightness and the temperature at once: the thermometer of
+ * {@link temperatureGlyph} on the left, and the sun of {@link brightnessGlyph} on the right, cut down a vertical line.
+ * The sun is drawn smaller to fit, with the same strokes.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function sceneGlyph(size: number, { color }?: GlyphOptions): string;
 /**
  * A laptop: its screen's outline, open at the bottom, over a solid base with rounded lower corners.
  *

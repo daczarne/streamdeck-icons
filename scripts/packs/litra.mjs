@@ -11,6 +11,7 @@ import {
   dimGlyph,
   hotGlyph,
   powerGlyph,
+  sceneGlyph,
   temperatureGlyph,
   warmGlyph,
 } from "../../src/glyphs.mjs";
@@ -53,6 +54,14 @@ const glyphs = [
     tags: ["thermometer", "kelvin", "flame", "hot"],
     draw: hotGlyph,
     span: 0.815,
+    packSpan: 0.62,
+  },
+  {
+    id: "scene",
+    name: "Scene",
+    tags: ["thermometer", "sun", "scene"],
+    draw: sceneGlyph,
+    span: 0.865,
     packSpan: 0.62,
   },
   {

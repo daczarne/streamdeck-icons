@@ -196,6 +196,20 @@ export function actionIconTemperature(size) {
 }
 
 /**
+ * The Scene action's icon in Stream Deck's action list: the thermometer of {@link actionIconTemperature} on the left,
+ * and the sun of {@link actionIconBrightness} on the right, cut down a vertical line, as {@link sceneGlyph} draws them.
+ *
+ * @param {number} size the side of its square canvas
+ * @returns {string} its SVG markup
+ */
+export function actionIconScene(size) {
+  const sw = Math.max(1.5, size * 0.1);
+  const [tx, sx, cut] = toCanvas(size, [SCENE.thermometerX, SCENE.sunX, SCENE.cut]);
+  return `<g transform="translate(${tx - size / 2} 0)">${actionIconTemperature(size)}</g>
+    ${halfSun(sx, size / 2, size * 0.16 * SCENE.sunScale, size * 0.28 * SCENE.sunScale, size * 0.42 * SCENE.sunScale, cut, sw, "#FFFFFF")}`;
+}
+
+/**
  * Brightness and Temperature icons: white line art on transparent, like Stream Deck's own. Each is both the key image
  * and the dial icon, since Stream Deck's app pictures a dial with the key image.
  *
@@ -395,6 +409,63 @@ export function warmGlyph(size, { color = "#FFFFFF" } = {}) {
  */
 export function hotGlyph(size, { color = "#FFFFFF" } = {}) {
   return thermometerWith(size, color, 1, flame);
+}
+
+/**
+ * Where the Scene glyphs put the thermometer and the sun, as shares of the canvas: the thermometer's center, the
+ * sun's center and the share of its size it's drawn at, and the vertical line the sun is cut down. The cut leaves the
+ * sun's top and bottom rays whole, and a gap before the thermometer's bulb. Together they're centered on the canvas.
+ */
+const SCENE = { thermometerX: 0.254, sunX: 0.574, sunScale: 0.82, cut: 0.484 };
+
+/**
+ * The part of a sun centered at (`cx`, `cy`) right of the vertical line at `cut`, which has to be left of its center:
+ * its filled core of radius `core`, cut straight, and the five rays that don't cross the line, from `rayIn` to
+ * `rayOut` and `sw` wide.
+ *
+ * @param {number} cx
+ * @param {number} cy
+ * @param {number} core
+ * @param {number} rayIn
+ * @param {number} rayOut
+ * @param {number} cut
+ * @param {number} sw
+ * @param {string} color
+ * @returns {string}
+ */
+function halfSun(cx, cy, core, rayIn, rayOut, cut, sw, color) {
+  const halfChord = Math.sqrt(core ** 2 - (cx - cut) ** 2);
+  // From the top of the cut, the long way round the right, to its bottom.
+  const disc = `<path d="M ${cut} ${cy - halfChord} A ${core} ${core} 0 1 1 ${cut} ${cy + halfChord} Z" fill="${color}"/>`;
+  // Up, then clockwise to down: the rays on the left would cross the cut.
+  const rays = Array.from({ length: 5 }, (_, i) => {
+    const a = (i * Math.PI) / 4 - Math.PI / 2;
+    const [c, s] = [Math.cos(a), Math.sin(a)];
+    return strokeLine(cx + c * rayIn, cy + s * rayIn, cx + c * rayOut, cy + s * rayOut, sw, color);
+  }).join("\n");
+  return `${disc}\n${rays}`;
+}
+
+/**
+ * The Scene key's glyph, for a key that sets the brightness and the temperature at once: the thermometer of
+ * {@link temperatureGlyph} on the left, and the sun of {@link brightnessGlyph} on the right, cut down a vertical line.
+ * The sun is drawn smaller to fit, with the same strokes.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function sceneGlyph(size, { color = "#FFFFFF" } = {}) {
+  const sw = size * 0.065;
+  const [tx, sx, cut] = toCanvas(size, [SCENE.thermometerX, SCENE.sunX, SCENE.cut]);
+  // The core as large as the sun of brightnessGlyph draws it, and its rays where that sun has them, at the sun's scale.
+  const [core, rayIn, rayOut] = toCanvas(size, [
+    (0.16 + 0.065 / 2) * SCENE.sunScale,
+    0.27 * SCENE.sunScale,
+    0.4 * SCENE.sunScale,
+  ]);
+  return `<g transform="translate(${tx - size / 2} 0)">${temperatureGlyph(size, { color })}</g>
+    ${halfSun(sx, size / 2, core, rayIn, rayOut, cut, sw, color)}`;
 }
 
 /*
