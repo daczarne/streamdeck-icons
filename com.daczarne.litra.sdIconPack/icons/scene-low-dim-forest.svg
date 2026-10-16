@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" width="144" height="144" viewBox="0 0 144 144" fill="none">
+    <rect width="144" height="144" fill="#2F4A3A"/>
+      <g transform="translate(72 72) scale(0.7167630057803468) translate(-72 -72)"><g transform="translate(-35.424 0)"><path
+    d="M 60.480000000000004 28.8
+    A 11.52 11.52 0 0 1 83.52 28.8
+    V 85.40844834175269
+    A 21.599999999999998 21.599999999999998 0 1 1 60.480000000000004 85.40844834175269 Z"
+    stroke="#F2F2F2" stroke-width="9.36" stroke-linejoin="round"/>
+    <circle cx="72" cy="103.67999999999999" r="9.719999999999999" fill="#F2F2F2"/>
+    <line x1="72" y1="103.67999999999999" x2="72" y2="103.67999999999999"
+    stroke="#F2F2F2" stroke-width="9.36" stroke-linecap="round"/></g>
+    <path d="M 69.696 59.43595048720357 A 18.0504 18.0504 0 1 1 69.696 84.56404951279643" stroke="#F2F2F2" stroke-width="9.36"/>
+<line x1="82.65599999999999" y1="40.118399999999994" x2="82.65599999999999" y2="24.768"
+    stroke="#F2F2F2" stroke-width="9.36" stroke-linecap="round"/>
+<line x1="105.19969555507703" y1="49.456304444922964" x2="116.054067489003" y2="38.60193251099699"
+    stroke="#F2F2F2" stroke-width="9.36" stroke-linecap="round"/>
+<line x1="114.5376" y1="72" x2="129.88799999999998" y2="72"
+    stroke="#F2F2F2" stroke-width="9.36" stroke-linecap="round"/>
+<line x1="105.19969555507703" y1="94.54369555507704" x2="116.054067489003" y2="105.39806748900301"
+    stroke="#F2F2F2" stroke-width="9.36" stroke-linecap="round"/>
+<line x1="82.65599999999999" y1="103.8816" x2="82.65599999999999" y2="119.232"
+    stroke="#F2F2F2" stroke-width="9.36" stroke-linecap="round"/></g>
+    </svg>

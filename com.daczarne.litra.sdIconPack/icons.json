@@ -70,6 +70,40 @@
     ]
   },
   {
+    "path": "scene-dim.svg",
+    "name": "Scene dim",
+    "tags": [
+      "litra",
+      "thermometer",
+      "sun",
+      "scene",
+      "dim"
+    ]
+  },
+  {
+    "path": "scene-low.svg",
+    "name": "Scene low",
+    "tags": [
+      "litra",
+      "thermometer",
+      "sun",
+      "scene",
+      "low"
+    ]
+  },
+  {
+    "path": "scene-low-dim.svg",
+    "name": "Scene low dim",
+    "tags": [
+      "litra",
+      "thermometer",
+      "sun",
+      "scene",
+      "low",
+      "dim"
+    ]
+  },
+  {
     "path": "power-on.svg",
     "name": "Power on",
     "tags": [
@@ -185,6 +219,46 @@
       "thermometer",
       "sun",
       "scene"
+    ]
+  },
+  {
+    "path": "scene-dim-charcoal.svg",
+    "name": "Scene dim (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "sun",
+      "scene",
+      "dim"
+    ]
+  },
+  {
+    "path": "scene-low-charcoal.svg",
+    "name": "Scene low (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "sun",
+      "scene",
+      "low"
+    ]
+  },
+  {
+    "path": "scene-low-dim-charcoal.svg",
+    "name": "Scene low dim (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "sun",
+      "scene",
+      "low",
+      "dim"
     ]
   },
   {
@@ -304,6 +378,46 @@
     ]
   },
   {
+    "path": "scene-dim-grey.svg",
+    "name": "Scene dim (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "sun",
+      "scene",
+      "dim"
+    ]
+  },
+  {
+    "path": "scene-low-grey.svg",
+    "name": "Scene low (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "sun",
+      "scene",
+      "low"
+    ]
+  },
+  {
+    "path": "scene-low-dim-grey.svg",
+    "name": "Scene low dim (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "sun",
+      "scene",
+      "low",
+      "dim"
+    ]
+  },
+  {
     "path": "power-on-grey.svg",
     "name": "Power on (grey)",
     "tags": [
@@ -417,6 +531,46 @@
       "thermometer",
       "sun",
       "scene"
+    ]
+  },
+  {
+    "path": "scene-dim-navy.svg",
+    "name": "Scene dim (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "sun",
+      "scene",
+      "dim"
+    ]
+  },
+  {
+    "path": "scene-low-navy.svg",
+    "name": "Scene low (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "sun",
+      "scene",
+      "low"
+    ]
+  },
+  {
+    "path": "scene-low-dim-navy.svg",
+    "name": "Scene low dim (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "sun",
+      "scene",
+      "low",
+      "dim"
     ]
   },
   {
@@ -536,6 +690,46 @@
     ]
   },
   {
+    "path": "scene-dim-aubergine.svg",
+    "name": "Scene dim (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "sun",
+      "scene",
+      "dim"
+    ]
+  },
+  {
+    "path": "scene-low-aubergine.svg",
+    "name": "Scene low (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "sun",
+      "scene",
+      "low"
+    ]
+  },
+  {
+    "path": "scene-low-dim-aubergine.svg",
+    "name": "Scene low dim (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "sun",
+      "scene",
+      "low",
+      "dim"
+    ]
+  },
+  {
     "path": "power-on-aubergine.svg",
     "name": "Power on (aubergine)",
     "tags": [
@@ -652,6 +846,46 @@
     ]
   },
   {
+    "path": "scene-dim-forest.svg",
+    "name": "Scene dim (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "sun",
+      "scene",
+      "dim"
+    ]
+  },
+  {
+    "path": "scene-low-forest.svg",
+    "name": "Scene low (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "sun",
+      "scene",
+      "low"
+    ]
+  },
+  {
+    "path": "scene-low-dim-forest.svg",
+    "name": "Scene low dim (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "sun",
+      "scene",
+      "low",
+      "dim"
+    ]
+  },
+  {
     "path": "power-on-forest.svg",
     "name": "Power on (forest)",
     "tags": [
@@ -765,6 +999,46 @@
       "thermometer",
       "sun",
       "scene"
+    ]
+  },
+  {
+    "path": "scene-dim-honey.svg",
+    "name": "Scene dim (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "sun",
+      "scene",
+      "dim"
+    ]
+  },
+  {
+    "path": "scene-low-honey.svg",
+    "name": "Scene low (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "sun",
+      "scene",
+      "low"
+    ]
+  },
+  {
+    "path": "scene-low-dim-honey.svg",
+    "name": "Scene low dim (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "sun",
+      "scene",
+      "low",
+      "dim"
     ]
   },
   {
