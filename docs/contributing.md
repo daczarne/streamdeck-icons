@@ -13,7 +13,7 @@ This document describes how work on this repository is done: how changes reach `
 
 ## Changes go through pull requests
 
-Nothing is pushed to `main`. Every change, however small, is made on its own branch and reaches `main` through a pull request, which is squash-merged. Pushing and merging are Daniel's. `.github/CODEOWNERS` makes Daniel the owner of every file, so a pull request from anyone else needs his approval before it can be merged.
+Nothing is pushed to `main`. Every change, however small, is made on its own branch and reaches `main` through a pull request, which is squash-merged. Pushing to the repository and merging are the maintainer's. `.github/CODEOWNERS` makes the maintainer the owner of every file, so a pull request from anyone else needs the maintainer's approval before it can be merged.
 
 Branch names are flat kebab-case, without `/`: `monitor-pack`, not `feature/monitor-pack`.
 
@@ -60,7 +60,7 @@ Code or configuration that is unused, misleading or contradicts a decision alrea
 
 ## Working with Claude
 
-- When Daniel asks for a command, Claude replies with the command and doesn't run it. Steps that change what the Deck shows, like linking a pack, are Daniel's to run, while looking at the hardware.
+- When asked for a command, Claude replies with the command and doesn't run it. Steps that change what the Deck shows, like linking a pack, are the user's to run, while looking at the hardware.
 
 [manual-testing]: manual_testing/
 [style-guide]: style_guide.md

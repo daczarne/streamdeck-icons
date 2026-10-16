@@ -11,11 +11,11 @@
 
 ## Project
 
-Icon packs for Daniel's Stream Deck, one per topic, and the glyphs, palette and SVG helpers they share with his Stream Deck plugins. The packs so far are Litra's, for the Logitech Litra plugin in `daczarne/streamdeck-litra`, which draws its own images from this package's exports, and the devices pack, for the devices around Daniel's Deck, starting with his monitor input switching keys. The repository is public.
+Icon packs for Stream Deck, one per topic, and the glyphs, palette and SVG helpers they share with the Stream Deck plugins that draw from them. The packs so far are Litra's, for the Logitech Litra plugin in `daczarne/streamdeck-litra`, which draws its own images from this package's exports, and the devices pack, for the devices around a Deck, starting with monitor input switching keys. The repository is public.
 
-Daniel's setup: macOS on a Mac Studio, and a Stream Deck + XL running Stream Deck 7.6. The packs aren't distributed: they run linked from the repo.
+The packs are made and checked on macOS, with a Stream Deck + XL running Stream Deck 7.6. They aren't distributed: they run linked from the repo.
 
-Daniel knows little about design, and expects Claude to lead on colors, sizes and shapes: propose, show, and let him judge on the Deck. The palette in `src/palette.mjs` comes from icons he drew for his monitor input switching keys, and new icons follow it.
+The palette in `src/palette.mjs` comes from the icons first drawn for the monitor input switching keys, and new icons follow it.
 
 ## Read before changing things
 
@@ -23,7 +23,7 @@ Daniel knows little about design, and expects Claude to lead on colors, sizes an
 - `docs/style_guide.md`: the conventions the linters don't enforce (see [Style](#style)).
 - `docs/icon_packs.md`: the icon pack format, and how Stream Deck loads and shows a pack, checked on the Deck. Add to it when a change finds out something new.
 - `docs/adding_a_pack.md`: how to add a pack, from its manifest to its label and its first check on the Deck. Each pack gets its own label.
-- `docs/manual_testing/packs.md`: the checks that only the Deck can prove. Before asking Daniel to look at the Deck, point to them.
+- `docs/manual_testing/packs.md`: the checks that only the Deck can prove. Before asking for a look at the Deck, point to them.
 
 ## Layout
 
@@ -52,27 +52,27 @@ npm run link              # link every pack into Stream Deck (macOS)
 npm run unlink            # remove the links
 ```
 
-To see a change before showing Daniel, render the SVGs to a contact sheet in the scratchpad (with `sharp`, from the plugin repo's `node_modules`, or any SVG renderer), at 144 px and at the Deck's 72 px, and look at it.
+To see a change before showing it, render the SVGs to a contact sheet in the scratchpad, at 144 px and at the Deck's 72 px, and look at it. Any SVG renderer works, such as `sharp`, which the Litra plugin installs.
 
 ## Supply chain
 
-Daniel treats supply-chain risk as a hard requirement. The package's dependencies are development dependencies, which plugins that import the glyphs don't install: `opentype.js`, with no dependencies of its own, used only to build the packs; Biome, a native binary per platform, with no dependencies and no install scripts; TypeScript, with no dependencies; and `@types/node`, which depends on `undici-types`. A new one is flagged and justified, with a narrower alternative offered. The font in `fonts/` is vendored from the Noto project's distribution, pinned to a commit there and to its hash in `scripts/check-packs.mjs`, and replaced only deliberately, like a dependency. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
+Supply-chain risk is a hard requirement here. The package's dependencies are development dependencies, which plugins that import the glyphs don't install: `opentype.js`, with no dependencies of its own, used only to build the packs; Biome, a native binary per platform, with no dependencies and no install scripts; TypeScript, with no dependencies; and `@types/node`, which depends on `undici-types`. A new one is flagged and justified, with a narrower alternative offered. The font in `fonts/` is vendored from the Noto project's distribution, pinned to a commit there and to its hash in `scripts/check-packs.mjs`, and replaced only deliberately, like a dependency. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
 
 ## Testing on the hardware
 
 - `npm run link` links every pack into `~/Library/Application Support/com.elgato.StreamDeck/IconPacks/`. Stream Deck only finds a new pack once it's quit and reopened. After that, a change shows the next time the Icon Library is opened.
 - A key keeps a copy of the icon it was given, so redrawing an icon doesn't change the keys that already use it.
-- Claude can't see the Deck. Daniel looks at the Icon Library and the keys, and can share screenshots, which are enough to judge an icon. Colors in his screenshots are exact, so they can be sampled.
+- Claude can't see the Deck. The user looks at the Icon Library and the keys, and can share screenshots, which are enough to judge an icon. Colors in a screenshot are exact, so they can be sampled.
 
 ## Workflow
 
 `docs/contributing.md` describes branches, pull requests and checks. On top of it:
 
 - Create branches with `git switch -c`.
-- Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when Daniel asks.
+- Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when asked.
 - `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, and a regeneration of the packs and the declarations that must change nothing, on every pull request and on `main`. Locally, `/lint` and the `Lint` VS Code task run the same checks.
 - Write the pull request title and description with the `pr-description` skill.
-- Draft issues with the `github-issues` skill, and post them only when Daniel asks. The skill works on the issues of both this repository and `daczarne/streamdeck-litra`, whichever the session started in.
+- Draft issues with the `github-issues` skill, and post them only when asked.
 
 ## Style
 
