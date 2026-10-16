@@ -52,7 +52,7 @@ npm run link              # link every pack into Stream Deck (macOS)
 npm run unlink            # remove the links
 ```
 
-To see a change before showing it, render the SVGs to a contact sheet in the scratchpad (with `sharp`, from the plugin repo's `node_modules`, or any SVG renderer), at 144 px and at the Deck's 72 px, and look at it.
+To see a change before showing it, render the SVGs to a contact sheet in the scratchpad, at 144 px and at the Deck's 72 px, and look at it. Any SVG renderer works, such as `sharp`, which the Litra plugin installs.
 
 ## Supply chain
 
