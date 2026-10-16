@@ -37,3 +37,5 @@ Don't refer to the conversation or to who asked for what ("as discussed", "as re
 ## Output
 
 Return only the two blocks, the title first, each in a ```` ```markdown ```` fence. When the description itself contains a code fence, fence it with four backticks so the inner one survives. Don't write them to a file, and don't run `gh`.
+
+No "Generated with Claude Code" footer: the `Co-Authored-By` trailer of the branch's commits already credits Claude in the squash commit.

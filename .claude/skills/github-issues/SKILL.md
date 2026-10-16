@@ -47,7 +47,7 @@ The issue is read later, by someone else or by Claude in another session, withou
 
 While working, something turns up that adds to an existing issue: a finding, a decision, a detail about the task.
 
-1. **Draft** the comment and return it as one block in a ```` ```markdown ```` fence. It adds what was found, without restating the issue, follows the same Markdown conventions and ends with the same footer.
+1. **Draft** the comment and return it as one block in a ```` ```markdown ```` fence. It adds what was found, without restating the issue, and follows the same Markdown conventions.
 2. **Align** with the user on the wording and content.
 3. **Post** only when the user asks, on the issue the user names, with exactly the final text:
 
