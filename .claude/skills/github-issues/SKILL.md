@@ -42,7 +42,6 @@ The issue is read later, by someone else or by Claude in another session, withou
 
 - **Title.** Says what is needed, in at most 72 characters, without a final period.
 - **Body.** Follows the Markdown section of `docs/style_guide.md`. The title is the document's H1, so the body has neither an H1 nor a table of contents. An opening paragraph without a heading states the task and why it's needed. Then, as needed: the current state (with file paths), the proposed approach, the alternatives considered and why they were set aside, and open questions. Background and rejected alternatives belong here, not in pull requests. The length follows the task: a small fix gets a few sentences.
-- **Footer.** The body ends with the line `🤖 Generated with [Claude Code](https://claude.com/claude-code)`, since the issue appears under the user's account.
 
 ## Comment on an existing issue
 
