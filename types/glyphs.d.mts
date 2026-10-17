@@ -65,6 +65,28 @@ export function actionIconTemperature(size: number): string;
  */
 export function actionIconScene(size: number): string;
 /**
+ * The Brightness step actions' icon in Stream Deck's action list: the sun of {@link actionIconBrightness}, with a plus
+ * or a minus cut out of its core, drawn larger to fit it, as {@link brightnessStepGlyph} draws it.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {{ step: "up" | "down" }} options
+ * @returns {string} its SVG markup
+ */
+export function actionIconBrightnessStep(size: number, { step }: {
+    step: "up" | "down";
+}): string;
+/**
+ * The Temperature step actions' icon in Stream Deck's action list: the thermometer of {@link actionIconTemperature} on
+ * the left, with a plus or a minus on its right, as {@link temperatureStepGlyph} draws them.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {{ step: "up" | "down" }} options
+ * @returns {string} its SVG markup
+ */
+export function actionIconTemperatureStep(size: number, { step }: {
+    step: "up" | "down";
+}): string;
+/**
  * Brightness and Temperature icons: white line art on transparent, like Stream Deck's own. Each is both the key image
  * and the dial icon, since Stream Deck's app pictures a dial with the key image.
  *
@@ -132,6 +154,26 @@ export function sceneGlyph(size: number, { color, level, dim }?: {
     level?: number;
     dim?: boolean;
 }): string;
+/**
+ * The Brightness step keys' glyph: the filled sun of {@link brightnessGlyph}, with a plus or a minus cut out of its
+ * core, drawn larger to fit it. With `badge`, the outlined sun of {@link dimGlyph} instead, with the sign on a badge
+ * at its lower right, and the ring and the rays that would touch the badge left out.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {StepOptions} options
+ * @returns {string} its SVG markup
+ */
+export function brightnessStepGlyph(size: number, { step, color, badge }: StepOptions): string;
+/**
+ * The Temperature step keys' glyph: the thermometer of {@link temperatureGlyph}, half full, with a plus or a minus on
+ * its right. With `badge`, the thermometer is drawn whole, with the sign on a badge over its bulb's lower right, and
+ * the outline, the bulb's core and the bar cut short of it.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {StepOptions} options
+ * @returns {string} its SVG markup
+ */
+export function temperatureStepGlyph(size: number, { step, color, badge }: StepOptions): string;
 /**
  * A laptop: its screen's outline, open at the bottom, over a solid base with rounded lower corners.
  *
@@ -225,3 +267,20 @@ export type LockOptions = {
  * A badge drawn next to a thermometer, centered at (`cx`, `cy`) with radius `r` and strokes `sw` wide.
  */
 export type Badge = (cx: number, cy: number, r: number, sw: number, color: string) => string;
+/**
+ * The options of {@link brightnessStepGlyph} and {@link temperatureStepGlyph}.
+ */
+export type StepOptions = {
+    /**
+     * a plus for a step up, a minus for a step down
+     */
+    step: "up" | "down";
+    /**
+     * the glyph's ink
+     */
+    color?: string;
+    /**
+     * the sign on a round badge at the lower right, cut into the glyph, in place of its own
+     */
+    badge?: boolean;
+};
