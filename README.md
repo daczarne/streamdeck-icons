@@ -13,10 +13,10 @@ Not an official Elgato or Logitech product.
 
 ## Packs
 
-| Pack                              | Icons                                                                                                                                                                        |
-|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot), scenes that set both (each high or low) and power, used by the Litra plugin's keys                         |
-| `com.daczarne.devices.sdIconPack` | Devices around the Deck: monitor input switching (a label, a laptop, and a tower and a Mac Studio per monitor, brightness and desk mode), locks, and speakers and headphones |
+| Pack                              | Icons                                                                                                                                                                                                  |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot), a step up and down of each (plain or on a badge), scenes that set both (each high or low) and power, used by the Litra plugin's keys |
+| `com.daczarne.devices.sdIconPack` | Devices around the Deck: monitor input switching (a label, a laptop, and a tower and a Mac Studio per monitor, brightness and desk mode), locks, and speakers and headphones                           |
 
 The Litra pack's glyphs come white on transparent, and on a tile that fills the key, in each of the tile schemes in `scripts/pack-builder.mjs`, such as charcoal or honey. The devices pack puts each monitor key on its monitor's color, as the keys on the Deck are. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
 

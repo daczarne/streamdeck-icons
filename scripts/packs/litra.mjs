@@ -6,6 +6,7 @@
  */
 import {
   brightnessGlyph,
+  brightnessStepGlyph,
   categoryGlyph,
   coolGlyph,
   dimGlyph,
@@ -13,6 +14,7 @@ import {
   powerGlyph,
   sceneGlyph,
   temperatureGlyph,
+  temperatureStepGlyph,
   warmGlyph,
 } from "../../src/glyphs.mjs";
 import { TILES } from "../../src/palette.mjs";
@@ -24,6 +26,39 @@ import { plainGlyphs, tiledGlyphs } from "../pack-builder.mjs";
 const glyphs = [
   { id: "brightness", name: "Brightness", tags: ["sun", "light"], draw: brightnessGlyph, span: 0.865, packSpan: 0.57 },
   { id: "brightness-low", name: "Brightness low", tags: ["sun", "dim"], draw: dimGlyph, span: 0.865, packSpan: 0.57 },
+  {
+    id: "brightness-up",
+    name: "Brightness up",
+    tags: ["sun", "light", "step", "up", "plus"],
+    draw: (size, options) => brightnessStepGlyph(size, { ...options, step: "up" }),
+    span: 0.865,
+    packSpan: 0.57,
+  },
+  {
+    id: "brightness-down",
+    name: "Brightness down",
+    tags: ["sun", "light", "step", "down", "minus"],
+    draw: (size, options) => brightnessStepGlyph(size, { ...options, step: "down" }),
+    span: 0.865,
+    packSpan: 0.57,
+  },
+  // The badge reaches a little below the sun, which stays the size of the other suns.
+  {
+    id: "brightness-up-badge",
+    name: "Brightness up badge",
+    tags: ["sun", "light", "step", "up", "plus", "badge"],
+    draw: (size, options) => brightnessStepGlyph(size, { ...options, step: "up", badge: true }),
+    span: 0.87,
+    packSpan: 0.57,
+  },
+  {
+    id: "brightness-down-badge",
+    name: "Brightness down badge",
+    tags: ["sun", "light", "step", "down", "minus", "badge"],
+    draw: (size, options) => brightnessStepGlyph(size, { ...options, step: "down", badge: true }),
+    span: 0.87,
+    packSpan: 0.57,
+  },
   {
     id: "temperature",
     name: "Temperature",
@@ -55,6 +90,39 @@ const glyphs = [
     draw: hotGlyph,
     span: 0.815,
     packSpan: 0.62,
+  },
+  {
+    id: "temperature-up",
+    name: "Temperature up",
+    tags: ["thermometer", "kelvin", "step", "up", "plus"],
+    draw: (size, options) => temperatureStepGlyph(size, { ...options, step: "up" }),
+    span: 0.815,
+    packSpan: 0.62,
+  },
+  {
+    id: "temperature-down",
+    name: "Temperature down",
+    tags: ["thermometer", "kelvin", "step", "down", "minus"],
+    draw: (size, options) => temperatureStepGlyph(size, { ...options, step: "down" }),
+    span: 0.815,
+    packSpan: 0.62,
+  },
+  // The badge reaches below the bulb: covering more of the icon, the thermometer stays the size of the others.
+  {
+    id: "temperature-up-badge",
+    name: "Temperature up badge",
+    tags: ["thermometer", "kelvin", "step", "up", "plus", "badge"],
+    draw: (size, options) => temperatureStepGlyph(size, { ...options, step: "up", badge: true }),
+    span: 0.875,
+    packSpan: 0.665,
+  },
+  {
+    id: "temperature-down-badge",
+    name: "Temperature down badge",
+    tags: ["thermometer", "kelvin", "step", "down", "minus", "badge"],
+    draw: (size, options) => temperatureStepGlyph(size, { ...options, step: "down", badge: true }),
+    span: 0.875,
+    packSpan: 0.665,
   },
   {
     id: "scene",

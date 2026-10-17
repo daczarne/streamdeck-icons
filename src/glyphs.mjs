@@ -210,6 +210,39 @@ export function actionIconScene(size) {
 }
 
 /**
+ * The Brightness step actions' icon in Stream Deck's action list: the sun of {@link actionIconBrightness}, with a plus
+ * or a minus cut out of its core, drawn larger to fit it, as {@link brightnessStepGlyph} draws it.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {{ step: "up" | "down" }} options
+ * @returns {string} its SVG markup
+ */
+export function actionIconBrightnessStep(size, { step }) {
+  const c = size / 2;
+  const sw = Math.max(1.5, size * 0.1);
+  const [core, rayIn, rayOut, reach] = toCanvas(size, [0.24, 0.34, 0.45, 0.15]);
+  return `<path d="${circlePath(c, c, core)} ${signPath(c, c, reach, sw * 0.8, step === "up", true)}" fill="#FFFFFF"
+    fill-rule="evenodd"/>
+    ${sunRays(c, c, rayIn, rayOut, sw, "#FFFFFF")}`;
+}
+
+/**
+ * The Temperature step actions' icon in Stream Deck's action list: the thermometer of {@link actionIconTemperature} on
+ * the left, with a plus or a minus on its right, as {@link temperatureStepGlyph} draws them.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {{ step: "up" | "down" }} options
+ * @returns {string} its SVG markup
+ */
+export function actionIconTemperatureStep(size, { step }) {
+  const sw = Math.max(1.5, size * 0.1);
+  const [tx, signX, signY, reach] = toCanvas(size, [0.32, 0.72, 0.48, 0.16]);
+  return `<g transform="translate(${tx - size / 2} 0)">${actionIconTemperature(size)}</g>
+    ${strokeLine(signX - reach, signY, signX + reach, signY, sw, "#FFFFFF")}
+    ${step === "up" ? strokeLine(signX, signY - reach, signX, signY + reach, sw, "#FFFFFF") : ""}`;
+}
+
+/**
  * Brightness and Temperature icons: white line art on transparent, like Stream Deck's own. Each is both the key image
  * and the dial icon, since Stream Deck's app pictures a dial with the key image.
  *
@@ -474,6 +507,267 @@ export function sceneGlyph(size, { color = "#FFFFFF", level = 1, dim = false } =
   ]);
   return `<g transform="translate(${tx - size / 2} 0)">${temperatureGlyph(size, { color, level })}</g>
     ${halfSun(sx, size / 2, core, rayIn, rayOut, cut, sw, color, dim)}`;
+}
+
+/**
+ * The options of {@link brightnessStepGlyph} and {@link temperatureStepGlyph}.
+ *
+ * @typedef {object} StepOptions
+ * @property {"up" | "down"} step a plus for a step up, a minus for a step down
+ * @property {string} [color] the glyph's ink
+ * @property {boolean} [badge] the sign on a round badge at the lower right, cut into the glyph, in place of its own
+ */
+
+/**
+ * The stroke of the glyphs that fill a plugin's key, as a share of the canvas.
+ */
+const STROKE = 0.065;
+
+/**
+ * Where the step glyphs put their sign, as shares of the canvas. The sun's sign is cut out of a core larger than
+ * {@link brightnessGlyph}'s, to fit it, with rays shortened to keep the sun's size. The thermometer's stands to its
+ * right, level with the middle of the tube. On a badge, the sign is cut out of a disc of radius `r`, at the base
+ * glyph's lower right, and the base glyph stops `gap` short of the disc. The sun stays centered, while the thermometer
+ * and its badge are moved by (`dx`, `dy`) to center them.
+ */
+const STEP = {
+  sun: { core: 0.22, rayIn: 0.29, rayOut: 0.4, reach: 0.12, half: 0.033 },
+  thermometer: { x: 0.3, signX: 0.7, reach: 0.15, level: 0.5 },
+  badge: { r: 0.19, reach: 0.138, gap: 0.022 },
+  sunBadge: { x: 0.68, y: 0.745 },
+  thermometerBadge: { x: 0.72, y: 0.77, dx: -0.113, dy: -0.023 },
+};
+
+/**
+ * The point at angle `a` on the circle centered at (`cx`, `cy`) with radius `r`, as SVG coordinates.
+ *
+ * @param {number} cx
+ * @param {number} cy
+ * @param {number} r
+ * @param {number} a
+ * @returns {string}
+ */
+function onCircle(cx, cy, r, a) {
+  return `${cx + Math.cos(a) * r} ${cy + Math.sin(a) * r}`;
+}
+
+/**
+ * The arc of the circle centered at (`cx`, `cy`) with radius `r` that lies inside the circle centered at (`bx`, `by`)
+ * with radius `cutR`, as the angles it starts and ends at, clockwise. The circles have to cross.
+ *
+ * @param {number} cx
+ * @param {number} cy
+ * @param {number} r
+ * @param {number} bx
+ * @param {number} by
+ * @param {number} cutR
+ * @returns {[number, number]}
+ */
+function arcInside(cx, cy, r, bx, by, cutR) {
+  const d = Math.hypot(bx - cx, by - cy);
+  const toward = Math.atan2(by - cy, bx - cx);
+  const half = Math.acos((r ** 2 + d ** 2 - cutR ** 2) / (2 * r * d));
+  return [toward - half, toward + half];
+}
+
+/**
+ * The distance from (`px`, `py`) to the segment from (`x1`, `y1`) to (`x2`, `y2`).
+ *
+ * @param {number} px
+ * @param {number} py
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
+ * @returns {number}
+ */
+function distanceToSegment(px, py, x1, y1, x2, y2) {
+  const [dx, dy] = [x2 - x1, y2 - y1];
+  const t = Math.min(1, Math.max(0, ((px - x1) * dx + (py - y1) * dy) / (dx ** 2 + dy ** 2)));
+  return Math.hypot(px - (x1 + t * dx), py - (y1 + t * dy));
+}
+
+/**
+ * A plus or a minus centered at (`cx`, `cy`), reaching `reach` from its center, with arms `width` wide, as one outline,
+ * so it can be cut out of a filled shape. `round` rounds its ends, which are square otherwise.
+ *
+ * @param {number} cx
+ * @param {number} cy
+ * @param {number} reach
+ * @param {number} width
+ * @param {boolean} plus
+ * @param {boolean} round
+ * @returns {string}
+ */
+function signPath(cx, cy, reach, width, plus, round) {
+  const t = width / 2;
+  // Where an arm's sides stop, and how its end closes: a half circle out to `reach`, or straight across.
+  const r = reach - (round ? t : 0);
+  /** @type {(x: number, y: number) => string} */
+  const end = (x, y) => (round ? `A ${t} ${t} 0 0 1 ${x} ${y}` : `L ${x} ${y}`);
+  if (!plus) {
+    return `M ${cx - r} ${cy - t} H ${cx + r} ${end(cx + r, cy + t)} H ${cx - r} ${end(cx - r, cy - t)} Z`;
+  }
+  return `M ${cx - t} ${cy - t} V ${cy - r} ${end(cx + t, cy - r)} V ${cy - t} H ${cx + r} ${end(cx + r, cy + t)}
+    H ${cx + t} V ${cy + r} ${end(cx - t, cy + r)} V ${cy + t} H ${cx - r} ${end(cx - r, cy - t)} Z`;
+}
+
+/**
+ * A full circle centered at (`cx`, `cy`) with radius `r`, as path data, so other outlines can be cut out of it.
+ *
+ * @param {number} cx
+ * @param {number} cy
+ * @param {number} r
+ * @returns {string}
+ */
+function circlePath(cx, cy, r) {
+  return `M ${cx - r} ${cy} A ${r} ${r} 0 1 0 ${cx + r} ${cy} A ${r} ${r} 0 1 0 ${cx - r} ${cy} Z`;
+}
+
+/**
+ * The badge of a step glyph: a filled circle centered at (`bx`, `by`), with a square-ended sign cut out of it.
+ *
+ * @param {number} size
+ * @param {number} bx
+ * @param {number} by
+ * @param {boolean} plus
+ * @param {string} color
+ * @returns {string}
+ */
+function stepBadge(size, bx, by, plus, color) {
+  const [r, reach, sw] = toCanvas(size, [STEP.badge.r, STEP.badge.reach, STROKE]);
+  return `<path d="${circlePath(bx, by, r)} ${signPath(bx, by, reach, sw, plus, false)}" fill="${color}"
+    fill-rule="evenodd"/>`;
+}
+
+/**
+ * The eight rays of a sun centered at (`cx`, `cy`), from `rayIn` to `rayOut` and `sw` wide, those `keep` takes, given
+ * each ray's ends.
+ *
+ * @param {number} cx
+ * @param {number} cy
+ * @param {number} rayIn
+ * @param {number} rayOut
+ * @param {number} sw
+ * @param {string} color
+ * @param {(ray: [number, number, number, number]) => boolean} [keep]
+ * @returns {string}
+ */
+function sunRays(cx, cy, rayIn, rayOut, sw, color, keep = () => true) {
+  return Array.from({ length: 8 }, (_, i) => {
+    const a = (i * Math.PI) / 4 - Math.PI / 2;
+    const [c, s] = [Math.cos(a), Math.sin(a)];
+    /** @type {[number, number, number, number]} */
+    const ray = [cx + c * rayIn, cy + s * rayIn, cx + c * rayOut, cy + s * rayOut];
+    return keep(ray) ? strokeLine(...ray, sw, color) : "";
+  })
+    .filter(Boolean)
+    .join("\n");
+}
+
+/**
+ * The Brightness step keys' glyph: the filled sun of {@link brightnessGlyph}, with a plus or a minus cut out of its
+ * core, drawn larger to fit it. With `badge`, the outlined sun of {@link dimGlyph} instead, with the sign on a badge
+ * at its lower right, and the ring and the rays that would touch the badge left out.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {StepOptions} options
+ * @returns {string} its SVG markup
+ */
+export function brightnessStepGlyph(size, { step, color = "#FFFFFF", badge = false }) {
+  const plus = step === "up";
+  const sw = size * STROKE;
+  if (!badge) {
+    const c = size / 2;
+    const [core, rayIn, rayOut, reach, half] = toCanvas(size, [
+      STEP.sun.core,
+      STEP.sun.rayIn,
+      STEP.sun.rayOut,
+      STEP.sun.reach,
+      STEP.sun.half,
+    ]);
+    return `<path d="${circlePath(c, c, core)} ${signPath(c, c, reach, half * 2, plus, true)}" fill="${color}"
+    fill-rule="evenodd"/>
+    ${sunRays(c, c, rayIn, rayOut, sw, color)}`;
+  }
+  // The ring and rays of dimGlyph, with everything within the gap of the badge, strokes included, left out.
+  const c = size / 2;
+  const [ringR, rayIn, rayOut, bx, by, badgeR, gap] = toCanvas(size, [
+    0.16,
+    0.27,
+    0.4,
+    STEP.sunBadge.x,
+    STEP.sunBadge.y,
+    STEP.badge.r,
+    STEP.badge.gap,
+  ]);
+  const cutR = badgeR + gap + sw / 2;
+  const [from, to] = arcInside(c, c, ringR, bx, by, cutR);
+  return `<path d="M ${onCircle(c, c, ringR, to)} A ${ringR} ${ringR} 0 1 1 ${onCircle(c, c, ringR, from + 2 * Math.PI)}"
+    stroke="${color}" stroke-width="${sw}" stroke-linecap="round"/>
+    ${sunRays(c, c, rayIn, rayOut, sw, color, (ray) => distanceToSegment(bx, by, ...ray) >= cutR)}
+    ${stepBadge(size, bx, by, plus, color)}`;
+}
+
+/**
+ * The Temperature step keys' glyph: the thermometer of {@link temperatureGlyph}, half full, with a plus or a minus on
+ * its right. With `badge`, the thermometer is drawn whole, with the sign on a badge over its bulb's lower right, and
+ * the outline, the bulb's core and the bar cut short of it.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {StepOptions} options
+ * @returns {string} its SVG markup
+ */
+export function temperatureStepGlyph(size, { step, color = "#FFFFFF", badge = false }) {
+  const plus = step === "up";
+  const sw = size * STROKE;
+  if (!badge) {
+    const [tx, signX, reach] = toCanvas(size, [STEP.thermometer.x, STEP.thermometer.signX, STEP.thermometer.reach]);
+    const c = size / 2;
+    return `<g transform="translate(${tx - c} 0)">${temperatureGlyph(size, { color, level: STEP.thermometer.level })}</g>
+    ${strokeLine(signX - reach, c, signX + reach, c, sw, color)}
+    ${plus ? strokeLine(signX, c - reach, signX, c + reach, sw, color) : ""}`;
+  }
+  // The thermometer of temperatureGlyph, taken apart to cut it around the badge.
+  const [cx, tubeHalf, top, bulbR, bulbCy, barTop] = toCanvas(size, [0.5, 0.08, 0.12, 0.15, 0.72, 0.28]);
+  const joinY = bulbCy - Math.sqrt(bulbR ** 2 - tubeHalf ** 2);
+  const [bx, by, badgeR, gap] = toCanvas(size, [
+    STEP.thermometerBadge.x,
+    STEP.thermometerBadge.y,
+    STEP.badge.r,
+    STEP.badge.gap,
+  ]);
+  // How far from the badge's center the gap reaches: for the strokes, half a stroke further, so their round ends
+  // stay out of it.
+  const [fillCut, strokeCut] = [badgeR + gap, badgeR + gap + sw / 2];
+  /** @type {(x: number) => number} */
+  const gapTopAt = (x) => by - Math.sqrt(strokeCut ** 2 - (x - bx) ** 2);
+  // The outline: from where the gap ends on the bulb, round the bulb to the tube's left side, over the top, and down
+  // the right side, to where the gap starts, on that side or on the bulb.
+  const leave = arcInside(cx, bulbCy, bulbR, bx, by, strokeCut)[1];
+  const sideEnd = gapTopAt(cx + tubeHalf);
+  const down =
+    sideEnd < joinY
+      ? `V ${sideEnd}`
+      : `V ${joinY} A ${bulbR} ${bulbR} 0 0 1 ${onCircle(cx, bulbCy, bulbR, arcInside(cx, bulbCy, bulbR, bx, by, strokeCut)[0])}`;
+  const outline = `M ${onCircle(cx, bulbCy, bulbR, leave)}
+    A ${bulbR} ${bulbR} 0 0 1 ${cx - tubeHalf} ${joinY}
+    V ${top + tubeHalf} A ${tubeHalf} ${tubeHalf} 0 0 1 ${cx + tubeHalf} ${top + tubeHalf} ${down}`;
+  // The bulb's core, less what the gap covers: round its outside, then back along the gap's edge.
+  const coreR = bulbR * 0.45;
+  const [coreIn, coreOut] = arcInside(cx, bulbCy, coreR, bx, by, fillCut);
+  const core = `M ${onCircle(cx, bulbCy, coreR, coreOut)}
+    A ${coreR} ${coreR} 0 1 1 ${onCircle(cx, bulbCy, coreR, coreIn + 2 * Math.PI)}
+    A ${fillCut} ${fillCut} 0 0 0 ${onCircle(cx, bulbCy, coreR, coreOut)} Z`;
+  // The bar reaches as high as temperatureGlyph's, and down into the core, unless the gap stops it first.
+  const barBottom = Math.min(bulbCy, gapTopAt(cx));
+  const barY = bulbCy - (bulbCy - barTop) * STEP.thermometer.level;
+  const [dx, dy] = toCanvas(size, [STEP.thermometerBadge.dx, STEP.thermometerBadge.dy]);
+  return `<g transform="translate(${dx} ${dy})">
+    <path d="${outline}" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${core}" fill="${color}"/>
+    ${strokeLine(cx, barY, cx, barBottom, sw, color)}
+    ${stepBadge(size, bx, by, plus, color)}</g>`;
 }
 
 /*

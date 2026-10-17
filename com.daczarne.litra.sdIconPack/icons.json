@@ -18,6 +18,56 @@
     ]
   },
   {
+    "path": "brightness-up.svg",
+    "name": "Brightness up",
+    "tags": [
+      "litra",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "brightness-down.svg",
+    "name": "Brightness down",
+    "tags": [
+      "litra",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "brightness-up-badge.svg",
+    "name": "Brightness up badge",
+    "tags": [
+      "litra",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "brightness-down-badge.svg",
+    "name": "Brightness down badge",
+    "tags": [
+      "litra",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus",
+      "badge"
+    ]
+  },
+  {
     "path": "temperature.svg",
     "name": "Temperature",
     "tags": [
@@ -57,6 +107,56 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "temperature-up.svg",
+    "name": "Temperature up",
+    "tags": [
+      "litra",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "temperature-down.svg",
+    "name": "Temperature down",
+    "tags": [
+      "litra",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "temperature-up-badge.svg",
+    "name": "Temperature up badge",
+    "tags": [
+      "litra",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "temperature-down-badge.svg",
+    "name": "Temperature down badge",
+    "tags": [
+      "litra",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus",
+      "badge"
     ]
   },
   {
@@ -160,6 +260,64 @@
     ]
   },
   {
+    "path": "brightness-up-charcoal.svg",
+    "name": "Brightness up (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "brightness-down-charcoal.svg",
+    "name": "Brightness down (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "brightness-up-badge-charcoal.svg",
+    "name": "Brightness up badge (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "brightness-down-badge-charcoal.svg",
+    "name": "Brightness down badge (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus",
+      "badge"
+    ]
+  },
+  {
     "path": "temperature-charcoal.svg",
     "name": "Temperature (charcoal)",
     "tags": [
@@ -207,6 +365,64 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "temperature-up-charcoal.svg",
+    "name": "Temperature up (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "temperature-down-charcoal.svg",
+    "name": "Temperature down (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "temperature-up-badge-charcoal.svg",
+    "name": "Temperature up badge (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "temperature-down-badge-charcoal.svg",
+    "name": "Temperature down badge (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus",
+      "badge"
     ]
   },
   {
@@ -316,6 +532,64 @@
     ]
   },
   {
+    "path": "brightness-up-grey.svg",
+    "name": "Brightness up (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "brightness-down-grey.svg",
+    "name": "Brightness down (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "brightness-up-badge-grey.svg",
+    "name": "Brightness up badge (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "brightness-down-badge-grey.svg",
+    "name": "Brightness down badge (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus",
+      "badge"
+    ]
+  },
+  {
     "path": "temperature-grey.svg",
     "name": "Temperature (grey)",
     "tags": [
@@ -363,6 +637,64 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "temperature-up-grey.svg",
+    "name": "Temperature up (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "temperature-down-grey.svg",
+    "name": "Temperature down (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "temperature-up-badge-grey.svg",
+    "name": "Temperature up badge (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "temperature-down-badge-grey.svg",
+    "name": "Temperature down badge (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus",
+      "badge"
     ]
   },
   {
@@ -472,6 +804,64 @@
     ]
   },
   {
+    "path": "brightness-up-navy.svg",
+    "name": "Brightness up (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "brightness-down-navy.svg",
+    "name": "Brightness down (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "brightness-up-badge-navy.svg",
+    "name": "Brightness up badge (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "brightness-down-badge-navy.svg",
+    "name": "Brightness down badge (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus",
+      "badge"
+    ]
+  },
+  {
     "path": "temperature-navy.svg",
     "name": "Temperature (navy)",
     "tags": [
@@ -519,6 +909,64 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "temperature-up-navy.svg",
+    "name": "Temperature up (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "temperature-down-navy.svg",
+    "name": "Temperature down (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "temperature-up-badge-navy.svg",
+    "name": "Temperature up badge (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "temperature-down-badge-navy.svg",
+    "name": "Temperature down badge (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus",
+      "badge"
     ]
   },
   {
@@ -628,6 +1076,64 @@
     ]
   },
   {
+    "path": "brightness-up-aubergine.svg",
+    "name": "Brightness up (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "brightness-down-aubergine.svg",
+    "name": "Brightness down (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "brightness-up-badge-aubergine.svg",
+    "name": "Brightness up badge (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "brightness-down-badge-aubergine.svg",
+    "name": "Brightness down badge (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus",
+      "badge"
+    ]
+  },
+  {
     "path": "temperature-aubergine.svg",
     "name": "Temperature (aubergine)",
     "tags": [
@@ -675,6 +1181,64 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "temperature-up-aubergine.svg",
+    "name": "Temperature up (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "temperature-down-aubergine.svg",
+    "name": "Temperature down (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "temperature-up-badge-aubergine.svg",
+    "name": "Temperature up badge (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "temperature-down-badge-aubergine.svg",
+    "name": "Temperature down badge (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus",
+      "badge"
     ]
   },
   {
@@ -784,6 +1348,64 @@
     ]
   },
   {
+    "path": "brightness-up-forest.svg",
+    "name": "Brightness up (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "brightness-down-forest.svg",
+    "name": "Brightness down (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "brightness-up-badge-forest.svg",
+    "name": "Brightness up badge (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "brightness-down-badge-forest.svg",
+    "name": "Brightness down badge (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus",
+      "badge"
+    ]
+  },
+  {
     "path": "temperature-forest.svg",
     "name": "Temperature (forest)",
     "tags": [
@@ -831,6 +1453,64 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "temperature-up-forest.svg",
+    "name": "Temperature up (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "temperature-down-forest.svg",
+    "name": "Temperature down (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "temperature-up-badge-forest.svg",
+    "name": "Temperature up badge (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "temperature-down-badge-forest.svg",
+    "name": "Temperature down badge (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus",
+      "badge"
     ]
   },
   {
@@ -940,6 +1620,64 @@
     ]
   },
   {
+    "path": "brightness-up-honey.svg",
+    "name": "Brightness up (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "brightness-down-honey.svg",
+    "name": "Brightness down (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "brightness-up-badge-honey.svg",
+    "name": "Brightness up badge (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "sun",
+      "light",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "brightness-down-badge-honey.svg",
+    "name": "Brightness down badge (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "sun",
+      "light",
+      "step",
+      "down",
+      "minus",
+      "badge"
+    ]
+  },
+  {
     "path": "temperature-honey.svg",
     "name": "Temperature (honey)",
     "tags": [
@@ -987,6 +1725,64 @@
       "kelvin",
       "flame",
       "hot"
+    ]
+  },
+  {
+    "path": "temperature-up-honey.svg",
+    "name": "Temperature up (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus"
+    ]
+  },
+  {
+    "path": "temperature-down-honey.svg",
+    "name": "Temperature down (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus"
+    ]
+  },
+  {
+    "path": "temperature-up-badge-honey.svg",
+    "name": "Temperature up badge (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "up",
+      "plus",
+      "badge"
+    ]
+  },
+  {
+    "path": "temperature-down-badge-honey.svg",
+    "name": "Temperature down badge (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "thermometer",
+      "kelvin",
+      "step",
+      "down",
+      "minus",
+      "badge"
     ]
   },
   {
