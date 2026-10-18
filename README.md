@@ -64,7 +64,7 @@ Stream Deck only finds a new pack when it starts, so quit and reopen it after th
 
 Text goes on icons as paths, never as SVG text: Stream Deck would draw `<text>` with whatever fonts the machine has, and a label would change font from one machine to the next. `textGlyph` in `scripts/text.mjs` lays each line out from the vendored font and writes its letters as shapes, so a label looks the same everywhere, like a glyph.
 
-A label is a list of lines, split by hand, such as `["BOTTOM", "RIGHT"]`. Every label gets the same size, the one the monitor keys were designed with: capitals 15% of the icon tall, and lines about 29% apart, with the block centered. Labels stay alike that way, so a long word goes on a line of its own rather than in smaller letters. A label whose letters would come within 5% of an icon's edge stops `npm run icons` with an error naming the line, rather than run off the key: "BOTTOM" is about as wide as a line can be, and three lines as many as fit.
+A label is a list of lines, split by hand, such as `["BOTTOM", "RIGHT"]`. Every label gets the same size, the one the monitor keys were designed with: capitals 15% of the icon tall, and lines about 29% apart, with the block centered. Labels stay alike that way, so a long word goes on a line of its own rather than in smaller letters. The one exception is a number on a badge, such as the mouse's host number, which is scaled down to fit it. A number in the mouse's palm, without a badge, is a label like any other. A label whose letters would come within 5% of an icon's edge stops `npm run icons` with an error naming the line, rather than run off the key: "BOTTOM" is about as wide as a line can be, and three lines as many as fit.
 
 To update or replace the font:
 
