@@ -234,6 +234,29 @@ export function headphonesGlyph(size: number, { color }?: GlyphOptions): string;
  */
 export function macStudioGlyph(size: number, { color }?: GlyphOptions): string;
 /**
+ * A computer mouse from above: a domed top split into two buttons, over a body that flares out a little toward its
+ * rounded bottom. Outlined, its outline, with a line under the buttons and another between them. `filled`, a solid
+ * body, with the same lines as gaps cut out of it. Both have the same silhouette, so they're the same size.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {MouseOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function mouseGlyph(size: number, { color, filled, badge }?: MouseOptions): string;
+export namespace MOUSE {
+    let top: 0.19;
+    let bottom: 0.81;
+    let domeHalf: 0.185;
+    let bodyHalf: 0.195;
+    let domeEnd: 0.36;
+    let curve: 0.595;
+    namespace badge {
+        let x: 0.5;
+        let y: 0.6;
+        let r: 0.095;
+    }
+}
+/**
  * The options most glyphs take.
  */
 export type GlyphOptions = {
@@ -281,6 +304,24 @@ export type StepOptions = {
     color?: string;
     /**
      * the sign on a round badge at the lower right, cut into the glyph, in place of its own
+     */
+    badge?: boolean;
+};
+/**
+ * The options of {@link mouseGlyph}.
+ */
+export type MouseOptions = {
+    /**
+     * the mouse's ink
+     */
+    color?: string;
+    /**
+     * a solid body, with the gaps between its buttons cut out, in place of its outline
+     */
+    filled?: boolean;
+    /**
+     * a round badge in the palm, for a label such as a host's number: cut out of a filled body,
+     * and solid in an outlined one, so the label goes on it in the ink or in the tile's color
      */
     badge?: boolean;
 };

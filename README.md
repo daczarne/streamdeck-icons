@@ -13,12 +13,13 @@ Not an official Elgato or Logitech product.
 
 ## Packs
 
-| Pack                              | Icons                                                                                                                                                                                                  |
-|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot), a step up and down of each (plain or on a badge), scenes that set both (each high or low) and power, used by the Litra plugin's keys |
-| `com.daczarne.devices.sdIconPack` | Devices around the Deck: monitor input switching (a label, a laptop, and a tower and a Mac Studio per monitor, brightness and desk mode), locks, and speakers and headphones                           |
+| Pack                              | Icons                                                                                                                                                                                                                     |
+|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot), a step up and down of each (plain or on a badge), scenes that set both (each high or low) and power, used by the Litra plugin's keys                    |
+| `com.daczarne.devices.sdIconPack` | Devices around the Deck: monitor input switching (a label, a laptop, and a tower and a Mac Studio per monitor, brightness and desk mode), locks, speakers and headphones, and a mouse, outlined and filled, on every tile |
+| `com.daczarne.mx3s.sdIconPack`    | Logitech MX Master 3S: the mouse, outlined and filled, plain and with each of its Easy-Switch hosts' numbers (in its palm or on a badge), on each of the three host colors                                                |
 
-The Litra pack's glyphs come white on transparent, and on a tile that fills the key, in each of the tile schemes in `scripts/pack-builder.mjs`, such as charcoal or honey. The devices pack puts each monitor key on its monitor's color, as the keys on the Deck are. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
+The Litra pack's glyphs come white on transparent, and on a tile that fills the key, in each of the tile schemes in `scripts/pack-builder.mjs`, such as charcoal or honey. The devices pack puts each monitor key on its monitor's color, as the keys on the Deck are, and the MX Master 3S pack comes on three colors of its own, set apart from the monitors' and from navy. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
 
 ## Using the glyphs in a plugin
 
@@ -63,7 +64,7 @@ Stream Deck only finds a new pack when it starts, so quit and reopen it after th
 
 Text goes on icons as paths, never as SVG text: Stream Deck would draw `<text>` with whatever fonts the machine has, and a label would change font from one machine to the next. `textGlyph` in `scripts/text.mjs` lays each line out from the vendored font and writes its letters as shapes, so a label looks the same everywhere, like a glyph.
 
-A label is a list of lines, split by hand, such as `["BOTTOM", "RIGHT"]`. Every label gets the same size, the one the monitor keys were designed with: capitals 15% of the icon tall, and lines about 29% apart, with the block centered. Labels stay alike that way, so a long word goes on a line of its own rather than in smaller letters. A label whose letters would come within 5% of an icon's edge stops `npm run icons` with an error naming the line, rather than run off the key: "BOTTOM" is about as wide as a line can be, and three lines as many as fit.
+A label is a list of lines, split by hand, such as `["BOTTOM", "RIGHT"]`. Every label gets the same size, the one the monitor keys were designed with: capitals 15% of the icon tall, and lines about 29% apart, with the block centered. Labels stay alike that way, so a long word goes on a line of its own rather than in smaller letters. The one exception is a number on a badge, such as the mouse's host number, which is scaled down to fit it. A number in the mouse's palm, without a badge, is a label like any other. A label whose letters would come within 5% of an icon's edge stops `npm run icons` with an error naming the line, rather than run off the key: "BOTTOM" is about as wide as a line can be, and three lines as many as fit.
 
 To update or replace the font:
 

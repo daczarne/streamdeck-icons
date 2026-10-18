@@ -21,6 +21,9 @@ export namespace TILES {
     let honey: string;
     let charcoal: string;
     let grey: string;
+    let violet: string;
+    let olive: string;
+    let cerise: string;
 }
 export namespace ACCENTS {
     let amber: string;

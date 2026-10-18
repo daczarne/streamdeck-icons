@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none">
+    <g transform="translate(28 28) scale(1.387096774193548) translate(-28 -28)"><path d="M 28 12.32 A 8.68 7.84 0 0 1 36.68 20.16 V 23.52
+    C 36.68 28.42 37.24 28.42 37.24 33.32
+    A 9.24 10.36 0 0 1 18.759999999999998 33.32
+    C 18.759999999999998 28.42 19.32 28.42 19.32 23.52
+    V 20.16 A 8.68 7.84 0 0 1 28 12.32 Z
+    M 19.32 21.84 H 36.68 M 28 12.32 V 21.84"
+    stroke="#FFFFFF" stroke-width="3.36"/></g>
+    </svg>
