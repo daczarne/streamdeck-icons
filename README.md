@@ -13,12 +13,13 @@ Not an official Elgato or Logitech product.
 
 ## Packs
 
-| Pack                              | Icons                                                                                                                                                                                                  |
-|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot), a step up and down of each (plain or on a badge), scenes that set both (each high or low) and power, used by the Litra plugin's keys |
-| `com.daczarne.devices.sdIconPack` | Devices around the Deck: monitor input switching (a label, a laptop, and a tower and a Mac Studio per monitor, brightness and desk mode), locks, and speakers and headphones                           |
+| Pack                              | Icons                                                                                                                                                                                                                     |
+|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `com.daczarne.litra.sdIconPack`   | Logitech Litra lights: brightness, temperature (cool, warm, hot), a step up and down of each (plain or on a badge), scenes that set both (each high or low) and power, used by the Litra plugin's keys                    |
+| `com.daczarne.devices.sdIconPack` | Devices around the Deck: monitor input switching (a label, a laptop, and a tower and a Mac Studio per monitor, brightness and desk mode), locks, speakers and headphones, and a mouse, outlined and filled, on every tile |
+| `com.daczarne.mx3s.sdIconPack`    | Logitech MX Master 3S: the mouse, outlined and filled, plain and with each of its Easy-Switch hosts' numbers on a badge, on each of the three host colors                                                                 |
 
-The Litra pack's glyphs come white on transparent, and on a tile that fills the key, in each of the tile schemes in `scripts/pack-builder.mjs`, such as charcoal or honey. The devices pack puts each monitor key on its monitor's color, as the keys on the Deck are. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
+The Litra pack's glyphs come white on transparent, and on a tile that fills the key, in each of the tile schemes in `scripts/pack-builder.mjs`, such as charcoal or honey. The devices pack puts each monitor key on its monitor's color, as the keys on the Deck are, and the MX Master 3S pack comes on three colors of its own, set apart from the monitors' and from navy. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
 
 ## Using the glyphs in a plugin
 

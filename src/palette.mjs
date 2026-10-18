@@ -10,7 +10,10 @@ export const WHITE = "#F2F2F2";
 /** The dark ink of glyphs and text, on the light tiles, `grey` and `honey`. */
 export const INK = "#24262B";
 
-/** Tile backgrounds. The comments say what each was first used for, on the monitor keys or the Litra keys. */
+/**
+ * Tile backgrounds. The comments say what each was first used for: the monitor keys, the Litra keys or the mouse's host
+ * keys.
+ */
 export const TILES = {
   teal: "#3F6E6E", // the left monitor
   blue: "#4C5F86", // the center monitor
@@ -25,6 +28,11 @@ export const TILES = {
   honey: "#E3B547", // a warm yellow, for the Litra keys, light enough to set them apart, with `INK` glyphs
   charcoal: "#2B2E33", // the dark neutral keys, with `WHITE` glyphs
   grey: "#9AA0A8", // the light neutral keys, the charcoal ones inverted, with `INK` glyphs
+  // The mouse's host keys: brighter than the monitors' tiles, and in hues none of the other tiles has, so the host keys
+  // stand apart from the monitor keys and the navy ones next to them.
+  violet: "#5546A0",
+  olive: "#7A6A2A",
+  cerise: "#A03F68",
 };
 
 /** Colors that aren't tiles. */

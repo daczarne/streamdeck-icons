@@ -11,7 +11,7 @@
 
 ## Project
 
-Icon packs for Stream Deck, one per topic, and the glyphs, palette and SVG helpers they share with the Stream Deck plugins that draw from them. The packs so far are Litra's, for the Logitech Litra plugin in `daczarne/streamdeck-litra`, which draws its own images from this package's exports, and the devices pack, for the devices around a Deck, starting with monitor input switching keys. The repository is public.
+Icon packs for Stream Deck, one per topic, and the glyphs, palette and SVG helpers they share with the Stream Deck plugins that draw from them. The packs so far are Litra's, for the Logitech Litra plugin in `daczarne/streamdeck-litra`, which draws its own images from this package's exports, the devices pack, for the devices around a Deck, starting with monitor input switching keys, and the MX Master 3S pack, for the mouse plugin in `daczarne/streamdeck-mx3s`, with keys for the mouse's hosts. The repository is public.
 
 The packs are made and checked on macOS, with a Stream Deck + XL running Stream Deck 7.6. They aren't distributed: they run linked from the repo.
 

@@ -1007,3 +1007,83 @@ export function macStudioGlyph(size, { color = "#FFFFFF" } = {}) {
     <rect x="${macLeft + baseInset}" y="${floor - baseH}" width="${macWidth - 2 * baseInset}"
     height="${baseH}" rx="${baseH / 2}" fill="${color}"/>`;
 }
+
+/**
+ * The options of {@link mouseGlyph}.
+ *
+ * @typedef {object} MouseOptions
+ * @property {string} [color] the mouse's ink
+ * @property {boolean} [filled] a solid body, with the gaps between its buttons cut out, in place of its outline
+ * @property {boolean} [badge] a round badge in the palm, for a label such as a host's number: cut out of a filled body,
+ *   and solid in an outlined one, so the label goes on it in the ink or in the tile's color
+ */
+
+/**
+ * A mouse's silhouette, as shares of the canvas, by its outer edge, whether filled or outlined: centered, as tall as
+ * the speaker, from `top` to `bottom`. Its domed top is `domeHalf` wide on each side of the middle where it ends, at
+ * `domeEnd`, which is where the gap under the buttons starts. Below the gap, its sides flare out to `bodyHalf`, where
+ * its rounded bottom starts, at `curve`. The badge in its palm is centered at (`x`, `y`), with radius `r`.
+ */
+export const MOUSE = /** @type {const} */ ({
+  top: 0.19,
+  bottom: 0.81,
+  domeHalf: 0.185,
+  bodyHalf: 0.195,
+  domeEnd: 0.36,
+  curve: 0.595,
+  badge: { x: 0.5, y: 0.6, r: 0.095 },
+});
+
+/**
+ * A computer mouse from above: a domed top split into two buttons, over a body that flares out a little toward its
+ * rounded bottom. Outlined, its outline, with a line under the buttons and another between them. `filled`, a solid
+ * body, with the same lines as gaps cut out of it. Both have the same silhouette, so they're the same size.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {MouseOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function mouseGlyph(size, { color = "#FFFFFF", filled = false, badge = false } = {}) {
+  const sw = size * MONITOR_STROKE;
+  const [top, bottom, domeHalf, bodyHalf, domeEnd, curve] = toCanvas(size, [
+    MOUSE.top,
+    MOUSE.bottom,
+    MOUSE.domeHalf,
+    MOUSE.bodyHalf,
+    MOUSE.domeEnd,
+    MOUSE.curve,
+  ]);
+  const [bx, by, br] = toCanvas(size, [MOUSE.badge.x, MOUSE.badge.y, MOUSE.badge.r]);
+  const cx = size / 2;
+  // The gap under the buttons, as wide as the outline's stroke, and the flare of the sides below it, as one smooth
+  // curve that leaves the gap and reaches the bottom vertically.
+  const gapEnd = domeEnd + sw;
+  const k = (curve - gapEnd) / 2;
+  if (filled) {
+    // The dome is a half ellipse centered where it ends. Each button is its share of it, a half gap from the middle.
+    const [rx, ry] = [domeHalf, domeEnd - top];
+    const buttonTop = domeEnd - ry * Math.sqrt(1 - (sw / 2 / rx) ** 2);
+    /** @type {(side: 1 | -1) => string} */
+    const button = (side) => `M ${cx + (side * sw) / 2} ${buttonTop}
+      A ${rx} ${ry} 0 0 ${side === 1 ? 1 : 0} ${cx + side * domeHalf} ${domeEnd} H ${cx + (side * sw) / 2} Z`;
+    const ryBottom = bottom - curve;
+    const body = `M ${cx - domeHalf} ${gapEnd} H ${cx + domeHalf}
+      C ${cx + domeHalf} ${gapEnd + k} ${cx + bodyHalf} ${curve - k} ${cx + bodyHalf} ${curve}
+      A ${bodyHalf} ${ryBottom} 0 0 1 ${cx - bodyHalf} ${curve}
+      C ${cx - bodyHalf} ${curve - k} ${cx - domeHalf} ${gapEnd + k} ${cx - domeHalf} ${gapEnd} Z`;
+    return `<path d="${button(-1)} ${button(1)} ${body}${badge ? ` ${circlePath(bx, by, br)}` : ""}"
+      fill="${color}" fill-rule="evenodd"/>`;
+  }
+  // The outline runs along the middle of its stroke, half a stroke inside the silhouette.
+  const h = sw / 2;
+  const [domeX, bodyX] = [domeHalf - h, bodyHalf - h];
+  const [rx, ry, ryBottom] = [domeX, domeEnd - top - h, bottom - curve - h];
+  const divider = domeEnd + h;
+  return `<path d="M ${cx} ${top + h} A ${rx} ${ry} 0 0 1 ${cx + domeX} ${domeEnd} V ${gapEnd}
+    C ${cx + domeX} ${gapEnd + k} ${cx + bodyX} ${curve - k} ${cx + bodyX} ${curve}
+    A ${bodyX} ${ryBottom} 0 0 1 ${cx - bodyX} ${curve}
+    C ${cx - bodyX} ${curve - k} ${cx - domeX} ${gapEnd + k} ${cx - domeX} ${gapEnd}
+    V ${domeEnd} A ${rx} ${ry} 0 0 1 ${cx} ${top + h} Z
+    M ${cx - domeX} ${divider} H ${cx + domeX} M ${cx} ${top + h} V ${divider}"
+    stroke="${color}" stroke-width="${sw}"/>${badge ? `\n    <circle cx="${bx}" cy="${by}" r="${br}" fill="${color}"/>` : ""}`;
+}

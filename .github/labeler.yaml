@@ -29,6 +29,11 @@ litra:
       - any-glob-to-any-file:
           - com.daczarne.litra.sdIconPack/**
           - scripts/packs/litra.mjs
+mx3s:
+  - changed-files:
+      - any-glob-to-any-file:
+          - com.daczarne.mx3s.sdIconPack/**
+          - scripts/packs/mx3s.mjs
 tools:
   - changed-files:
       - any-glob-to-any-file:

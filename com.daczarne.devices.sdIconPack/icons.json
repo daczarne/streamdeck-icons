@@ -604,5 +604,357 @@
       "headphones",
       "output"
     ]
+  },
+  {
+    "path": "mouse-teal.svg",
+    "name": "Mouse (teal)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "teal"
+    ]
+  },
+  {
+    "path": "mouse-blue.svg",
+    "name": "Mouse (blue)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "blue"
+    ]
+  },
+  {
+    "path": "mouse-plum.svg",
+    "name": "Mouse (plum)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "plum"
+    ]
+  },
+  {
+    "path": "mouse-rust.svg",
+    "name": "Mouse (rust)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "rust"
+    ]
+  },
+  {
+    "path": "mouse-slate.svg",
+    "name": "Mouse (slate)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "slate"
+    ]
+  },
+  {
+    "path": "mouse-green.svg",
+    "name": "Mouse (green)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "green"
+    ]
+  },
+  {
+    "path": "mouse-red.svg",
+    "name": "Mouse (red)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "red"
+    ]
+  },
+  {
+    "path": "mouse-navy.svg",
+    "name": "Mouse (navy)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "navy"
+    ]
+  },
+  {
+    "path": "mouse-aubergine.svg",
+    "name": "Mouse (aubergine)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "aubergine"
+    ]
+  },
+  {
+    "path": "mouse-forest.svg",
+    "name": "Mouse (forest)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "forest"
+    ]
+  },
+  {
+    "path": "mouse-honey.svg",
+    "name": "Mouse (honey)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "honey"
+    ]
+  },
+  {
+    "path": "mouse-charcoal.svg",
+    "name": "Mouse (charcoal)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "charcoal"
+    ]
+  },
+  {
+    "path": "mouse-grey.svg",
+    "name": "Mouse (grey)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "grey"
+    ]
+  },
+  {
+    "path": "mouse-violet.svg",
+    "name": "Mouse (violet)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "violet"
+    ]
+  },
+  {
+    "path": "mouse-olive.svg",
+    "name": "Mouse (olive)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "olive"
+    ]
+  },
+  {
+    "path": "mouse-cerise.svg",
+    "name": "Mouse (cerise)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "cerise"
+    ]
+  },
+  {
+    "path": "mouse-filled-teal.svg",
+    "name": "Mouse filled (teal)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "teal"
+    ]
+  },
+  {
+    "path": "mouse-filled-blue.svg",
+    "name": "Mouse filled (blue)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "blue"
+    ]
+  },
+  {
+    "path": "mouse-filled-plum.svg",
+    "name": "Mouse filled (plum)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "plum"
+    ]
+  },
+  {
+    "path": "mouse-filled-rust.svg",
+    "name": "Mouse filled (rust)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "rust"
+    ]
+  },
+  {
+    "path": "mouse-filled-slate.svg",
+    "name": "Mouse filled (slate)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "slate"
+    ]
+  },
+  {
+    "path": "mouse-filled-green.svg",
+    "name": "Mouse filled (green)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "green"
+    ]
+  },
+  {
+    "path": "mouse-filled-red.svg",
+    "name": "Mouse filled (red)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "red"
+    ]
+  },
+  {
+    "path": "mouse-filled-navy.svg",
+    "name": "Mouse filled (navy)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "navy"
+    ]
+  },
+  {
+    "path": "mouse-filled-aubergine.svg",
+    "name": "Mouse filled (aubergine)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "aubergine"
+    ]
+  },
+  {
+    "path": "mouse-filled-forest.svg",
+    "name": "Mouse filled (forest)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "forest"
+    ]
+  },
+  {
+    "path": "mouse-filled-honey.svg",
+    "name": "Mouse filled (honey)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "honey"
+    ]
+  },
+  {
+    "path": "mouse-filled-charcoal.svg",
+    "name": "Mouse filled (charcoal)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "charcoal"
+    ]
+  },
+  {
+    "path": "mouse-filled-grey.svg",
+    "name": "Mouse filled (grey)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "grey"
+    ]
+  },
+  {
+    "path": "mouse-filled-violet.svg",
+    "name": "Mouse filled (violet)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "violet"
+    ]
+  },
+  {
+    "path": "mouse-filled-olive.svg",
+    "name": "Mouse filled (olive)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "olive"
+    ]
+  },
+  {
+    "path": "mouse-filled-cerise.svg",
+    "name": "Mouse filled (cerise)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "cerise"
+    ]
   }
 ]
