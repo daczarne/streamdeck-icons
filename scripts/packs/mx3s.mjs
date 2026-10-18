@@ -1,8 +1,10 @@
 /**
  * The MX Master 3S pack: keys for the mouse's Easy-Switch hosts. The mouse, outlined then filled, on each of the host
- * tiles, plain and with each host's number on a badge in its palm. The mouse is the devices pack's, at the same size.
- * The number is written as a label is (see `scripts/text.mjs`), scaled down to the badge and moved onto it: in the ink
- * on a filled mouse's badge, which is cut out of it, and in the tile's color on an outlined mouse's, which is solid.
+ * tiles: plain, with each host's number in its palm, and with the number on a badge there. The mouse is the devices
+ * pack's, at the same size. The number is written as a label is (see `scripts/text.mjs`) and moved into the palm,
+ * inverted from what it stands on: in the tile's color on a filled mouse's palm, as if cut out of it, and in the ink in
+ * an outlined mouse's. On a badge, which is itself inverted from the body, it's scaled down to fit, and in the ink on a
+ * filled mouse's badge, cut out of it, and in the tile's color on an outlined mouse's, which is solid.
  */
 import { MOUSE, mouseGlyph } from "../../src/glyphs.mjs";
 import { TILES, WHITE } from "../../src/palette.mjs";
@@ -11,7 +13,8 @@ import { textGlyph } from "../text.mjs";
 
 /** @import { Icon, Pack } from "../pack-builder.mjs" */
 
-// A label's capital height, as `textGlyph` writes it, and the number's on the badge, as shares of the icon.
+// A label's capital height, as `textGlyph` writes it, which the number keeps in the palm, and the number's on the
+// badge, as shares of the icon.
 const LABEL_CAP = 0.15;
 const BADGE_CAP = 0.105;
 
@@ -26,21 +29,23 @@ const COLORS = /** @type {const} */ (["violet", "olive", "cerise"]);
 const HOSTS = [1, 2, 3];
 
 /**
- * A host's number on the badge of a mouse of `size`, in `color`.
+ * A host's number in the palm of a mouse of `size`, in `color`, with capitals `cap` tall: the label's, or the badge's.
  *
  * @param {number} size
  * @param {number} host
  * @param {string} color
+ * @param {number} cap
  * @returns {string}
  */
-function badgeNumber(size, host, color) {
-  // A label is centered on the icon, so it's scaled about the middle, then moved by the badge's distance from it.
-  const label = scaled(size, textGlyph(size, [String(host)], { color }), LABEL_CAP, BADGE_CAP);
+function palmNumber(size, host, color, cap) {
+  // A label is centered on the icon, so it's scaled about the middle, then moved by the palm's distance from it.
+  const label = scaled(size, textGlyph(size, [String(host)], { color }), LABEL_CAP, cap);
   return `<g transform="translate(${(MOUSE.badge.x - 0.5) * size} ${(MOUSE.badge.y - 0.5) * size})">${label}</g>`;
 }
 
 /**
- * The keys on one tile, in one of the mouse's two versions: the plain mouse, then one for each host.
+ * The keys on one tile, in one of the mouse's two versions: the plain mouse, one for each host, then one for each host
+ * with a badge.
  *
  * @param {boolean} filled
  * @param {(typeof COLORS)[number]} name the tile's, in `TILES`
@@ -58,14 +63,17 @@ function tileIcons(filled, name) {
       draw: (size) => `${tile(size, color)}
         ${mouseGlyph(size, { color: WHITE, filled })}`,
     },
-    ...HOSTS.map((host) => ({
-      path: `host-${host}${filled ? "-filled" : ""}-${name}.svg`,
-      name: `Host ${host}${version} (${name})`,
-      tags: ["mouse", "host", "easy-switch", String(host), style, name],
-      draw: (/** @type {number} */ size) => `${tile(size, color)}
-        ${mouseGlyph(size, { color: WHITE, filled, badge: true })}
-        ${badgeNumber(size, host, filled ? WHITE : color)}`,
-    })),
+    ...[false, true].flatMap((badge) =>
+      HOSTS.map((host) => ({
+        path: `host-${host}${badge ? "-badge" : ""}${filled ? "-filled" : ""}-${name}.svg`,
+        name: `Host ${host}${badge ? " badge" : ""}${version} (${name})`,
+        tags: ["mouse", "host", "easy-switch", String(host), ...(badge ? ["badge"] : []), style, name],
+        // The number is inverted from what it stands on: the badge, or the body, which are inverted from each other.
+        draw: (/** @type {number} */ size) => `${tile(size, color)}
+          ${mouseGlyph(size, { color: WHITE, filled, badge })}
+          ${palmNumber(size, host, filled === badge ? WHITE : color, badge ? BADGE_CAP : LABEL_CAP)}`,
+      })),
+    ),
   ];
 }
 

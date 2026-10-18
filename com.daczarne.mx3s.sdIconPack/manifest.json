@@ -1,7 +1,7 @@
 {
   "Name": "MX Master 3S",
   "Version": "1.0.0",
-  "Description": "Icons for a Logitech MX Master 3S's Easy-Switch hosts: the mouse, outlined and filled, plain and with each host's number, on three colors of their own.",
+  "Description": "Icons for a Logitech MX Master 3S's Easy-Switch hosts: the mouse, outlined and filled, plain and with each host's number, in its palm or on a badge, on three colors of their own.",
   "Author": "Daniel Czarnievicz",
   "URL": "https://github.com/daczarne/streamdeck-icons",
   "Icon": "icon.svg"

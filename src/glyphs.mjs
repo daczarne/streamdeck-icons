@@ -1022,7 +1022,8 @@ export function macStudioGlyph(size, { color = "#FFFFFF" } = {}) {
  * A mouse's silhouette, as shares of the canvas, by its outer edge, whether filled or outlined: centered, as tall as
  * the speaker, from `top` to `bottom`. Its domed top is `domeHalf` wide on each side of the middle where it ends, at
  * `domeEnd`, which is where the gap under the buttons starts. Below the gap, its sides flare out to `bodyHalf`, where
- * its rounded bottom starts, at `curve`. The badge in its palm is centered at (`x`, `y`), with radius `r`.
+ * its rounded bottom starts, at `curve`. The badge in its palm is centered at (`x`, `y`), with radius `r`, and so is a
+ * label in the palm without one.
  */
 export const MOUSE = /** @type {const} */ ({
   top: 0.19,
@@ -1079,11 +1080,12 @@ export function mouseGlyph(size, { color = "#FFFFFF", filled = false, badge = fa
   const [domeX, bodyX] = [domeHalf - h, bodyHalf - h];
   const [rx, ry, ryBottom] = [domeX, domeEnd - top - h, bottom - curve - h];
   const divider = domeEnd + h;
+  const disc = badge ? `\n    <circle cx="${bx}" cy="${by}" r="${br}" fill="${color}"/>` : "";
   return `<path d="M ${cx} ${top + h} A ${rx} ${ry} 0 0 1 ${cx + domeX} ${domeEnd} V ${gapEnd}
     C ${cx + domeX} ${gapEnd + k} ${cx + bodyX} ${curve - k} ${cx + bodyX} ${curve}
     A ${bodyX} ${ryBottom} 0 0 1 ${cx - bodyX} ${curve}
     C ${cx - bodyX} ${curve - k} ${cx - domeX} ${gapEnd + k} ${cx - domeX} ${gapEnd}
     V ${domeEnd} A ${rx} ${ry} 0 0 1 ${cx} ${top + h} Z
     M ${cx - domeX} ${divider} H ${cx + domeX} M ${cx} ${top + h} V ${divider}"
-    stroke="${color}" stroke-width="${sw}"/>${badge ? `\n    <circle cx="${bx}" cy="${by}" r="${br}" fill="${color}"/>` : ""}`;
+    stroke="${color}" stroke-width="${sw}"/>${disc}`;
 }

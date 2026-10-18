@@ -49,6 +49,48 @@
     ]
   },
   {
+    "path": "host-1-badge-violet.svg",
+    "name": "Host 1 badge (violet)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "1",
+      "badge",
+      "outlined",
+      "violet"
+    ]
+  },
+  {
+    "path": "host-2-badge-violet.svg",
+    "name": "Host 2 badge (violet)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "2",
+      "badge",
+      "outlined",
+      "violet"
+    ]
+  },
+  {
+    "path": "host-3-badge-violet.svg",
+    "name": "Host 3 badge (violet)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "3",
+      "badge",
+      "outlined",
+      "violet"
+    ]
+  },
+  {
     "path": "mouse-olive.svg",
     "name": "Mouse (olive)",
     "tags": [
@@ -93,6 +135,48 @@
       "host",
       "easy-switch",
       "3",
+      "outlined",
+      "olive"
+    ]
+  },
+  {
+    "path": "host-1-badge-olive.svg",
+    "name": "Host 1 badge (olive)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "1",
+      "badge",
+      "outlined",
+      "olive"
+    ]
+  },
+  {
+    "path": "host-2-badge-olive.svg",
+    "name": "Host 2 badge (olive)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "2",
+      "badge",
+      "outlined",
+      "olive"
+    ]
+  },
+  {
+    "path": "host-3-badge-olive.svg",
+    "name": "Host 3 badge (olive)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "3",
+      "badge",
       "outlined",
       "olive"
     ]
@@ -147,6 +231,48 @@
     ]
   },
   {
+    "path": "host-1-badge-cerise.svg",
+    "name": "Host 1 badge (cerise)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "1",
+      "badge",
+      "outlined",
+      "cerise"
+    ]
+  },
+  {
+    "path": "host-2-badge-cerise.svg",
+    "name": "Host 2 badge (cerise)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "2",
+      "badge",
+      "outlined",
+      "cerise"
+    ]
+  },
+  {
+    "path": "host-3-badge-cerise.svg",
+    "name": "Host 3 badge (cerise)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "3",
+      "badge",
+      "outlined",
+      "cerise"
+    ]
+  },
+  {
     "path": "mouse-filled-violet.svg",
     "name": "Mouse filled (violet)",
     "tags": [
@@ -191,6 +317,48 @@
       "host",
       "easy-switch",
       "3",
+      "filled",
+      "violet"
+    ]
+  },
+  {
+    "path": "host-1-badge-filled-violet.svg",
+    "name": "Host 1 badge filled (violet)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "1",
+      "badge",
+      "filled",
+      "violet"
+    ]
+  },
+  {
+    "path": "host-2-badge-filled-violet.svg",
+    "name": "Host 2 badge filled (violet)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "2",
+      "badge",
+      "filled",
+      "violet"
+    ]
+  },
+  {
+    "path": "host-3-badge-filled-violet.svg",
+    "name": "Host 3 badge filled (violet)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "3",
+      "badge",
       "filled",
       "violet"
     ]
@@ -245,6 +413,48 @@
     ]
   },
   {
+    "path": "host-1-badge-filled-olive.svg",
+    "name": "Host 1 badge filled (olive)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "1",
+      "badge",
+      "filled",
+      "olive"
+    ]
+  },
+  {
+    "path": "host-2-badge-filled-olive.svg",
+    "name": "Host 2 badge filled (olive)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "2",
+      "badge",
+      "filled",
+      "olive"
+    ]
+  },
+  {
+    "path": "host-3-badge-filled-olive.svg",
+    "name": "Host 3 badge filled (olive)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "3",
+      "badge",
+      "filled",
+      "olive"
+    ]
+  },
+  {
     "path": "mouse-filled-cerise.svg",
     "name": "Mouse filled (cerise)",
     "tags": [
@@ -289,6 +499,48 @@
       "host",
       "easy-switch",
       "3",
+      "filled",
+      "cerise"
+    ]
+  },
+  {
+    "path": "host-1-badge-filled-cerise.svg",
+    "name": "Host 1 badge filled (cerise)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "1",
+      "badge",
+      "filled",
+      "cerise"
+    ]
+  },
+  {
+    "path": "host-2-badge-filled-cerise.svg",
+    "name": "Host 2 badge filled (cerise)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "2",
+      "badge",
+      "filled",
+      "cerise"
+    ]
+  },
+  {
+    "path": "host-3-badge-filled-cerise.svg",
+    "name": "Host 3 badge filled (cerise)",
+    "tags": [
+      "mx3s",
+      "mouse",
+      "host",
+      "easy-switch",
+      "3",
+      "badge",
       "filled",
       "cerise"
     ]
