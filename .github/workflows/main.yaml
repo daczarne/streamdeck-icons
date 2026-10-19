@@ -19,7 +19,7 @@ permissions: {}
 jobs:
   label-pr:
     name: Label PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: ${{ github.event.pull_request }}
     permissions:
       contents: read
@@ -46,7 +46,7 @@ jobs:
 
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
@@ -64,7 +64,7 @@ jobs:
 
   spell-check:
     name: Spell check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
@@ -87,7 +87,7 @@ jobs:
 
   packs:
     name: Packs
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - lint
       - spell-check
@@ -133,7 +133,7 @@ jobs:
   alls-green:
     name: Ensure all checks have passed
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - label-pr
       - lint
