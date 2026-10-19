@@ -18,7 +18,8 @@ import { textGlyph } from "../text.mjs";
 const LABEL_CAP = 0.15;
 const BADGE_CAP = 0.105;
 
-// The mouse's height, for the pack's own icon, which it fills.
+// The mouse's height, for the pack's own icon, which it fills. The MX Master 3S plugin's category icon takes the same
+// size, copied into its `scripts/generate-icons.mjs`, so a change to it is taken there too.
 const MOUSE_SPAN = MOUSE.bottom - MOUSE.top;
 const LOGO_SPAN = 0.86;
 
