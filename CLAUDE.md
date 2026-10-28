@@ -39,7 +39,7 @@ The palette in `src/palette.mjs` comes from the icons first drawn for the monito
 ## Commands
 
 ```shell
-n auto                    # switch to the Node version in .node-version
+n auto                    # switch to the Node version in .node-version, and the npm that ships with it
 npm ci --ignore-scripts   # install from the lockfile, without install scripts
 npm run icons             # regenerate every pack
 npm run types             # regenerate the type declarations in types/ from src/'s doc comments
@@ -56,7 +56,7 @@ To see a change before showing it, render the SVGs to a contact sheet in the scr
 
 ## Supply chain
 
-Supply-chain risk is a hard requirement here. The package's dependencies are development dependencies, which plugins that import the glyphs don't install: `opentype.js`, with no dependencies of its own, used only to build the packs; Biome, a native binary per platform, with no dependencies and no install scripts; TypeScript, with no dependencies; and `@types/node`, which depends on `undici-types`. A new one is flagged and justified, with a narrower alternative offered. The font in `fonts/` is vendored from the Noto project's distribution, pinned to a commit there and to its hash in `scripts/check-packs.mjs`, and replaced only deliberately, like a dependency. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
+Supply-chain risk is a hard requirement here. The package's dependencies are development dependencies, which plugins that import the glyphs don't install: `opentype.js`, with no dependencies of its own, used only to build the packs; Biome, a native binary per platform, with no dependencies and no install scripts; TypeScript, with no dependencies; and `@types/node`, which depends on `undici-types`. A new one is flagged and justified, with a narrower alternative offered. The font in `fonts/` is vendored from the Noto project's distribution, pinned to a commit there and to its hash in `scripts/check-packs.mjs`, and replaced only deliberately, like a dependency. Node and npm are pinned in `devEngines`, npm at the version that ships with that Node, so neither is installed on its own. npm packages and GitHub Actions are pinned to exact versions, and each upgrade is its own change: see the "Dependencies" section of `docs/contributing.md`.
 
 ## Testing on the hardware
 

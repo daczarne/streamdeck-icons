@@ -50,6 +50,8 @@ Every dependency is pinned, and every upgrade is a deliberate change of its own.
 
 - `package.json` declares exact versions only, never ranges. The project `.npmrc` sets `save-exact=true`, so `npm install <package>` records an exact version, and `ignore-scripts=true`, so no install runs install scripts.
 - An upgrade is `npm install <package>@<version>`, followed by a review of the lockfile diff. Exact versions don't pin transitive dependencies, only the lockfile does, so it stays committed and installs use `npm ci`.
+- The Node and the npm the repository is worked on with are pinned in `devEngines` in `package.json`, and npm refuses to install or run a script with any other. They're in `devEngines` rather than `engines` because npm checks `devEngines` only in the project being installed: a plugin that installs the glyphs builds with its own Node and npm, not this repository's. Node's version is also in `.node-version`, which `n` and CI read.
+- npm is the one that ships with that Node, so `n` and CI install both together, and nothing installs npm on its own, outside Node's release. Upgrading Node moves npm in `devEngines` to the version the new Node ships, which its release notes list.
 - GitHub Actions are pinned to full commit SHAs, with the version as a trailing comment, checked against the release tag. Like npm packages, they're upgraded by hand.
 - CI's runners are pinned to an Ubuntu release (`ubuntu-24.04`), not `ubuntu-latest`, which GitHub moves to a new release on its own schedule. A release's image still gets GitHub's updates, but a new release can drop tools and change the default versions of others. Moving to a newer release is an upgrade of its own.
 

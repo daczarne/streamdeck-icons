@@ -2,6 +2,7 @@ davidanson
 killall
 Noto
 notofonts
+openssl
 osascript
 redhat
 unhinted

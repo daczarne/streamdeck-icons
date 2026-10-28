@@ -29,6 +29,8 @@ A plugin installs this package from GitHub, pinned to a commit, as a development
 npm install --save-dev github:daczarne/streamdeck-icons#<commit-sha>
 ```
 
+The package pins the Node and npm it's built with in `devEngines`, which npm checks only in this repository, so a plugin builds with its own.
+
 It then draws its own images from the exports, in whatever sizes and formats Stream Deck needs from it:
 
 ```js
@@ -41,7 +43,7 @@ Each glyph takes the size of its square canvas, and options such as `color`, and
 
 ## Working on the packs
 
-Use the Node version in `.node-version`, and install from the lockfile without install scripts:
+Use the Node version in `.node-version`, with the npm that ships with it (`devEngines` in `package.json` pins both), and install from the lockfile without install scripts:
 
 ```shell
 npm ci --ignore-scripts
