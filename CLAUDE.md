@@ -39,7 +39,7 @@ The palette in `src/palette.mjs` comes from the icons first drawn for the monito
 ## Commands
 
 ```shell
-n auto                    # switch to the Node version in .node-version
+n --preserve auto         # switch to the Node version in .node-version, keeping the npm installed
 npm ci --ignore-scripts   # install from the lockfile, without install scripts
 npm run icons             # regenerate every pack
 npm run types             # regenerate the type declarations in types/ from src/'s doc comments

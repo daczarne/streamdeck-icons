@@ -41,8 +41,17 @@
     "link": "node scripts/link-packs.mjs",
     "unlink": "node scripts/link-packs.mjs --unlink"
   },
-  "engines": {
-    "node": "24.15.0"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.22.1",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "12.2.1",
+      "onFail": "error"
+    }
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
