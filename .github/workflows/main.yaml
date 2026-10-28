@@ -16,12 +16,6 @@ on:
 
 permissions: {}
 
-env:
-  # Node 24 ships npm 11, so the npm that devEngines in package.json requires is installed on its own, from its tarball,
-  # checked against its recorded hash. npm ci fails when the two versions differ.
-  NPM_VERSION: 12.2.1
-  NPM_INTEGRITY: sha512-bKCmFRVT/BB+YPEYbZwQ1XUI3N5t4xKSpU1MxOjo7z3iWzKBJ0ZXRC1xFdEN+TC7N5TdywaBzf2dMXGJq/e2PQ==
-
 jobs:
   label-pr:
     name: Label PR
@@ -111,14 +105,6 @@ jobs:
         with:
           node-version-file: .node-version
           package-manager-cache: false
-      - name: Set up npm 🟢
-        id: setup_npm
-        run: |
-          npm pack --silent --pack-destination "$RUNNER_TEMP" "npm@$NPM_VERSION"
-          tarball="$RUNNER_TEMP/npm-$NPM_VERSION.tgz"
-          test "sha512-$(openssl dgst -sha512 -binary "$tarball" | base64 -w 0)" = "$NPM_INTEGRITY"
-          npm install --global --ignore-scripts "$tarball"
-          npm --version
       - name: Install dependencies 📦
         id: install_dependencies
         run: npm ci --ignore-scripts

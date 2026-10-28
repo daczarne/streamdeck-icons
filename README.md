@@ -29,7 +29,7 @@ A plugin installs this package from GitHub, pinned to a commit, as a development
 npm install --save-dev github:daczarne/streamdeck-icons#<commit-sha>
 ```
 
-npm 12 refuses dependencies installed from git unless `allow-git` permits them, so the plugin's `.npmrc` sets `allow-git=root`, which allows the ones its own `package.json` declares. The package pins the Node and npm it's built with in `devEngines`, which npm checks only in this repository, so a plugin builds with its own.
+The package pins the Node and npm it's built with in `devEngines`, which npm checks only in this repository, so a plugin builds with its own.
 
 It then draws its own images from the exports, in whatever sizes and formats Stream Deck needs from it:
 
@@ -43,7 +43,7 @@ Each glyph takes the size of its square canvas, and options such as `color`, and
 
 ## Working on the packs
 
-Use the Node and npm versions in `devEngines` in `package.json` (the "Dependencies" section of [`docs/contributing.md`][contributing] explains how to install them), and install from the lockfile without install scripts:
+Use the Node version in `.node-version`, with the npm that ships with it (`devEngines` in `package.json` pins both), and install from the lockfile without install scripts:
 
 ```shell
 npm ci --ignore-scripts
@@ -86,7 +86,6 @@ To update or replace the font:
 The first glyphs (the power symbol, the lamp and the action-list icons) come from Seth Sheppard's original Litra plugin, and the rest were drawn here. The package is MIT licensed: see [`LICENSE`][license]. The labels are set in [Noto Sans][noto], by the Noto Project Authors, under the SIL Open Font License: see [`fonts/OFL.txt`][ofl].
 
 [adding-a-pack]: docs/adding_a_pack.md
-[contributing]: docs/contributing.md
 [icon-packs]: docs/icon_packs.md
 [license]: LICENSE
 [noto]: https://notofonts.github.io
