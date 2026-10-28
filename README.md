@@ -29,6 +29,8 @@ A plugin installs this package from GitHub, pinned to a commit, as a development
 npm install --save-dev github:daczarne/streamdeck-icons#<commit-sha>
 ```
 
+npm 12 refuses dependencies installed from git unless `allow-git` permits them, so the plugin's `.npmrc` sets `allow-git=root`, which allows the ones its own `package.json` declares. The package pins the Node and npm it's built with in `devEngines`, which npm checks only in this repository, so a plugin builds with its own.
+
 It then draws its own images from the exports, in whatever sizes and formats Stream Deck needs from it:
 
 ```js
