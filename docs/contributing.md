@@ -40,7 +40,7 @@ The icons are drawn by code, and their files are generated from it and committed
 
 ## Consumers pin a commit
 
-Plugins draw their own images from this package's exports (the glyphs, the palette and `svgDoc`), installed from GitHub and pinned to a commit. A change here reaches a plugin only when the plugin updates the commit it depends on, regenerates its images and commits them, so its history records which icons it was built from.
+Plugins draw their own images from this package's exports (the glyphs, the palette and `svgDoc`), installed from GitHub and pinned to a commit. A change here reaches a plugin only when the plugin updates the commit it depends on, regenerates its images and commits them, so its history records which icons it was built from. The Litra plugin also bundles `src/`, to draw its lamp screens' icons in any color while it runs. So `src/` stays plain JavaScript that imports only its own files, and a change to a glyph reaches those icons with the same update, with no image to regenerate.
 
 So the exports are a contract. Renaming or removing one, or changing what a glyph draws by default, breaks or changes a plugin the next time it updates. The type declarations in `types/` are that contract in a form a reviewer can read: a change to an export's name, its parameters or its options shows up in their diff. Such a change says so in its pull request, and adds an option with the old behavior as its default where it can, as the glyphs' `color` and `level` do.
 
