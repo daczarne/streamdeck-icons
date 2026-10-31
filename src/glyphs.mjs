@@ -91,7 +91,8 @@ export function powerGlyph(size, { on, color }) {
 
 /**
  * A Litra Beam: its light bar across the top, on a pole with a foot. Filled, the bar's light face is warm orange in a
- * dark frame, and the stand grey. With `mono`, it's all outlined in white.
+ * dark frame, and the stand grey. With `mono`, it's all outlined in white. It stands for the Litra plugin and the Litra
+ * pack, as their marketplace, category and pack icons, and is never one of the pack's icons.
  *
  * @param {number} size the side of its square canvas
  * @param {{ mono?: boolean }} [options]

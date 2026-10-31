@@ -190,6 +190,7 @@ export default /** @satisfies {Pack} */ ({
   folder: "com.daczarne.litra.sdIconPack",
   tag: "litra",
   icons: [...plainGlyphs(glyphs), ...tiledGlyphs(glyphs)],
-  // The Beam, like the plugin's category.
+  // The Beam, like the plugin's category. It stands for the plugin and the pack, where Stream Deck asks for their icon,
+  // and is never one of the pack's icons, which are the controls' glyphs.
   logo: categoryGlyph,
 });
