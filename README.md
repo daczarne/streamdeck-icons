@@ -83,7 +83,7 @@ To update or replace the font:
 
 ## Credits
 
-The first glyphs (the power symbol, the lamp and the action-list icons) come from Seth Sheppard's original Litra plugin, and the rest were drawn here. The package is MIT licensed: see [`LICENSE`][license]. The labels are set in [Noto Sans][noto], by the Noto Project Authors, under the SIL Open Font License: see [`fonts/OFL.txt`][ofl].
+The first glyphs (the power symbol and the action-list icons) come from Seth Sheppard's original Litra plugin, and the rest were drawn here. The package is MIT licensed: see [`LICENSE`][license]. The labels are set in [Noto Sans][noto], by the Noto Project Authors, under the SIL Open Font License: see [`fonts/OFL.txt`][ofl].
 
 [adding-a-pack]: docs/adding_a_pack.md
 [icon-packs]: docs/icon_packs.md

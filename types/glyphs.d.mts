@@ -11,24 +11,25 @@ export function powerGlyph(size: number, { on, color }: {
     color?: string;
 }): string;
 /**
- * A desk lamp: a shade over a stem and a foot, filled in warm orange, or outlined in white with `mono`.
+ * A Litra Beam: its light bar across the top, on a pole with a foot. Filled, the bar's light face is warm orange in a
+ * dark frame, and the stand grey. With `mono`, it's all outlined in white.
  *
  * @param {number} size the side of its square canvas
  * @param {{ mono?: boolean }} [options]
  * @returns {string} its SVG markup
  */
-export function lampGlyph(size: number, { mono }?: {
+export function beamGlyph(size: number, { mono }?: {
     mono?: boolean;
 }): string;
 /**
- * The Litra plugin's marketplace icon: the lamp on a dark rounded tile that fills the canvas.
+ * The Litra plugin's marketplace icon: the Beam on a dark rounded tile that fills the canvas.
  *
  * @param {number} size the side of its square canvas
  * @returns {string} its SVG markup
  */
 export function marketplaceGlyph(size: number): string;
 /**
- * The Litra plugin's category icon, and the Litra pack's own: the lamp, outlined in white on transparent.
+ * The Litra plugin's category icon, and the Litra pack's own: the Beam, outlined in white on transparent.
  *
  * @param {number} size the side of its square canvas
  * @returns {string} its SVG markup

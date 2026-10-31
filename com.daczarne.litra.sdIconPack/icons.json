@@ -230,14 +230,6 @@
     ]
   },
   {
-    "path": "lamp.svg",
-    "name": "Lamp",
-    "tags": [
-      "litra",
-      "light"
-    ]
-  },
-  {
     "path": "brightness-charcoal.svg",
     "name": "Brightness (charcoal)",
     "tags": [
