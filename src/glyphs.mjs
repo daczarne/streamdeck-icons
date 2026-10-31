@@ -5,10 +5,12 @@
  */
 import { ACCENTS } from "./palette.mjs";
 
-// The default colors of the Litra plugin's first glyphs, which predate the palette: the marketplace icon's tile and
-// lamp, and the Power key's off and on states.
+// The default colors of the Litra plugin's first glyphs, which predate the palette: the marketplace icon's tile, and
+// its Beam's frame, light and stand, and the Power key's off and on states.
 const COLORS = {
   bg: "#1A1A1A",
+  frame: "#3A3A3A",
+  metal: "#9A9A9A",
   muted: "#6B6B6B",
   warm: "#FFB347",
   on: ACCENTS.gold,
@@ -88,50 +90,53 @@ export function powerGlyph(size, { on, color }) {
 }
 
 /**
- * A desk lamp: a shade over a stem and a foot, filled in warm orange, or outlined in white with `mono`.
+ * A Litra Beam: its light bar across the top, on a pole with a foot. Filled, the bar's light face is warm orange in a
+ * dark frame, and the stand grey. With `mono`, it's all outlined in white. It stands for the Litra plugin and the Litra
+ * pack, as their marketplace, category and pack icons, and is never one of the pack's icons.
  *
  * @param {number} size the side of its square canvas
  * @param {{ mono?: boolean }} [options]
  * @returns {string} its SVG markup
  */
-export function lampGlyph(size, { mono = false } = {}) {
+export function beamGlyph(size, { mono = false } = {}) {
+  const sw = mono ? Math.max(1.5, size * 0.08) : size * 0.06;
+  const [x, y, w, h] = [size * 0.1, size * 0.16, size * 0.8, size * 0.17];
+  const r = h * 0.3;
   const cx = size / 2;
-  const cy = size / 2;
-  const stroke = mono ? "#FFFFFF" : COLORS.warm;
-  const fill = mono ? "none" : COLORS.warm;
-  const sw = Math.max(1.5, size * 0.08);
-  const headR = size * 0.22;
-  const stemH = size * 0.18;
-  return `<path
-    d="M ${cx - headR} ${cy - size * 0.02} A ${headR} ${headR * 0.85} 0 0 1 ${cx + headR} ${cy - size * 0.02}
-    L ${cx + headR * 0.55} ${cy + size * 0.12} L ${cx - headR * 0.55} ${cy + size * 0.12} Z"
-    fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round"/>
-    <line x1="${cx}" y1="${cy + size * 0.12}" x2="${cx}" y2="${cy + size * 0.12 + stemH}"
-    stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round"/>
-    <line x1="${cx - size * 0.12}" y1="${cy + size * 0.12 + stemH}"
-    x2="${cx + size * 0.12}" y2="${cy + size * 0.12 + stemH}"
-    stroke="${stroke}" stroke-width="${sw}" stroke-linecap="round"/>`;
+  const [poleTop, foot, footWidth] = [size * 0.33, size * 0.88, size * 0.44];
+  const standColor = mono ? "#FFFFFF" : COLORS.metal;
+  const inset = h * 0.18;
+  const bar = mono
+    ? `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="none" stroke="#FFFFFF" stroke-width="${sw}"/>`
+    : `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${COLORS.frame}"/>
+    <rect x="${x + inset}" y="${y + inset}" width="${w - 2 * inset}" height="${h - 2 * inset}" rx="${r * 0.6}"
+    fill="${COLORS.warm}"/>`;
+  return `${bar}
+    <line x1="${cx}" y1="${poleTop}" x2="${cx}" y2="${foot}" stroke="${standColor}" stroke-width="${sw}"
+    stroke-linecap="round"/>
+    <line x1="${cx - footWidth / 2}" y1="${foot}" x2="${cx + footWidth / 2}" y2="${foot}" stroke="${standColor}"
+    stroke-width="${sw}" stroke-linecap="round"/>`;
 }
 
 /**
- * The Litra plugin's marketplace icon: the lamp on a dark rounded tile that fills the canvas.
+ * The Litra plugin's marketplace icon: the Beam on a dark rounded tile that fills the canvas.
  *
  * @param {number} size the side of its square canvas
  * @returns {string} its SVG markup
  */
 export function marketplaceGlyph(size) {
-  return `<rect width="${size}" height="${size}" rx="${size * 0.18}" fill="${COLORS.bg}"/> ${lampGlyph(size)}`;
+  return `<rect width="${size}" height="${size}" rx="${size * 0.18}" fill="${COLORS.bg}"/> ${beamGlyph(size)}`;
 }
 
 /**
- * The Litra plugin's category icon, and the Litra pack's own: the lamp, outlined in white on transparent.
+ * The Litra plugin's category icon, and the Litra pack's own: the Beam, outlined in white on transparent.
  *
  * @param {number} size the side of its square canvas
  * @returns {string} its SVG markup
  */
 export function categoryGlyph(size) {
-  // Monochrome white on transparent: the plugin's category, and the lamp of the icon pack
-  return lampGlyph(size, { mono: true });
+  // Monochrome white on transparent: the plugin's category, and the Beam of the icon pack
+  return beamGlyph(size, { mono: true });
 }
 
 /**
