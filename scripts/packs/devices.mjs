@@ -24,6 +24,18 @@ import { textGlyph } from "../text.mjs";
 /** @import { Icon, Pack } from "../pack-builder.mjs" */
 
 /**
+ * What an icon shows, which sorts the icons on the same tile: see {@link SHOWS}.
+ *
+ * @typedef {"blank" | "device" | "glyph" | "text"} Shows
+ */
+
+/**
+ * An icon, with the tile it's on and what it shows, by which {@link byTile} sorts it.
+ *
+ * @typedef {Icon & { tile: string, shows: Shows }} Entry
+ */
+
+/**
  * A monitor: see {@link MONITORS}.
  *
  * @typedef {{ id: string, name: string, label: string[], color: string, suns: boolean }} Monitor
@@ -32,7 +44,7 @@ import { textGlyph } from "../text.mjs";
 /**
  * One of a monitor's keys, before it's placed on the monitor's tile: see {@link monitorIcons}.
  *
- * @typedef {{ kind: string, name: string, tags: string[], draw: (size: number) => string }} MonitorKey
+ * @typedef {{ kind: string, name: string, shows: Shows, tags: string[], draw: (size: number) => string }} MonitorKey
  */
 
 /**
@@ -46,6 +58,10 @@ import { textGlyph } from "../text.mjs";
  *
  * @typedef {{ suffix: string, name: string, tags: string[], tile: string, slot: string }} LockTile
  */
+
+/** The order of what the icons on the same tile show: the blank tile, then devices, then other glyphs, then text. */
+/** @type {Shows[]} */
+const SHOWS = ["blank", "device", "glyph", "text"];
 
 // The suns as on the monitor keys, from their span on their own canvas to their span on a tile.
 const SUN_SPAN = 0.865;
@@ -69,27 +85,41 @@ const MONITORS = [
 ];
 
 /**
- * The keys of one monitor, each on its tile, in the order the Icon Library shows them: the blank tile, the label, the
- * inputs, then the brightness keys, for the monitors that have them.
+ * The keys of one monitor, each on its tile: the blank tile, the label, the inputs, then the brightness keys, for the
+ * monitors that have them.
  *
  * @param {Monitor} monitor
- * @returns {Icon[]}
+ * @returns {Entry[]}
  */
 function monitorIcons(monitor) {
   /** @type {MonitorKey[]} */
   const kinds = [
-    { kind: "tile", name: "tile", tags: ["tile", "blank"], draw: () => "" },
-    { kind: "label", name: "label", tags: ["label"], draw: (size) => textGlyph(size, monitor.label, { color: WHITE }) },
-    { kind: "laptop", name: "laptop", tags: ["laptop", "input"], draw: (size) => laptopGlyph(size, { color: WHITE }) },
+    { kind: "tile", name: "tile", shows: "blank", tags: ["tile", "blank"], draw: () => "" },
+    {
+      kind: "label",
+      name: "label",
+      shows: "text",
+      tags: ["label"],
+      draw: (size) => textGlyph(size, monitor.label, { color: WHITE }),
+    },
+    {
+      kind: "laptop",
+      name: "laptop",
+      shows: "device",
+      tags: ["laptop", "input"],
+      draw: (size) => laptopGlyph(size, { color: WHITE }),
+    },
     {
       kind: "computer",
       name: "computer",
+      shows: "device",
       tags: ["computer", "desktop", "input"],
       draw: (size) => computerGlyph(size, { color: WHITE }),
     },
     {
       kind: "mac-studio",
       name: "Mac Studio",
+      shows: "device",
       tags: ["computer", "desktop", "mac", "input"],
       draw: (size) => macStudioGlyph(size, { color: WHITE }),
     },
@@ -98,19 +128,23 @@ function monitorIcons(monitor) {
           {
             kind: "brightness",
             name: "brightness",
+            shows: "glyph",
             tags: ["sun", "brightness"],
             draw: (size) => scaled(size, brightnessGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
           },
           {
             kind: "brightness-low",
             name: "brightness low",
+            shows: "glyph",
             tags: ["sun", "brightness", "dim"],
             draw: (size) => scaled(size, dimGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
           },
         ])
       : []),
   ];
-  return kinds.map(({ kind, name, tags, draw }) => ({
+  return kinds.map(({ kind, name, shows, tags, draw }) => ({
+    tile: monitor.color,
+    shows,
     path: `${monitor.id}-${kind}.svg`,
     name: `${monitor.name} ${name}`,
     tags: ["monitor", ...monitor.id.split("-"), ...tags],
@@ -159,10 +193,12 @@ const LOCK_TILES = [
  * The locks on one of {@link LOCK_TILES}.
  *
  * @param {LockTile} lockTile
- * @returns {Icon[]}
+ * @returns {Entry[]}
  */
 function lockIcons({ suffix, name, tags, tile: color, slot }) {
   return LOCKS.map((lock) => ({
+    tile: color,
+    shows: "glyph",
     path: `${lock.id}${suffix}.svg`,
     name: `${lock.name}${name}`,
     tags: [...lock.tags, ...tags],
@@ -172,14 +208,16 @@ function lockIcons({ suffix, name, tags, tile: color, slot }) {
 }
 
 /**
- * The mouse, outlined then filled, each on every tile of the palette, in its order, in the ink each tile takes: `INK`
- * on the light ones.
+ * The mouse, outlined then filled, each on every tile of the palette, in the ink each tile takes: `INK` on the light
+ * ones.
  *
- * @returns {Icon[]}
+ * @returns {Entry[]}
  */
 function mouseIcons() {
   return [false, true].flatMap((filled) =>
     Object.entries(TILES).map(([name, color]) => ({
+      tile: color,
+      shows: "device",
       path: `mouse${filled ? "-filled" : ""}-${name}.svg`,
       name: `Mouse${filled ? " filled" : ""} (${name})`,
       tags: ["mouse", filled ? "filled" : "outlined", "tile", name],
@@ -189,13 +227,49 @@ function mouseIcons() {
   );
 }
 
+/**
+ * The icons in the order the Icon Library shows them: by their tile, in the palette's order, then by what they show, in
+ * the order of {@link SHOWS}. Icons that share both keep the order they're given in.
+ *
+ * @param {Entry[]} entries
+ * @returns {Icon[]}
+ */
+function byTile(entries) {
+  const tiles = Object.values(TILES);
+  /** @param {Entry} entry */
+  const rank = (entry) => tiles.indexOf(entry.tile) * SHOWS.length + SHOWS.indexOf(entry.shows);
+  return entries.toSorted((a, b) => rank(a) - rank(b)).map(({ tile: _tile, shows: _shows, ...icon }) => icon);
+}
+
 export default /** @satisfies {Pack} */ ({
   folder: "com.daczarne.devices.sdIconPack",
   tag: "devices",
-  // Each monitor's keys together, then the keys that go with them.
-  icons: [
+  // Within a tile and what they show, each monitor's keys, then the audio keys, the mouse, the desk mode keys and the
+  // locks, as given here.
+  icons: byTile([
     ...MONITORS.flatMap(monitorIcons),
     {
+      tile: TILES.navy,
+      shows: "device",
+      path: "speakers.svg",
+      name: "Speakers",
+      tags: ["audio", "sound", "speakers", "output"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${speakerGlyph(size, { color: WHITE })}`,
+    },
+    {
+      tile: TILES.navy,
+      shows: "device",
+      path: "headphones.svg",
+      name: "Headphones",
+      tags: ["audio", "sound", "headphones", "output"],
+      draw: (size) => `${tile(size, TILES.navy)}
+        ${headphonesGlyph(size, { color: WHITE })}`,
+    },
+    ...mouseIcons(),
+    {
+      tile: TILES.green,
+      shows: "text",
       path: "desk-mode-off.svg",
       name: "Desk mode off",
       tags: ["desk", "mode", "off"],
@@ -203,6 +277,8 @@ export default /** @satisfies {Pack} */ ({
         ${textGlyph(size, ["Desk", "Mode", "OFF"], { color: WHITE })}`,
     },
     {
+      tile: TILES.red,
+      shows: "text",
       path: "desk-mode-on.svg",
       name: "Desk mode on",
       tags: ["desk", "mode", "on"],
@@ -213,21 +289,6 @@ export default /** @satisfies {Pack} */ ({
         ${textGlyph(size, ["Desk", "Mode", "ON"], { color: WHITE })}`,
     },
     ...LOCK_TILES.flatMap(lockIcons),
-    {
-      path: "speakers.svg",
-      name: "Speakers",
-      tags: ["audio", "sound", "speakers", "output"],
-      draw: (size) => `${tile(size, TILES.navy)}
-        ${speakerGlyph(size, { color: WHITE })}`,
-    },
-    {
-      path: "headphones.svg",
-      name: "Headphones",
-      tags: ["audio", "sound", "headphones", "output"],
-      draw: (size) => `${tile(size, TILES.navy)}
-        ${headphonesGlyph(size, { color: WHITE })}`,
-    },
-    ...mouseIcons(),
-  ],
+  ]),
   logo: (size) => scaled(size, computerGlyph(size), COMPUTER_SPAN, LOGO_SPAN),
 });

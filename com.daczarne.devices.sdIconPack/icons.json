@@ -11,16 +11,6 @@
     ]
   },
   {
-    "path": "left-label.svg",
-    "name": "Left label",
-    "tags": [
-      "devices",
-      "monitor",
-      "left",
-      "label"
-    ]
-  },
-  {
     "path": "left-laptop.svg",
     "name": "Left laptop",
     "tags": [
@@ -57,6 +47,28 @@
     ]
   },
   {
+    "path": "mouse-teal.svg",
+    "name": "Mouse (teal)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "teal"
+    ]
+  },
+  {
+    "path": "mouse-filled-teal.svg",
+    "name": "Mouse filled (teal)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "teal"
+    ]
+  },
+  {
     "path": "left-brightness.svg",
     "name": "Left brightness",
     "tags": [
@@ -80,6 +92,16 @@
     ]
   },
   {
+    "path": "left-label.svg",
+    "name": "Left label",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "label"
+    ]
+  },
+  {
     "path": "center-tile.svg",
     "name": "Center tile",
     "tags": [
@@ -88,16 +110,6 @@
       "center",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "center-label.svg",
-    "name": "Center label",
-    "tags": [
-      "devices",
-      "monitor",
-      "center",
-      "label"
     ]
   },
   {
@@ -137,6 +149,28 @@
     ]
   },
   {
+    "path": "mouse-blue.svg",
+    "name": "Mouse (blue)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "blue"
+    ]
+  },
+  {
+    "path": "mouse-filled-blue.svg",
+    "name": "Mouse filled (blue)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "blue"
+    ]
+  },
+  {
     "path": "center-brightness.svg",
     "name": "Center brightness",
     "tags": [
@@ -160,6 +194,16 @@
     ]
   },
   {
+    "path": "center-label.svg",
+    "name": "Center label",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "label"
+    ]
+  },
+  {
     "path": "top-right-tile.svg",
     "name": "Top right tile",
     "tags": [
@@ -169,17 +213,6 @@
       "right",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "top-right-label.svg",
-    "name": "Top right label",
-    "tags": [
-      "devices",
-      "monitor",
-      "top",
-      "right",
-      "label"
     ]
   },
   {
@@ -222,6 +255,28 @@
     ]
   },
   {
+    "path": "mouse-plum.svg",
+    "name": "Mouse (plum)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "plum"
+    ]
+  },
+  {
+    "path": "mouse-filled-plum.svg",
+    "name": "Mouse filled (plum)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "plum"
+    ]
+  },
+  {
     "path": "top-right-brightness.svg",
     "name": "Top right brightness",
     "tags": [
@@ -247,6 +302,17 @@
     ]
   },
   {
+    "path": "top-right-label.svg",
+    "name": "Top right label",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "label"
+    ]
+  },
+  {
     "path": "bottom-right-tile.svg",
     "name": "Bottom right tile",
     "tags": [
@@ -256,17 +322,6 @@
       "right",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "bottom-right-label.svg",
-    "name": "Bottom right label",
-    "tags": [
-      "devices",
-      "monitor",
-      "bottom",
-      "right",
-      "label"
     ]
   },
   {
@@ -309,6 +364,28 @@
     ]
   },
   {
+    "path": "mouse-rust.svg",
+    "name": "Mouse (rust)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "rust"
+    ]
+  },
+  {
+    "path": "mouse-filled-rust.svg",
+    "name": "Mouse filled (rust)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "rust"
+    ]
+  },
+  {
     "path": "bottom-right-brightness.svg",
     "name": "Bottom right brightness",
     "tags": [
@@ -334,6 +411,17 @@
     ]
   },
   {
+    "path": "bottom-right-label.svg",
+    "name": "Bottom right label",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "label"
+    ]
+  },
+  {
     "path": "all-tile.svg",
     "name": "All tile",
     "tags": [
@@ -342,16 +430,6 @@
       "all",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "all-label.svg",
-    "name": "All label",
-    "tags": [
-      "devices",
-      "monitor",
-      "all",
-      "label"
     ]
   },
   {
@@ -391,74 +469,57 @@
     ]
   },
   {
-    "path": "desk-mode-off.svg",
-    "name": "Desk mode off",
+    "path": "mouse-slate.svg",
+    "name": "Mouse (slate)",
     "tags": [
       "devices",
-      "desk",
-      "mode",
-      "off"
+      "mouse",
+      "outlined",
+      "tile",
+      "slate"
     ]
   },
   {
-    "path": "desk-mode-on.svg",
-    "name": "Desk mode on",
+    "path": "mouse-filled-slate.svg",
+    "name": "Mouse filled (slate)",
     "tags": [
       "devices",
-      "desk",
-      "mode",
-      "on"
+      "mouse",
+      "filled",
+      "tile",
+      "slate"
     ]
   },
   {
-    "path": "lock.svg",
-    "name": "Lock",
+    "path": "all-label.svg",
+    "name": "All label",
     "tags": [
       "devices",
-      "lock"
+      "monitor",
+      "all",
+      "label"
     ]
   },
   {
-    "path": "lock-keyhole.svg",
-    "name": "Lock with keyhole",
+    "path": "mouse-green.svg",
+    "name": "Mouse (green)",
     "tags": [
       "devices",
-      "lock",
-      "keyhole",
-      "locked"
+      "mouse",
+      "outlined",
+      "tile",
+      "green"
     ]
   },
   {
-    "path": "unlock-keyhole.svg",
-    "name": "Unlocked with keyhole",
+    "path": "mouse-filled-green.svg",
+    "name": "Mouse filled (green)",
     "tags": [
       "devices",
-      "lock",
-      "keyhole",
-      "unlocked",
-      "open"
-    ]
-  },
-  {
-    "path": "unlock-keyhole-short.svg",
-    "name": "Unlocked with keyhole, low shackle",
-    "tags": [
-      "devices",
-      "lock",
-      "keyhole",
-      "unlocked",
-      "open"
-    ]
-  },
-  {
-    "path": "unlock-keyhole-side.svg",
-    "name": "Unlocked with keyhole, shackle to the side",
-    "tags": [
-      "devices",
-      "lock",
-      "keyhole",
-      "unlocked",
-      "open"
+      "mouse",
+      "filled",
+      "tile",
+      "green"
     ]
   },
   {
@@ -523,6 +584,38 @@
     ]
   },
   {
+    "path": "desk-mode-off.svg",
+    "name": "Desk mode off",
+    "tags": [
+      "devices",
+      "desk",
+      "mode",
+      "off"
+    ]
+  },
+  {
+    "path": "mouse-red.svg",
+    "name": "Mouse (red)",
+    "tags": [
+      "devices",
+      "mouse",
+      "outlined",
+      "tile",
+      "red"
+    ]
+  },
+  {
+    "path": "mouse-filled-red.svg",
+    "name": "Mouse filled (red)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "red"
+    ]
+  },
+  {
     "path": "lock-red.svg",
     "name": "Lock (red)",
     "tags": [
@@ -584,6 +677,16 @@
     ]
   },
   {
+    "path": "desk-mode-on.svg",
+    "name": "Desk mode on",
+    "tags": [
+      "devices",
+      "desk",
+      "mode",
+      "on"
+    ]
+  },
+  {
     "path": "speakers.svg",
     "name": "Speakers",
     "tags": [
@@ -606,83 +709,6 @@
     ]
   },
   {
-    "path": "mouse-teal.svg",
-    "name": "Mouse (teal)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "teal"
-    ]
-  },
-  {
-    "path": "mouse-blue.svg",
-    "name": "Mouse (blue)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "blue"
-    ]
-  },
-  {
-    "path": "mouse-plum.svg",
-    "name": "Mouse (plum)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "plum"
-    ]
-  },
-  {
-    "path": "mouse-rust.svg",
-    "name": "Mouse (rust)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "rust"
-    ]
-  },
-  {
-    "path": "mouse-slate.svg",
-    "name": "Mouse (slate)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "slate"
-    ]
-  },
-  {
-    "path": "mouse-green.svg",
-    "name": "Mouse (green)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "green"
-    ]
-  },
-  {
-    "path": "mouse-red.svg",
-    "name": "Mouse (red)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "red"
-    ]
-  },
-  {
     "path": "mouse-navy.svg",
     "name": "Mouse (navy)",
     "tags": [
@@ -694,12 +720,85 @@
     ]
   },
   {
+    "path": "mouse-filled-navy.svg",
+    "name": "Mouse filled (navy)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "navy"
+    ]
+  },
+  {
+    "path": "lock.svg",
+    "name": "Lock",
+    "tags": [
+      "devices",
+      "lock"
+    ]
+  },
+  {
+    "path": "lock-keyhole.svg",
+    "name": "Lock with keyhole",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "locked"
+    ]
+  },
+  {
+    "path": "unlock-keyhole.svg",
+    "name": "Unlocked with keyhole",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-short.svg",
+    "name": "Unlocked with keyhole, low shackle",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
+    "path": "unlock-keyhole-side.svg",
+    "name": "Unlocked with keyhole, shackle to the side",
+    "tags": [
+      "devices",
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
+    ]
+  },
+  {
     "path": "mouse-aubergine.svg",
     "name": "Mouse (aubergine)",
     "tags": [
       "devices",
       "mouse",
       "outlined",
+      "tile",
+      "aubergine"
+    ]
+  },
+  {
+    "path": "mouse-filled-aubergine.svg",
+    "name": "Mouse filled (aubergine)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
       "tile",
       "aubergine"
     ]
@@ -716,12 +815,34 @@
     ]
   },
   {
+    "path": "mouse-filled-forest.svg",
+    "name": "Mouse filled (forest)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "forest"
+    ]
+  },
+  {
     "path": "mouse-honey.svg",
     "name": "Mouse (honey)",
     "tags": [
       "devices",
       "mouse",
       "outlined",
+      "tile",
+      "honey"
+    ]
+  },
+  {
+    "path": "mouse-filled-honey.svg",
+    "name": "Mouse filled (honey)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
       "tile",
       "honey"
     ]
@@ -738,12 +859,34 @@
     ]
   },
   {
+    "path": "mouse-filled-charcoal.svg",
+    "name": "Mouse filled (charcoal)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "charcoal"
+    ]
+  },
+  {
     "path": "mouse-grey.svg",
     "name": "Mouse (grey)",
     "tags": [
       "devices",
       "mouse",
       "outlined",
+      "tile",
+      "grey"
+    ]
+  },
+  {
+    "path": "mouse-filled-grey.svg",
+    "name": "Mouse filled (grey)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
       "tile",
       "grey"
     ]
@@ -760,12 +903,34 @@
     ]
   },
   {
+    "path": "mouse-filled-violet.svg",
+    "name": "Mouse filled (violet)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
+      "tile",
+      "violet"
+    ]
+  },
+  {
     "path": "mouse-olive.svg",
     "name": "Mouse (olive)",
     "tags": [
       "devices",
       "mouse",
       "outlined",
+      "tile",
+      "olive"
+    ]
+  },
+  {
+    "path": "mouse-filled-olive.svg",
+    "name": "Mouse filled (olive)",
+    "tags": [
+      "devices",
+      "mouse",
+      "filled",
       "tile",
       "olive"
     ]
@@ -779,171 +944,6 @@
       "outlined",
       "tile",
       "cerise"
-    ]
-  },
-  {
-    "path": "mouse-filled-teal.svg",
-    "name": "Mouse filled (teal)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "teal"
-    ]
-  },
-  {
-    "path": "mouse-filled-blue.svg",
-    "name": "Mouse filled (blue)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "blue"
-    ]
-  },
-  {
-    "path": "mouse-filled-plum.svg",
-    "name": "Mouse filled (plum)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "plum"
-    ]
-  },
-  {
-    "path": "mouse-filled-rust.svg",
-    "name": "Mouse filled (rust)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "rust"
-    ]
-  },
-  {
-    "path": "mouse-filled-slate.svg",
-    "name": "Mouse filled (slate)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "slate"
-    ]
-  },
-  {
-    "path": "mouse-filled-green.svg",
-    "name": "Mouse filled (green)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "green"
-    ]
-  },
-  {
-    "path": "mouse-filled-red.svg",
-    "name": "Mouse filled (red)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "red"
-    ]
-  },
-  {
-    "path": "mouse-filled-navy.svg",
-    "name": "Mouse filled (navy)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "navy"
-    ]
-  },
-  {
-    "path": "mouse-filled-aubergine.svg",
-    "name": "Mouse filled (aubergine)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "aubergine"
-    ]
-  },
-  {
-    "path": "mouse-filled-forest.svg",
-    "name": "Mouse filled (forest)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "forest"
-    ]
-  },
-  {
-    "path": "mouse-filled-honey.svg",
-    "name": "Mouse filled (honey)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "honey"
-    ]
-  },
-  {
-    "path": "mouse-filled-charcoal.svg",
-    "name": "Mouse filled (charcoal)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "charcoal"
-    ]
-  },
-  {
-    "path": "mouse-filled-grey.svg",
-    "name": "Mouse filled (grey)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "grey"
-    ]
-  },
-  {
-    "path": "mouse-filled-violet.svg",
-    "name": "Mouse filled (violet)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "violet"
-    ]
-  },
-  {
-    "path": "mouse-filled-olive.svg",
-    "name": "Mouse filled (olive)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "olive"
     ]
   },
   {
