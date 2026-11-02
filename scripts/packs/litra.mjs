@@ -2,7 +2,8 @@
  * The Litra pack: icons for Logitech Litra lights, from the glyphs of the Litra plugin and variants of them for preset
  * keys. The suns span as much of an icon as the suns of the monitor keys, and the other glyphs are sized to look as
  * large: a thin thermometer needs more room, and the heavy power symbol less. That's smaller than the plugin draws them
- * on its own keys, where a glyph fills the key, and leaves the room around the glyph that the tiles need.
+ * on its own keys, where a glyph fills the key, and leaves the room around the glyph that the tiles need. The labels,
+ * which name the lamps a key acts on, are text written as paths (see `scripts/text.mjs`), at the size of every label.
  */
 import {
   brightnessGlyph,
@@ -19,8 +20,17 @@ import {
 } from "../../src/glyphs.mjs";
 import { TILES } from "../../src/palette.mjs";
 import { plainGlyphs, tiledGlyphs } from "../pack-builder.mjs";
+import { textGlyph } from "../text.mjs";
 
 /** @import { GlyphEntry, Pack } from "../pack-builder.mjs" */
+
+/** The labels, by the lamps they name, each with its text. */
+const LABELS = [
+  { id: "left", text: "LEFT" },
+  { id: "right", text: "RIGHT" },
+  { id: "center", text: "CENTER" },
+  { id: "all", text: "ALL" },
+];
 
 /** @type {GlyphEntry[]} */
 const glyphs = [
@@ -184,6 +194,18 @@ const glyphs = [
     packSpan: 0.52,
     tone: "red",
   },
+  // A label is already at its size in the pack, so it isn't scaled.
+  ...LABELS.map(
+    ({ id, text }) =>
+      /** @satisfies {GlyphEntry} */ ({
+        id: `label-${id}`,
+        name: `Label ${id}`,
+        tags: ["label", "text", id],
+        draw: (size, options) => textGlyph(size, [text], options),
+        span: 1,
+        packSpan: 1,
+      }),
+  ),
 ];
 
 export default /** @satisfies {Pack} */ ({
