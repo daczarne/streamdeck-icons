@@ -1,13 +1,14 @@
 /**
- * The MX Master 3S pack: keys for the mouse's Easy-Switch hosts. The mouse, outlined then filled, on each of the host
- * tiles: plain, with each host's number in its palm, and with the number on a badge there. The mouse is the devices
- * pack's, at the same size. The number is written as a label is (see `scripts/text.mjs`) and moved into the palm,
- * inverted from what it stands on: in the tile's color on a filled mouse's palm, as if cut out of it, and in the ink in
- * an outlined mouse's. On a badge, which is itself inverted from the body, it's scaled down to fit, and in the ink on a
- * filled mouse's badge, cut out of it, and in the tile's color on an outlined mouse's, which is solid.
+ * The MX Master 3S pack: the mouse, and keys for its Easy-Switch hosts. On every tile of the palette, in its order, the
+ * mouse, outlined then filled: plain, with each host's number in its palm, and with the number on a badge there. The
+ * mouse is drawn in the ink each tile takes: `INK` on the light ones. The number is written as a label is (see
+ * `scripts/text.mjs`) and moved into the palm, inverted from what it stands on: in the tile's color on a filled mouse's
+ * palm, as if cut out of it, and in the ink in an outlined mouse's. On a badge, which is itself inverted from the body,
+ * it's scaled down to fit, and in the ink on a filled mouse's badge, cut out of it, and in the tile's color on an
+ * outlined mouse's, which is solid.
  */
 import { MOUSE, mouseGlyph } from "../../src/glyphs.mjs";
-import { TILES, WHITE } from "../../src/palette.mjs";
+import { INK, TILES, WHITE } from "../../src/palette.mjs";
 import { scaled, tile } from "../pack-builder.mjs";
 import { textGlyph } from "../text.mjs";
 
@@ -22,9 +23,6 @@ const BADGE_CAP = 0.105;
 // size, copied into its `scripts/generate-icons.mjs`, so a change to it is taken there too.
 const MOUSE_SPAN = MOUSE.bottom - MOUSE.top;
 const LOGO_SPAN = 0.86;
-
-/** The tiles the keys come on, in the order the Icon Library shows them. */
-const COLORS = /** @type {const} */ (["violet", "olive", "cerise"]);
 
 /** The hosts, by the numbers on the mouse. */
 const HOSTS = [1, 2, 3];
@@ -49,11 +47,12 @@ function palmNumber(size, host, color, cap) {
  * with a badge.
  *
  * @param {boolean} filled
- * @param {(typeof COLORS)[number]} name the tile's, in `TILES`
+ * @param {keyof typeof TILES} name the tile's, in `TILES`
  * @returns {Icon[]}
  */
 function tileIcons(filled, name) {
   const color = TILES[name];
+  const ink = color === TILES.grey || color === TILES.honey ? INK : WHITE;
   const version = filled ? " filled" : "";
   const style = filled ? "filled" : "outlined";
   return [
@@ -62,7 +61,7 @@ function tileIcons(filled, name) {
       name: `Mouse${version} (${name})`,
       tags: ["mouse", style, name],
       draw: (size) => `${tile(size, color)}
-        ${mouseGlyph(size, { color: WHITE, filled })}`,
+        ${mouseGlyph(size, { color: ink, filled })}`,
     },
     ...[false, true].flatMap((badge) =>
       HOSTS.map((host) => ({
@@ -71,8 +70,8 @@ function tileIcons(filled, name) {
         tags: ["mouse", "host", "easy-switch", String(host), ...(badge ? ["badge"] : []), style, name],
         // The number is inverted from what it stands on: the badge, or the body, which are inverted from each other.
         draw: (/** @type {number} */ size) => `${tile(size, color)}
-          ${mouseGlyph(size, { color: WHITE, filled, badge })}
-          ${palmNumber(size, host, filled === badge ? WHITE : color, badge ? BADGE_CAP : LABEL_CAP)}`,
+          ${mouseGlyph(size, { color: ink, filled, badge })}
+          ${palmNumber(size, host, filled === badge ? ink : color, badge ? BADGE_CAP : LABEL_CAP)}`,
       })),
     ),
   ];
@@ -81,6 +80,9 @@ function tileIcons(filled, name) {
 export default /** @satisfies {Pack} */ ({
   folder: "com.daczarne.mx3s.sdIconPack",
   tag: "mx3s",
-  icons: [false, true].flatMap((filled) => COLORS.flatMap((name) => tileIcons(filled, name))),
+  // Each tile's keys together, the outlined mouse's then the filled one's.
+  icons: /** @type {(keyof typeof TILES)[]} */ (Object.keys(TILES)).flatMap((name) =>
+    [false, true].flatMap((filled) => tileIcons(filled, name)),
+  ),
   logo: (size) => scaled(size, mouseGlyph(size), MOUSE_SPAN, LOGO_SPAN),
 });
