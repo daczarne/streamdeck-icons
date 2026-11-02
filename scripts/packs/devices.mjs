@@ -36,13 +36,19 @@ import { textGlyph } from "../text.mjs";
 /**
  * A monitor: see {@link MONITORS}.
  *
- * @typedef {{ id: string, name: string, label: string[], color: string, suns: boolean }} Monitor
+ * @typedef {{ id: string, name: string, label: string[], color: string }} Monitor
  */
 
 /**
  * One of a monitor's keys, before it's placed on the monitor's tile: see {@link monitorIcons}.
  *
  * @typedef {{ kind: string, name: string, shows: Shows, tags: string[], draw: (size: number) => string }} MonitorKey
+ */
+
+/**
+ * An audio output: see {@link AUDIO}.
+ *
+ * @typedef {{ id: string, name: string, tags: string[], glyph: typeof speakerGlyph }} Audio
  */
 
 /**
@@ -72,19 +78,18 @@ const FRAME = 0.08;
 const COMPUTER_SPAN = 0.5625;
 const LOGO_SPAN = 0.86;
 
-/** Each monitor, its label and its color. `suns` marks the monitors that have brightness keys. */
+/** Each monitor, its label and its color. */
 /** @type {Monitor[]} */
 const MONITORS = [
-  { id: "left", name: "Left", label: ["LEFT"], color: TILES.teal, suns: true },
-  { id: "center", name: "Center", label: ["CENTER"], color: TILES.blue, suns: true },
-  { id: "top-right", name: "Top right", label: ["TOP", "RIGHT"], color: TILES.plum, suns: true },
-  { id: "bottom-right", name: "Bottom right", label: ["BOTTOM", "RIGHT"], color: TILES.rust, suns: true },
-  { id: "all", name: "All", label: ["ALL"], color: TILES.slate, suns: false },
+  { id: "left", name: "Left", label: ["LEFT"], color: TILES.teal },
+  { id: "center", name: "Center", label: ["CENTER"], color: TILES.blue },
+  { id: "top-right", name: "Top right", label: ["TOP", "RIGHT"], color: TILES.plum },
+  { id: "bottom-right", name: "Bottom right", label: ["BOTTOM", "RIGHT"], color: TILES.rust },
+  { id: "all", name: "All", label: ["ALL"], color: TILES.slate },
 ];
 
 /**
- * The keys of one monitor, each on its tile: the blank tile, the label, the inputs, then the brightness keys, for the
- * monitors that have them.
+ * The keys of one monitor, each on its tile: the blank tile, the label, the inputs, then the brightness keys.
  *
  * @param {Monitor} monitor
  * @returns {Entry[]}
@@ -121,24 +126,20 @@ function monitorIcons(monitor) {
       tags: ["computer", "desktop", "mac", "input"],
       draw: (size) => macStudioGlyph(size, { color: WHITE }),
     },
-    ...(monitor.suns
-      ? /** @satisfies {MonitorKey[]} */ ([
-          {
-            kind: "brightness",
-            name: "brightness",
-            shows: "glyph",
-            tags: ["sun", "brightness"],
-            draw: (size) => scaled(size, brightnessGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
-          },
-          {
-            kind: "brightness-low",
-            name: "brightness low",
-            shows: "glyph",
-            tags: ["sun", "brightness", "dim"],
-            draw: (size) => scaled(size, dimGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
-          },
-        ])
-      : []),
+    {
+      kind: "brightness",
+      name: "brightness",
+      shows: "glyph",
+      tags: ["sun", "brightness"],
+      draw: (size) => scaled(size, brightnessGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
+    },
+    {
+      kind: "brightness-low",
+      name: "brightness low",
+      shows: "glyph",
+      tags: ["sun", "brightness", "dim"],
+      draw: (size) => scaled(size, dimGlyph(size, { color: WHITE }), SUN_SPAN, SUN_TILE_SPAN),
+    },
   ];
   return kinds.map(({ kind, name, shows, tags, draw }) => ({
     tile: monitor.color,
@@ -148,6 +149,39 @@ function monitorIcons(monitor) {
     tags: ["monitor", ...monitor.id.split("-"), ...tags],
     draw: (size) => `${tile(size, monitor.color)}
       ${draw(size)}`,
+  }));
+}
+
+/** The audio outputs a key switches the sound to. */
+/** @type {Audio[]} */
+const AUDIO = [
+  { id: "speakers", name: "Speakers", tags: ["audio", "sound", "speakers", "output"], glyph: speakerGlyph },
+  { id: "headphones", name: "Headphones", tags: ["audio", "sound", "headphones", "output"], glyph: headphonesGlyph },
+];
+
+/**
+ * The tiles the audio keys come on: every tile of the pack. Navy is the original audio keys', whose files and names
+ * don't name it.
+ */
+const AUDIO_TILES = /** @type {const} */ (["teal", "blue", "plum", "rust", "slate", "green", "red", "navy"]);
+
+/**
+ * The audio keys on one of {@link AUDIO_TILES}.
+ *
+ * @param {(typeof AUDIO_TILES)[number]} name the tile's, in `TILES`
+ * @returns {Entry[]}
+ */
+function audioIcons(name) {
+  const color = TILES[name];
+  const original = name === "navy";
+  return AUDIO.map((audio) => ({
+    tile: color,
+    shows: "device",
+    path: `${audio.id}${original ? "" : `-${name}`}.svg`,
+    name: `${audio.name}${original ? "" : ` (${name})`}`,
+    tags: [...audio.tags, ...(original ? [] : [name])],
+    draw: (size) => `${tile(size, color)}
+      ${audio.glyph(size, { color: WHITE })}`,
   }));
 }
 
@@ -226,24 +260,7 @@ export default /** @satisfies {Pack} */ ({
   // here.
   icons: byTile([
     ...MONITORS.flatMap(monitorIcons),
-    {
-      tile: TILES.navy,
-      shows: "device",
-      path: "speakers.svg",
-      name: "Speakers",
-      tags: ["audio", "sound", "speakers", "output"],
-      draw: (size) => `${tile(size, TILES.navy)}
-        ${speakerGlyph(size, { color: WHITE })}`,
-    },
-    {
-      tile: TILES.navy,
-      shows: "device",
-      path: "headphones.svg",
-      name: "Headphones",
-      tags: ["audio", "sound", "headphones", "output"],
-      draw: (size) => `${tile(size, TILES.navy)}
-        ${headphonesGlyph(size, { color: WHITE })}`,
-    },
+    ...AUDIO_TILES.flatMap(audioIcons),
     {
       tile: TILES.green,
       shows: "text",

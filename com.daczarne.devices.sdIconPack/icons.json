@@ -47,6 +47,30 @@
     ]
   },
   {
+    "path": "speakers-teal.svg",
+    "name": "Speakers (teal)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "teal"
+    ]
+  },
+  {
+    "path": "headphones-teal.svg",
+    "name": "Headphones (teal)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "teal"
+    ]
+  },
+  {
     "path": "left-brightness.svg",
     "name": "Left brightness",
     "tags": [
@@ -124,6 +148,30 @@
       "desktop",
       "mac",
       "input"
+    ]
+  },
+  {
+    "path": "speakers-blue.svg",
+    "name": "Speakers (blue)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "blue"
+    ]
+  },
+  {
+    "path": "headphones-blue.svg",
+    "name": "Headphones (blue)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "blue"
     ]
   },
   {
@@ -208,6 +256,30 @@
       "desktop",
       "mac",
       "input"
+    ]
+  },
+  {
+    "path": "speakers-plum.svg",
+    "name": "Speakers (plum)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "plum"
+    ]
+  },
+  {
+    "path": "headphones-plum.svg",
+    "name": "Headphones (plum)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "plum"
     ]
   },
   {
@@ -298,6 +370,30 @@
     ]
   },
   {
+    "path": "speakers-rust.svg",
+    "name": "Speakers (rust)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "rust"
+    ]
+  },
+  {
+    "path": "headphones-rust.svg",
+    "name": "Headphones (rust)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "rust"
+    ]
+  },
+  {
     "path": "bottom-right-brightness.svg",
     "name": "Bottom right brightness",
     "tags": [
@@ -381,6 +477,53 @@
     ]
   },
   {
+    "path": "speakers-slate.svg",
+    "name": "Speakers (slate)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "slate"
+    ]
+  },
+  {
+    "path": "headphones-slate.svg",
+    "name": "Headphones (slate)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "slate"
+    ]
+  },
+  {
+    "path": "all-brightness.svg",
+    "name": "All brightness",
+    "tags": [
+      "devices",
+      "monitor",
+      "all",
+      "sun",
+      "brightness"
+    ]
+  },
+  {
+    "path": "all-brightness-low.svg",
+    "name": "All brightness low",
+    "tags": [
+      "devices",
+      "monitor",
+      "all",
+      "sun",
+      "brightness",
+      "dim"
+    ]
+  },
+  {
     "path": "all-label.svg",
     "name": "All label",
     "tags": [
@@ -388,6 +531,30 @@
       "monitor",
       "all",
       "label"
+    ]
+  },
+  {
+    "path": "speakers-green.svg",
+    "name": "Speakers (green)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "green"
+    ]
+  },
+  {
+    "path": "headphones-green.svg",
+    "name": "Headphones (green)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "green"
     ]
   },
   {
@@ -459,6 +626,30 @@
       "desk",
       "mode",
       "off"
+    ]
+  },
+  {
+    "path": "speakers-red.svg",
+    "name": "Speakers (red)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "red"
+    ]
+  },
+  {
+    "path": "headphones-red.svg",
+    "name": "Headphones (red)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "red"
     ]
   },
   {
