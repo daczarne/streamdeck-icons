@@ -230,6 +230,46 @@
     ]
   },
   {
+    "path": "label-left.svg",
+    "name": "Label left",
+    "tags": [
+      "litra",
+      "label",
+      "text",
+      "left"
+    ]
+  },
+  {
+    "path": "label-right.svg",
+    "name": "Label right",
+    "tags": [
+      "litra",
+      "label",
+      "text",
+      "right"
+    ]
+  },
+  {
+    "path": "label-center.svg",
+    "name": "Label center",
+    "tags": [
+      "litra",
+      "label",
+      "text",
+      "center"
+    ]
+  },
+  {
+    "path": "label-all.svg",
+    "name": "Label all",
+    "tags": [
+      "litra",
+      "label",
+      "text",
+      "all"
+    ]
+  },
+  {
     "path": "brightness-charcoal.svg",
     "name": "Brightness (charcoal)",
     "tags": [
@@ -499,6 +539,54 @@
       "power",
       "off",
       "red"
+    ]
+  },
+  {
+    "path": "label-left-charcoal.svg",
+    "name": "Label left (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "label",
+      "text",
+      "left"
+    ]
+  },
+  {
+    "path": "label-right-charcoal.svg",
+    "name": "Label right (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "label",
+      "text",
+      "right"
+    ]
+  },
+  {
+    "path": "label-center-charcoal.svg",
+    "name": "Label center (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "label",
+      "text",
+      "center"
+    ]
+  },
+  {
+    "path": "label-all-charcoal.svg",
+    "name": "Label all (charcoal)",
+    "tags": [
+      "litra",
+      "tile",
+      "charcoal",
+      "label",
+      "text",
+      "all"
     ]
   },
   {
@@ -774,6 +862,54 @@
     ]
   },
   {
+    "path": "label-left-grey.svg",
+    "name": "Label left (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "label",
+      "text",
+      "left"
+    ]
+  },
+  {
+    "path": "label-right-grey.svg",
+    "name": "Label right (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "label",
+      "text",
+      "right"
+    ]
+  },
+  {
+    "path": "label-center-grey.svg",
+    "name": "Label center (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "label",
+      "text",
+      "center"
+    ]
+  },
+  {
+    "path": "label-all-grey.svg",
+    "name": "Label all (grey)",
+    "tags": [
+      "litra",
+      "tile",
+      "grey",
+      "label",
+      "text",
+      "all"
+    ]
+  },
+  {
     "path": "brightness-navy.svg",
     "name": "Brightness (navy)",
     "tags": [
@@ -1043,6 +1179,54 @@
       "power",
       "off",
       "red"
+    ]
+  },
+  {
+    "path": "label-left-navy.svg",
+    "name": "Label left (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "label",
+      "text",
+      "left"
+    ]
+  },
+  {
+    "path": "label-right-navy.svg",
+    "name": "Label right (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "label",
+      "text",
+      "right"
+    ]
+  },
+  {
+    "path": "label-center-navy.svg",
+    "name": "Label center (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "label",
+      "text",
+      "center"
+    ]
+  },
+  {
+    "path": "label-all-navy.svg",
+    "name": "Label all (navy)",
+    "tags": [
+      "litra",
+      "tile",
+      "navy",
+      "label",
+      "text",
+      "all"
     ]
   },
   {
@@ -1318,6 +1502,54 @@
     ]
   },
   {
+    "path": "label-left-aubergine.svg",
+    "name": "Label left (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "label",
+      "text",
+      "left"
+    ]
+  },
+  {
+    "path": "label-right-aubergine.svg",
+    "name": "Label right (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "label",
+      "text",
+      "right"
+    ]
+  },
+  {
+    "path": "label-center-aubergine.svg",
+    "name": "Label center (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "label",
+      "text",
+      "center"
+    ]
+  },
+  {
+    "path": "label-all-aubergine.svg",
+    "name": "Label all (aubergine)",
+    "tags": [
+      "litra",
+      "tile",
+      "aubergine",
+      "label",
+      "text",
+      "all"
+    ]
+  },
+  {
     "path": "brightness-forest.svg",
     "name": "Brightness (forest)",
     "tags": [
@@ -1590,6 +1822,54 @@
     ]
   },
   {
+    "path": "label-left-forest.svg",
+    "name": "Label left (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "label",
+      "text",
+      "left"
+    ]
+  },
+  {
+    "path": "label-right-forest.svg",
+    "name": "Label right (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "label",
+      "text",
+      "right"
+    ]
+  },
+  {
+    "path": "label-center-forest.svg",
+    "name": "Label center (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "label",
+      "text",
+      "center"
+    ]
+  },
+  {
+    "path": "label-all-forest.svg",
+    "name": "Label all (forest)",
+    "tags": [
+      "litra",
+      "tile",
+      "forest",
+      "label",
+      "text",
+      "all"
+    ]
+  },
+  {
     "path": "brightness-honey.svg",
     "name": "Brightness (honey)",
     "tags": [
@@ -1859,6 +2139,54 @@
       "power",
       "off",
       "red"
+    ]
+  },
+  {
+    "path": "label-left-honey.svg",
+    "name": "Label left (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "label",
+      "text",
+      "left"
+    ]
+  },
+  {
+    "path": "label-right-honey.svg",
+    "name": "Label right (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "label",
+      "text",
+      "right"
+    ]
+  },
+  {
+    "path": "label-center-honey.svg",
+    "name": "Label center (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "label",
+      "text",
+      "center"
+    ]
+  },
+  {
+    "path": "label-all-honey.svg",
+    "name": "Label all (honey)",
+    "tags": [
+      "litra",
+      "tile",
+      "honey",
+      "label",
+      "text",
+      "all"
     ]
   }
 ]

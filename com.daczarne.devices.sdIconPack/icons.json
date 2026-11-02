@@ -11,16 +11,6 @@
     ]
   },
   {
-    "path": "left-label.svg",
-    "name": "Left label",
-    "tags": [
-      "devices",
-      "monitor",
-      "left",
-      "label"
-    ]
-  },
-  {
     "path": "left-laptop.svg",
     "name": "Left laptop",
     "tags": [
@@ -57,6 +47,30 @@
     ]
   },
   {
+    "path": "speakers-teal.svg",
+    "name": "Speakers (teal)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "teal"
+    ]
+  },
+  {
+    "path": "headphones-teal.svg",
+    "name": "Headphones (teal)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "teal"
+    ]
+  },
+  {
     "path": "left-brightness.svg",
     "name": "Left brightness",
     "tags": [
@@ -80,6 +94,16 @@
     ]
   },
   {
+    "path": "left-label.svg",
+    "name": "Left label",
+    "tags": [
+      "devices",
+      "monitor",
+      "left",
+      "label"
+    ]
+  },
+  {
     "path": "center-tile.svg",
     "name": "Center tile",
     "tags": [
@@ -88,16 +112,6 @@
       "center",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "center-label.svg",
-    "name": "Center label",
-    "tags": [
-      "devices",
-      "monitor",
-      "center",
-      "label"
     ]
   },
   {
@@ -137,6 +151,30 @@
     ]
   },
   {
+    "path": "speakers-blue.svg",
+    "name": "Speakers (blue)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "blue"
+    ]
+  },
+  {
+    "path": "headphones-blue.svg",
+    "name": "Headphones (blue)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "blue"
+    ]
+  },
+  {
     "path": "center-brightness.svg",
     "name": "Center brightness",
     "tags": [
@@ -160,6 +198,16 @@
     ]
   },
   {
+    "path": "center-label.svg",
+    "name": "Center label",
+    "tags": [
+      "devices",
+      "monitor",
+      "center",
+      "label"
+    ]
+  },
+  {
     "path": "top-right-tile.svg",
     "name": "Top right tile",
     "tags": [
@@ -169,17 +217,6 @@
       "right",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "top-right-label.svg",
-    "name": "Top right label",
-    "tags": [
-      "devices",
-      "monitor",
-      "top",
-      "right",
-      "label"
     ]
   },
   {
@@ -222,6 +259,30 @@
     ]
   },
   {
+    "path": "speakers-plum.svg",
+    "name": "Speakers (plum)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "plum"
+    ]
+  },
+  {
+    "path": "headphones-plum.svg",
+    "name": "Headphones (plum)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "plum"
+    ]
+  },
+  {
     "path": "top-right-brightness.svg",
     "name": "Top right brightness",
     "tags": [
@@ -247,6 +308,17 @@
     ]
   },
   {
+    "path": "top-right-label.svg",
+    "name": "Top right label",
+    "tags": [
+      "devices",
+      "monitor",
+      "top",
+      "right",
+      "label"
+    ]
+  },
+  {
     "path": "bottom-right-tile.svg",
     "name": "Bottom right tile",
     "tags": [
@@ -256,17 +328,6 @@
       "right",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "bottom-right-label.svg",
-    "name": "Bottom right label",
-    "tags": [
-      "devices",
-      "monitor",
-      "bottom",
-      "right",
-      "label"
     ]
   },
   {
@@ -309,6 +370,30 @@
     ]
   },
   {
+    "path": "speakers-rust.svg",
+    "name": "Speakers (rust)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "rust"
+    ]
+  },
+  {
+    "path": "headphones-rust.svg",
+    "name": "Headphones (rust)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "rust"
+    ]
+  },
+  {
     "path": "bottom-right-brightness.svg",
     "name": "Bottom right brightness",
     "tags": [
@@ -334,6 +419,17 @@
     ]
   },
   {
+    "path": "bottom-right-label.svg",
+    "name": "Bottom right label",
+    "tags": [
+      "devices",
+      "monitor",
+      "bottom",
+      "right",
+      "label"
+    ]
+  },
+  {
     "path": "all-tile.svg",
     "name": "All tile",
     "tags": [
@@ -342,16 +438,6 @@
       "all",
       "tile",
       "blank"
-    ]
-  },
-  {
-    "path": "all-label.svg",
-    "name": "All label",
-    "tags": [
-      "devices",
-      "monitor",
-      "all",
-      "label"
     ]
   },
   {
@@ -391,74 +477,84 @@
     ]
   },
   {
-    "path": "desk-mode-off.svg",
-    "name": "Desk mode off",
+    "path": "speakers-slate.svg",
+    "name": "Speakers (slate)",
     "tags": [
       "devices",
-      "desk",
-      "mode",
-      "off"
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "slate"
     ]
   },
   {
-    "path": "desk-mode-on.svg",
-    "name": "Desk mode on",
+    "path": "headphones-slate.svg",
+    "name": "Headphones (slate)",
     "tags": [
       "devices",
-      "desk",
-      "mode",
-      "on"
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "slate"
     ]
   },
   {
-    "path": "lock.svg",
-    "name": "Lock",
+    "path": "all-brightness.svg",
+    "name": "All brightness",
     "tags": [
       "devices",
-      "lock"
+      "monitor",
+      "all",
+      "sun",
+      "brightness"
     ]
   },
   {
-    "path": "lock-keyhole.svg",
-    "name": "Lock with keyhole",
+    "path": "all-brightness-low.svg",
+    "name": "All brightness low",
     "tags": [
       "devices",
-      "lock",
-      "keyhole",
-      "locked"
+      "monitor",
+      "all",
+      "sun",
+      "brightness",
+      "dim"
     ]
   },
   {
-    "path": "unlock-keyhole.svg",
-    "name": "Unlocked with keyhole",
+    "path": "all-label.svg",
+    "name": "All label",
     "tags": [
       "devices",
-      "lock",
-      "keyhole",
-      "unlocked",
-      "open"
+      "monitor",
+      "all",
+      "label"
     ]
   },
   {
-    "path": "unlock-keyhole-short.svg",
-    "name": "Unlocked with keyhole, low shackle",
+    "path": "speakers-green.svg",
+    "name": "Speakers (green)",
     "tags": [
       "devices",
-      "lock",
-      "keyhole",
-      "unlocked",
-      "open"
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "green"
     ]
   },
   {
-    "path": "unlock-keyhole-side.svg",
-    "name": "Unlocked with keyhole, shackle to the side",
+    "path": "headphones-green.svg",
+    "name": "Headphones (green)",
     "tags": [
       "devices",
-      "lock",
-      "keyhole",
-      "unlocked",
-      "open"
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "green"
     ]
   },
   {
@@ -523,6 +619,40 @@
     ]
   },
   {
+    "path": "desk-mode-off.svg",
+    "name": "Desk mode off",
+    "tags": [
+      "devices",
+      "desk",
+      "mode",
+      "off"
+    ]
+  },
+  {
+    "path": "speakers-red.svg",
+    "name": "Speakers (red)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "speakers",
+      "output",
+      "red"
+    ]
+  },
+  {
+    "path": "headphones-red.svg",
+    "name": "Headphones (red)",
+    "tags": [
+      "devices",
+      "audio",
+      "sound",
+      "headphones",
+      "output",
+      "red"
+    ]
+  },
+  {
     "path": "lock-red.svg",
     "name": "Lock (red)",
     "tags": [
@@ -584,6 +714,16 @@
     ]
   },
   {
+    "path": "desk-mode-on.svg",
+    "name": "Desk mode on",
+    "tags": [
+      "devices",
+      "desk",
+      "mode",
+      "on"
+    ]
+  },
+  {
     "path": "speakers.svg",
     "name": "Speakers",
     "tags": [
@@ -606,355 +746,54 @@
     ]
   },
   {
-    "path": "mouse-teal.svg",
-    "name": "Mouse (teal)",
+    "path": "lock.svg",
+    "name": "Lock",
     "tags": [
       "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "teal"
+      "lock"
     ]
   },
   {
-    "path": "mouse-blue.svg",
-    "name": "Mouse (blue)",
+    "path": "lock-keyhole.svg",
+    "name": "Lock with keyhole",
     "tags": [
       "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "blue"
+      "lock",
+      "keyhole",
+      "locked"
     ]
   },
   {
-    "path": "mouse-plum.svg",
-    "name": "Mouse (plum)",
+    "path": "unlock-keyhole.svg",
+    "name": "Unlocked with keyhole",
     "tags": [
       "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "plum"
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
     ]
   },
   {
-    "path": "mouse-rust.svg",
-    "name": "Mouse (rust)",
+    "path": "unlock-keyhole-short.svg",
+    "name": "Unlocked with keyhole, low shackle",
     "tags": [
       "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "rust"
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
     ]
   },
   {
-    "path": "mouse-slate.svg",
-    "name": "Mouse (slate)",
+    "path": "unlock-keyhole-side.svg",
+    "name": "Unlocked with keyhole, shackle to the side",
     "tags": [
       "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "slate"
-    ]
-  },
-  {
-    "path": "mouse-green.svg",
-    "name": "Mouse (green)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "green"
-    ]
-  },
-  {
-    "path": "mouse-red.svg",
-    "name": "Mouse (red)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "red"
-    ]
-  },
-  {
-    "path": "mouse-navy.svg",
-    "name": "Mouse (navy)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "navy"
-    ]
-  },
-  {
-    "path": "mouse-aubergine.svg",
-    "name": "Mouse (aubergine)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "aubergine"
-    ]
-  },
-  {
-    "path": "mouse-forest.svg",
-    "name": "Mouse (forest)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "forest"
-    ]
-  },
-  {
-    "path": "mouse-honey.svg",
-    "name": "Mouse (honey)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "honey"
-    ]
-  },
-  {
-    "path": "mouse-charcoal.svg",
-    "name": "Mouse (charcoal)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "charcoal"
-    ]
-  },
-  {
-    "path": "mouse-grey.svg",
-    "name": "Mouse (grey)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "grey"
-    ]
-  },
-  {
-    "path": "mouse-violet.svg",
-    "name": "Mouse (violet)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "violet"
-    ]
-  },
-  {
-    "path": "mouse-olive.svg",
-    "name": "Mouse (olive)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "olive"
-    ]
-  },
-  {
-    "path": "mouse-cerise.svg",
-    "name": "Mouse (cerise)",
-    "tags": [
-      "devices",
-      "mouse",
-      "outlined",
-      "tile",
-      "cerise"
-    ]
-  },
-  {
-    "path": "mouse-filled-teal.svg",
-    "name": "Mouse filled (teal)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "teal"
-    ]
-  },
-  {
-    "path": "mouse-filled-blue.svg",
-    "name": "Mouse filled (blue)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "blue"
-    ]
-  },
-  {
-    "path": "mouse-filled-plum.svg",
-    "name": "Mouse filled (plum)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "plum"
-    ]
-  },
-  {
-    "path": "mouse-filled-rust.svg",
-    "name": "Mouse filled (rust)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "rust"
-    ]
-  },
-  {
-    "path": "mouse-filled-slate.svg",
-    "name": "Mouse filled (slate)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "slate"
-    ]
-  },
-  {
-    "path": "mouse-filled-green.svg",
-    "name": "Mouse filled (green)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "green"
-    ]
-  },
-  {
-    "path": "mouse-filled-red.svg",
-    "name": "Mouse filled (red)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "red"
-    ]
-  },
-  {
-    "path": "mouse-filled-navy.svg",
-    "name": "Mouse filled (navy)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "navy"
-    ]
-  },
-  {
-    "path": "mouse-filled-aubergine.svg",
-    "name": "Mouse filled (aubergine)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "aubergine"
-    ]
-  },
-  {
-    "path": "mouse-filled-forest.svg",
-    "name": "Mouse filled (forest)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "forest"
-    ]
-  },
-  {
-    "path": "mouse-filled-honey.svg",
-    "name": "Mouse filled (honey)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "honey"
-    ]
-  },
-  {
-    "path": "mouse-filled-charcoal.svg",
-    "name": "Mouse filled (charcoal)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "charcoal"
-    ]
-  },
-  {
-    "path": "mouse-filled-grey.svg",
-    "name": "Mouse filled (grey)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "grey"
-    ]
-  },
-  {
-    "path": "mouse-filled-violet.svg",
-    "name": "Mouse filled (violet)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "violet"
-    ]
-  },
-  {
-    "path": "mouse-filled-olive.svg",
-    "name": "Mouse filled (olive)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "olive"
-    ]
-  },
-  {
-    "path": "mouse-filled-cerise.svg",
-    "name": "Mouse filled (cerise)",
-    "tags": [
-      "devices",
-      "mouse",
-      "filled",
-      "tile",
-      "cerise"
+      "lock",
+      "keyhole",
+      "unlocked",
+      "open"
     ]
   }
 ]

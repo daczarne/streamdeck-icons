@@ -28,10 +28,10 @@ The first time a pack is linked, quit and reopen Stream Deck: it only finds a ne
 ## Checks
 
 1. **The pack is listed.** The Icon Library lists the pack by its `Name` (such as "Litra"), with its own icon and the number of icons in its `icons.json`.
-2. **Every icon shows.** Expand the pack: its icons show in the order of `icons.json`. Hovering over an icon shows its name and the pack's name.
+2. **Every icon shows.** Expand the pack: its icons show in the order of `icons.json`. Hovering over an icon shows its name and the pack's name. Each tile's icons sit together: the Litra pack's by tile scheme, and the devices and MX Master 3S packs' in the palette's order.
 3. **Search finds the icons.** Searching for an icon's name finds it, and so does searching for one of its tags. Searching for the pack's own tag (such as "litra") finds every icon in the pack.
 4. **An icon works on a key.** Assign one of the pack's icons to a key: the key shows it on the Deck, with the same colors as in the library.
-5. **Tiles fill the key.** Assign tiled icons to keys (such as a charcoal and a grey Litra icon, or a monitor's from the devices pack): each tile fills its key on the Deck, with no ring around it, though the Icon Library shows one. Colored glyphs (such as the power symbols' amber and red) read clearly on their tile, and where a glyph also comes plain, it's the same size on both. Tiles meant to stand apart do: the MX Master 3S pack's violet, olive and cerise keys, next to the monitor keys and a navy key, read as three colors of their own.
+5. **Tiles fill the key.** Assign tiled icons to keys (such as a charcoal and a grey Litra icon, or a monitor's from the devices pack): each tile fills its key on the Deck, with no ring around it, though the Icon Library shows one. Colored glyphs (such as the power symbols' amber and red) read clearly on their tile, and where a glyph also comes plain, it's the same size on both. Tiles meant to stand apart do: the host tiles, violet, olive and cerise, next to the monitor keys and a navy key, read as colors of their own.
 6. **Text reads.** On a key, a label (such as "BOTTOM RIGHT" or "Desk Mode ON") is crisp and fits the key, set in the same font as in the Icon Library. So is a number on a badge, such as the MX Master 3S pack's "Host 2 badge", the smallest text in the packs.
 
 [icon-packs]: ../icon_packs.md
