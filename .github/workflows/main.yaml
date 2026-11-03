@@ -129,6 +129,15 @@ jobs:
           npm run types
           git status --porcelain
           test -z "$(git status --porcelain)"
+      - name: Pack and test the files 🧪
+        id: check_pack
+        # Makes each pack's file as a release does, and checks that it's a sound zip, so a release can't be the first
+        # to find the packing broken.
+        run: |
+          npm run pack
+          for package in release/*.streamDeckIconPack; do
+            unzip -tq "$package"
+          done
 
   alls-green:
     name: Ensure all checks have passed
@@ -145,3 +154,94 @@ jobs:
         with:
           allowed-skips: label-pr
           jobs: ${{ toJSON(needs) }}
+
+  release:
+    name: Draft a release
+    # Runs on every push to main, once every check has passed, and drafts a release when the version in package.json
+    # has none yet, so a merge that bumps the version is what makes a release. Publishing the draft stays manual.
+    # The gate's result is checked by name: without a status function, the condition would get an implicit success(),
+    # which looks at every job up the chain, and label-pr is always skipped on a push.
+    if: >-
+      ${{ !cancelled() && needs.alls-green.result == 'success'
+      && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    needs:
+      - alls-green
+    # Two merges in a row run one after the other, so the second sees the first one's draft.
+    concurrency:
+      group: release
+      cancel-in-progress: false
+    permissions:
+      # Lists the releases, drafts included, and creates the draft.
+      contents: write
+      # Signs the provenance attestation, and stores it.
+      id-token: write
+      attestations: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout 🛎️
+        id: checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check for a release of this version 🔎
+        id: version
+        # Every pack is released at the version in package.json, which check:icons holds each manifest to. A draft has
+        # no tag until it's published, so the check looks for a release with the tag's name, drafts included.
+        run: |
+          version=$(jq -r .version package.json)
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::package.json's version, $version, isn't {major}.{minor}.{patch}"
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          tags=$(gh api --paginate "repos/$GITHUB_REPOSITORY/releases" --jq '.[].tag_name')
+          if grep -qxF "v$version" <<< "$tags"; then
+            echo "v$version already has a release: nothing to draft."
+            echo "draft=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "draft=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Set up Node 🟢
+        id: setup_node
+        if: ${{ steps.version.outputs.draft == 'true' }}
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Pack 📦
+        id: pack
+        if: ${{ steps.version.outputs.draft == 'true' }}
+        # Runs check:icons, then packs every pack into release/. Neither needs the dependencies.
+        run: npm run pack
+      - name: Attest the packages' provenance 🔏
+        id: attest
+        if: ${{ steps.version.outputs.draft == 'true' }}
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: release/*.streamDeckIconPack
+          # A storage record is only made for an image pushed to a registry, which the packages aren't.
+          create-storage-record: false
+      - name: Draft the release 📝
+        id: draft
+        if: ${{ steps.version.outputs.draft == 'true' }}
+        # The title is the H1 on the first line of .github/release-notes.md, and the notes are the rest of it, with the
+        # @PACKS@ line replaced by each package, its pack's name and its SHA-256, and followed by the pull requests
+        # merged since the last release, which GitHub lists.
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          for package in release/*.streamDeckIconPack; do
+            file=$(basename "$package")
+            name=$(jq -r .Name "${file%.streamDeckIconPack}.sdIconPack/manifest.json")
+            sha256=$(sha256sum "$package" | cut -d ' ' -f 1)
+            echo "- **$name**: \`$file\`, with the SHA-256 \`$sha256\`"
+          done > "$RUNNER_TEMP/packs.md"
+          title=$(head -n 1 .github/release-notes.md | sed -e 's/^# //' -e "s/@VERSION@/$VERSION/g")
+          tail -n +2 .github/release-notes.md | awk -v version="$VERSION" -v packs="$RUNNER_TEMP/packs.md" '
+            /^@PACKS@$/ { while ((getline line < packs) > 0) print line; next }
+            { gsub(/@VERSION@/, version); print }
+          ' > "$RUNNER_TEMP/notes.md"
+          gh release create "v$VERSION" release/*.streamDeckIconPack --repo "$GITHUB_REPOSITORY" --draft \
+            --target "$GITHUB_SHA" --title "$title" --notes-file "$RUNNER_TEMP/notes.md" --generate-notes

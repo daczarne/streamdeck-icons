@@ -1,4 +1,6 @@
 davidanson
+getline
+gsub
 killall
 Noto
 notofonts
