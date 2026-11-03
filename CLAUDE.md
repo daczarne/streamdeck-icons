@@ -13,7 +13,7 @@
 
 Icon packs for Stream Deck, one per topic, and the glyphs, palette and SVG helpers they share with the Stream Deck plugins that draw from them. The packs so far are Litra's, for the Logitech Litra plugin in `daczarne/streamdeck-litra`, which draws its own images from this package's exports, the devices pack, for the devices around a Deck, starting with monitor input switching keys, and the MX Master 3S pack, for the mouse plugin in `daczarne/streamdeck-mx3s`, which draws its category and marketplace icons from the pack's mouse, with keys for the mouse's hosts. The repository is public.
 
-The packs are made and checked on macOS, with a Stream Deck + XL running Stream Deck 7.6. They aren't distributed: they run linked from the repo.
+The packs are made and checked on macOS, with a Stream Deck + XL running Stream Deck 7.6, where development runs them linked from the repo. Each release holds every pack, each as a file of its own that installs with a double-click, and is installed from its page and checked on macOS and on Windows once it's published.
 
 The palette in `src/palette.mjs` comes from the icons first drawn for the monitor input switching keys, and new icons follow it.
 
@@ -23,7 +23,8 @@ The palette in `src/palette.mjs` comes from the icons first drawn for the monito
 - `docs/style_guide.md`: the conventions the linters don't enforce (see [Style](#style)).
 - `docs/icon_packs.md`: the icon pack format, and how Stream Deck loads and shows a pack, checked on the Deck. Add to it when a change finds out something new.
 - `docs/adding_a_pack.md`: how to add a pack, from its manifest to its label and its first check on the Deck. Each pack gets its own label.
-- `docs/manual_testing/packs.md`: the checks that only the Deck can prove. Before asking for a look at the Deck, point to them.
+- `docs/releases.md`: how a release is made, from the branch that raises the version to the published release, and where the version is written.
+- `docs/manual_testing/`: the checks that only the Deck can prove, for the packs (`packs.md`) and for a release's files (`releases.md`). Before asking for a look at the Deck, point to them.
 
 ## Layout
 
@@ -31,7 +32,7 @@ The palette in `src/palette.mjs` comes from the icons first drawn for the monito
 - `scripts/packs/` holds one definition per pack: its icons, in the order the Icon Library shows them, with their names and tags. `scripts/pack-builder.mjs` writes a definition out as the pack's icons and `icons.json`, and offers helpers to build the list: `plainGlyphs` and `tiledGlyphs` for a glyph plain and on every tile scheme (the Litra pack), `tile` and `scaled` for a pack that places each icon itself (the devices and MX Master 3S packs). `scripts/generate-packs.mjs` lists the packs to build.
 - `types/` holds the type declarations of `src/`, generated from its doc comments by `npm run types` (`tsconfig.types.json`) and committed, since plugins install this package from GitHub without running scripts. `package.json`'s `exports` points plugins to them.
 - Each `*.sdIconPack/` folder at the root is a pack: `manifest.json`, written by hand, and `icons.json`, `icons/` and `icon.svg`, generated and committed.
-- `scripts/check-packs.mjs` checks every pack, and the font against its hash, and `scripts/link-packs.mjs` links them into Stream Deck.
+- `scripts/check-packs.mjs` checks every pack, its version against `package.json`'s, and the font against its hash, and `scripts/link-packs.mjs` links them into Stream Deck. `scripts/pack-packs.mjs` packs each one into the file a release attaches, a zip of its folder, which it writes itself on Node's `zlib`, the same bytes every time.
 - Biome lints and formats `src/` and `scripts/`, from `biome.json`, with the same version and settings as the Litra plugin. Its config has to stay at the repository root: from anywhere else, its type-aware rules, such as `noFloatingPromises`, report nothing, without a warning.
 - The JavaScript declares its types in doc comments, which `tsconfig.json` checks with `checkJs` and the Litra plugin's stricter flags, written out rather than taken from a shared base. `scripts/opentype.d.ts` types the parts of `opentype.js` that `scripts/text.mjs` uses, since the package ships no declarations. The types a pack definition is made of, such as `Pack` and `GlyphEntry`, are in `scripts/pack-builder.mjs`, and the definitions check themselves against them with `@satisfies`. `scripts/check-docs.mjs`, the same as the Litra plugin's, checks that every function has a doc comment (see the "Doc comments" section of `docs/style_guide.md`).
 - Text goes on icons as paths, never as SVG `<text>`, which Stream Deck would draw with whatever fonts the machine has. `scripts/text.mjs` lays it out from `fonts/NotoSans-Bold.ttf` with `opentype.js`, at the cap height and line spacing measured on the monitor keys, the same for every label, except a number on a badge, which the pack scales down to fit it. Lines are split by hand, and a label that comes within 5% of an icon's edge stops the build: it needs shorter lines, not smaller letters. It lives in `scripts/`, not `src/`, so plugins that import the glyphs don't need the font or the library.
@@ -48,6 +49,7 @@ npm run lint              # Biome: lint rules, formatting and import order, with
 npm run format            # Biome: apply the formatting and the import order
 npm run typecheck         # check the JavaScript's types, as its doc comments declare them
 npm run check:docs        # every function, class, method and constructor has a doc comment
+npm run pack              # check:icons, then write each pack's release/<id>.streamDeckIconPack
 npm run link              # link every pack into Stream Deck (macOS)
 npm run unlink            # remove the links
 ```
@@ -70,7 +72,7 @@ Supply-chain risk is a hard requirement here. The package's dependencies are dev
 
 - Create branches with `git switch -c`.
 - Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when asked.
-- `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, and a regeneration of the packs and the declarations that must change nothing, on every pull request and on `main`. Locally, `/lint` and the `Lint` VS Code task run the same checks.
+- `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, and a regeneration of the packs and the declarations that must change nothing, on every pull request and on `main`. On `main`, once every check has passed, its last job drafts a release when the version is new (see `docs/releases.md`). Locally, `/lint` and the `Lint` VS Code task run the same checks.
 - Write the pull request title and description with the `pr-description` skill.
 - Draft issues with the `github-issues` skill, and post them only when asked.
 

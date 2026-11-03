@@ -17,7 +17,7 @@ for (const pack of readdirSync(".").filter((name) => name.endsWith(".sdIconPack"
   const existing = lstatSync(link, { throwIfNoEntry: false });
   // Only ever replace or remove a link: a folder there is an installed pack, which isn't ours to touch.
   if (existing !== undefined && !existing.isSymbolicLink()) {
-    console.error(`${link} is not a link: remove the installed pack by hand first`);
+    console.error(`${link} is not a link: uninstall the installed pack from Stream Deck's Icon Library first`);
     process.exitCode = 1;
     continue;
   }

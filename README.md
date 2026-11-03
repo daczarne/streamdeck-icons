@@ -5,8 +5,10 @@ Icon packs for Elgato Stream Deck, and the glyphs, palette and SVG helpers they 
 Not an official Elgato or Logitech product.
 
 - [Packs](#packs)
+- [Installing](#installing)
 - [Using the glyphs in a plugin](#using-the-glyphs-in-a-plugin)
 - [Working on the packs](#working-on-the-packs)
+- [Packaging](#packaging)
 - [Text on icons](#text-on-icons)
 - [Layout](#layout)
 - [Credits](#credits)
@@ -20,6 +22,13 @@ Not an official Elgato or Logitech product.
 | `com.daczarne.mx3s.sdIconPack`    | Logitech MX Master 3S: the mouse, outlined and filled, plain and with each of its Easy-Switch hosts' numbers (in its palm or on a badge), on every tile                                                                                                        |
 
 The Litra pack's glyphs come white on transparent, and on a tile that fills the key, in each of the tile schemes in `scripts/pack-builder.mjs`, such as charcoal or honey. The devices pack puts each monitor key on its monitor's color, as the keys on the Deck are, and the keys that go with them, such as the speakers and headphones, on each of those colors too. The MX Master 3S pack comes on every tile of the palette. Every pack lists its icons by tile, so each color's keys sit together in the Icon Library. The tiles' colors and the glyphs' inks come from one palette, in `src/palette.mjs`. Glyphs are sized to leave room around them on a key, the same size in every set. Labels are text written as paths, from a vendored font, so they look the same on any machine.
+
+## Installing
+
+1. Download the file of each pack you want, such as `com.daczarne.litra.streamDeckIconPack`, from [the latest release][latest-release].
+2. Open it: Stream Deck asks to confirm, installs the pack, and its icons appear in the Icon Library.
+
+A newer release installs the same way, over the pack installed. To remove a pack, uninstall it from the Icon Library, with the trash can next to its name. Stream Deck won't install an older release over a newer one, so going back to one takes uninstalling the pack first, then opening the older file. A key keeps a copy of the icon it was given, so updating or removing a pack doesn't change the keys that already use its icons.
 
 ## Using the glyphs in a plugin
 
@@ -54,6 +63,7 @@ npm run lint              # Biome: lint rules, formatting and import order, with
 npm run format            # Biome: apply the formatting and the import order
 npm run typecheck         # check the JavaScript's types, as its doc comments declare them
 npm run check:docs        # every function, class, method and constructor has a doc comment
+npm run pack              # check:icons, then write each pack's release/<id>.streamDeckIconPack
 npm run link              # link every pack into Stream Deck's IconPacks folder (macOS)
 npm run unlink            # remove the links
 ```
@@ -61,6 +71,18 @@ npm run unlink            # remove the links
 Stream Deck only finds a new pack when it starts, so quit and reopen it after the first link. After that, a change shows the next time the Icon Library is opened. In VS Code, the `Build packs` task regenerates the packs and the type declarations, and checks the packs.
 
 [`docs/icon_packs.md`][icon-packs] describes the format and how Stream Deck loads a pack, [`docs/adding_a_pack.md`][adding-a-pack] how to add one, and [`docs/manual_testing/packs.md`][packs-test] the checks to run on the Deck.
+
+## Packaging
+
+A release attaches the files this writes:
+
+```shell
+npm run pack
+```
+
+It runs `check:icons`, then writes `release/<id>.streamDeckIconPack` for each pack: a zip that holds the pack's folder, which Stream Deck installs when the file is opened. `scripts/pack-packs.mjs` writes the zip itself, on Node's `zlib`, so packing needs no dependency, and dates every entry alike, so the same pack always makes the same file, with the same SHA-256. Stream Deck installs the pack under the name of its folder, the same name a linked pack has: run `npm run unlink` before installing a release on a computer where the packs are linked, and `npm run link` refuses to replace a pack that's installed. The Icon Library offers to uninstall a linked pack too: remove it with `npm run unlink` instead, since uninstalling could delete the folder the link points to, in the repository.
+
+How a release is made, from the version to publishing it, is in [`docs/releases.md`][releases-doc].
 
 ## Text on icons
 
@@ -87,9 +109,11 @@ The first glyphs (the power symbol and the action-list icons) come from Seth She
 
 [adding-a-pack]: docs/adding_a_pack.md
 [icon-packs]: docs/icon_packs.md
+[latest-release]: https://github.com/daczarne/streamdeck-icons/releases/latest
 [license]: LICENSE
 [noto]: https://notofonts.github.io
 [noto-dist]: https://github.com/notofonts/notofonts.github.io
 [ofl]: fonts/OFL.txt
 [opentype]: https://github.com/opentypejs/opentype.js
 [packs-test]: docs/manual_testing/packs.md
+[releases-doc]: docs/releases.md

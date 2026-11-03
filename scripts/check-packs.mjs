@@ -2,7 +2,7 @@
 /**
  * Guards every icon pack (each `*.sdIconPack` folder at the root) against what Stream Deck's Icon Library would load
  * wrong or not at all:
- * - manifest.json has the members Elgato requires, and its icon exists
+ * - manifest.json has the members Elgato requires, its icon exists, and its version is the repository's
  * - every icons.json entry has a path, a name and tags, and its file exists, at 144 × 144 px if it's an SVG
  * - every file in icons/ is listed in icons.json
  * - no file name is longer than Elgato's limit
@@ -20,6 +20,9 @@ const FONT = {
   sha256: "87cb2d84472a7d66da659ee47b6cdb9552326e8c128245231f191b6ac72529d9",
   license: "fonts/OFL.txt",
 };
+
+// Every pack is released together, at the repository's version, which each manifest repeats.
+const VERSION = JSON.parse(readFileSync("package.json", "utf8")).version;
 
 // From Elgato's API glossary for icon packs and its icon guidelines.
 const REQUIRED_MANIFEST_MEMBERS = ["Name", "Author", "Version", "Icon"];
@@ -61,6 +64,9 @@ function checkPack(pack) {
     }
     if (typeof manifest.Icon === "string" && !existsSync(path.join(packDir, manifest.Icon))) {
       errors.push(`${pack}/manifest.json: Icon ${manifest.Icon} does not exist`);
+    }
+    if (manifest.Version !== VERSION) {
+      errors.push(`${pack}/manifest.json: Version ${manifest.Version} is not package.json's ${VERSION}`);
     }
   }
 
@@ -126,5 +132,5 @@ if (errors.length > 0) {
   process.exit(1);
 }
 console.log(
-  `check-packs: OK (${packs.join(", ")}: manifest complete, every icon listed, sized and present; font pinned)`,
+  `check-packs: OK (${packs.join(", ")}: manifest complete, at ${VERSION}, every icon listed, sized and present; font pinned)`,
 );
