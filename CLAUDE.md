@@ -62,7 +62,7 @@ Supply-chain risk is a hard requirement here. The package's dependencies are dev
 
 ## Testing on the hardware
 
-- `npm run link` links every pack into `~/Library/Application Support/com.elgato.StreamDeck/IconPacks/`. Stream Deck only finds a new pack once it's quit and reopened. After that, a change shows the next time the Icon Library is opened.
+- `npm run link` links every pack into `~/Library/Application Support/com.elgato.StreamDeck/IconPacks/`. Stream Deck only finds a new pack once it's quit and reopened. After that, a change shows the next time the Icon Library is opened. A linked pack is removed with `npm run unlink`, never with the Icon Library's trash can, which could delete the folder the link points to, in the repository.
 - A key keeps a copy of the icon it was given, so redrawing an icon doesn't change the keys that already use it.
 - Claude can't see the Deck. The user looks at the Icon Library and the keys, and can share screenshots, which are enough to judge an icon. Colors in a screenshot are exact, so they can be sampled.
 
@@ -72,7 +72,7 @@ Supply-chain risk is a hard requirement here. The package's dependencies are dev
 
 - Create branches with `git switch -c`.
 - Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when asked.
-- `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, and a regeneration of the packs and the declarations that must change nothing, on every pull request and on `main`. On `main`, once every check has passed, its last job drafts a release when the version is new (see `docs/releases.md`). Locally, `/lint` and the `Lint` VS Code task run the same checks.
+- `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, a regeneration of the packs and the declarations that must change nothing, and a packing of every pack whose files must be sound zips, on every pull request and on `main`. On `main`, once every check has passed, its last job drafts a release when the version is new (see `docs/releases.md`). Locally, `/lint` and the `Lint` VS Code task run the same checks.
 - Write the pull request title and description with the `pr-description` skill.
 - Draft issues with the `github-issues` skill, and post them only when asked.
 

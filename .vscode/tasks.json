@@ -71,7 +71,7 @@
     {
       "label": "Lint: packs",
       "type": "shell",
-      "command": "sh .vscode/run-task.sh 'npm run check:icons'",
+      "command": "sh .vscode/run-task.sh 'npm run check:icons && npm run pack && for f in release/*.streamDeckIconPack; do unzip -tq \"$f\"; done'",
       "problemMatcher": [ ],
     },
   ],

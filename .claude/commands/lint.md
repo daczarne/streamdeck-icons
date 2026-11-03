@@ -1,6 +1,6 @@
 ---
 description: Run every linter and the packs' checks, fix formatting findings and report the rest
-allowed-tools: Bash(markdownlint-cli2 *), Bash(cspell lint *), Bash(git grep *), Bash(git status *), Bash(npm run lint), Bash(npm run format), Bash(npm run typecheck), Bash(npm run check:docs), Bash(npm run check:icons), Bash(npm run icons), Bash(npm run types)
+allowed-tools: Bash(markdownlint-cli2 *), Bash(cspell lint *), Bash(git grep *), Bash(git status *), Bash(npm run lint), Bash(npm run format), Bash(npm run typecheck), Bash(npm run check:docs), Bash(npm run check:icons), Bash(npm run icons), Bash(npm run types), Bash(npm run pack), Bash(unzip -tq *)
 ---
 
 # Lint
@@ -14,6 +14,7 @@ Run the checks from CI, from the repository root, in this order: those of the `l
 1. `npm run check:docs`, which lists every function, class, method and constructor without a doc comment.
 1. `npm run check:icons`, which checks every pack against what Stream Deck's Icon Library needs.
 1. `npm run icons` and `npm run types`, then `git status --short`: regenerating the packs and the type declarations must change nothing. A change means the committed files aren't what the code generates.
+1. `npm run pack`, then `unzip -tq` on each file in `release/`: every pack is packed as a release packs it, and each file is a sound zip.
 
 Then check the length of Markdown headings, which no linter covers (see `docs/style_guide.md`). `git grep -n -P '^(?=.{81})#{1,6} ' -- '*.md'` lists every heading over 80 characters. Skip matches inside code blocks, where `#` starts a comment, and shorten the rest without changing their meaning. When a shortened heading is linked from a table of contents or another document, update those links too.
 
@@ -23,6 +24,7 @@ Formatting findings are fixed directly, without asking. Everything else is repor
 - Biome's formatting and import order findings are fixed with `npm run format`. Its lint rules report problems in the code: report them.
 - The type check reports errors in the code: report them. A missing doc comment is reported too, not written on the spot: what it should say is a decision about the code.
 - `npm run check:icons` and the regenerated packs report errors in the packs or their code. Report them.
+- `npm run pack` and `unzip` report errors in the packing. Report them.
 
 Rules for the fixes:
 
