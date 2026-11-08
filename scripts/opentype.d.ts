@@ -1,6 +1,6 @@
 /**
- * The parts of opentype.js that `scripts/text.mjs` uses, since the package ships no type declarations. Each member is
- * typed as the opentype.js 2.0.0 sources define it.
+ * The parts of opentype.js that `scripts/text.mjs` and `scripts/generate-figures.mjs` use, since the package ships no
+ * type declarations. Each member is typed as the opentype.js 2.0.0 sources define it.
  */
 declare module "opentype.js" {
   /** The box a path's ink spans, in the units it was drawn in. */
@@ -23,12 +23,20 @@ declare module "opentype.js" {
     kerning?: boolean;
   }
 
+  /** One character's glyph in a font: how far it moves the next one, and its outline. */
+  interface Glyph {
+    advanceWidth: number;
+    getPath(x?: number, y?: number, fontSize?: number): Path;
+  }
+
   /** A font, parsed from its file. */
   interface Font {
     unitsPerEm: number;
     tables: { os2: { sCapHeight: number } };
     getAdvanceWidth(text: string, fontSize?: number, options?: RenderOptions): number;
     getPath(text: string, x: number, y: number, fontSize: number, options?: RenderOptions): Path;
+    charToGlyph(character: string): Glyph;
+    getKerningValue(left: Glyph, right: Glyph): number;
   }
 
   const opentype: {

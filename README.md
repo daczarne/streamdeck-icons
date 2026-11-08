@@ -56,7 +56,7 @@ Use the Node version in `.node-version`, with the npm that ships with it (`devEn
 
 ```shell
 npm ci --ignore-scripts
-npm run icons             # regenerate every pack from its definition in scripts/packs/
+npm run icons             # regenerate the figures in src/figures.mjs, then every pack from its definition in scripts/packs/
 npm run types             # regenerate the type declarations in types/ from src/'s doc comments
 npm run check:icons       # every pack: manifest complete, every icon listed, sized and present
 npm run lint              # Biome: lint rules, formatting and import order, without changing anything
@@ -88,20 +88,22 @@ How a release is made, from the version to publishing it, is in [`docs/releases.
 
 Text goes on icons as paths, never as SVG text: Stream Deck would draw `<text>` with whatever fonts the machine has, and a label would change font from one machine to the next. `textGlyph` in `scripts/text.mjs` lays each line out from the vendored font and writes its letters as shapes, so a label looks the same everywhere, like a glyph.
 
+A plugin that sets a number while it runs, such as a battery's percentage, can't lay it out from the font. `scripts/generate-figures.mjs` writes the outlines of the figures, the percent sign and the hyphen into `src/figures.mjs`, and `percentageGlyph` sets a number from them, in the same font as the labels.
+
 A label is a list of lines, split by hand, such as `["BOTTOM", "RIGHT"]`. Every label gets the same size, the one the monitor keys were designed with: capitals 15% of the icon tall, and lines about 29% apart, with the block centered. Labels stay alike that way, so a long word goes on a line of its own rather than in smaller letters. The one exception is a number on a badge, such as the mouse's host number, which is scaled down to fit it. A number in the mouse's palm, without a badge, is a label like any other. A label whose letters would come within 5% of an icon's edge stops `npm run icons` with an error naming the line, rather than run off the key: "BOTTOM" is about as wide as a line can be, and three lines as many as fit.
 
 To update or replace the font:
 
 1. Download the new file from a pinned commit of the Noto project's distribution, [`notofonts/notofonts.github.io`][noto-dist], rather than from `main`, so the address always serves the same file. Its license comes from the font's source repository, at a pinned commit too.
 2. Update the hash and the source comment of `FONT` in `scripts/check-packs.mjs`, and the license in `fonts/OFL.txt` if it changed.
-3. Run `npm run icons` and review the labels: a new font, even a new version of the same one, can move every letter. Check them on the Deck with [`docs/manual_testing/packs.md`][packs-test].
+3. Run `npm run icons` and review the labels and the figures: a new font, even a new version of the same one, can move every letter. Check them on the Deck with [`docs/manual_testing/packs.md`][packs-test].
 
 ## Layout
 
-- `src/` is what plugins import: the glyphs (`glyphs.mjs`), the palette (`palette.mjs`) and `svgDoc` (`svg.mjs`).
+- `src/` is what plugins import: the glyphs (`glyphs.mjs`), the palette (`palette.mjs`) and `svgDoc` (`svg.mjs`), and the figures numbers are set from (`figures.mjs`), generated from the font.
 - `scripts/packs/` holds one definition per pack: its icons, their names and tags, in the order the Icon Library shows them. `scripts/pack-builder.mjs` writes a definition out as the pack's icons and `icons.json`, with helpers for common patterns, such as each glyph plain and on every tile.
 - Each `*.sdIconPack/` folder at the root is a pack, as Stream Deck loads it. Its `manifest.json` is written by hand, and everything else in it is generated.
-- `fonts/` holds the font labels are drawn from, Noto Sans Bold, with its license. `scripts/text.mjs` lays a label out from it with [opentype.js][opentype], and writes each letter as a path. `npm run check:icons` checks the font against its pinned hash.
+- `fonts/` holds the font labels and figures are drawn from, Noto Sans Bold, with its license. `scripts/text.mjs` lays a label out from it with [opentype.js][opentype], and writes each letter as a path. `npm run check:icons` checks the font against its pinned hash.
 
 ## Credits
 

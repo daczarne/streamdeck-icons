@@ -3,6 +3,7 @@
  * {@link svgDoc}. Callers decide what to make of them: a plugin renders them to its own PNGs, and the packs here write
  * them as SVGs, plain or on a tile.
  */
+import { FIGURES } from "./figures.mjs";
 import { ACCENTS } from "./palette.mjs";
 
 // The default colors of the Litra plugin's first glyphs, which predate the palette: the marketplace icon's tile, and
@@ -1093,4 +1094,167 @@ export function mouseGlyph(size, { color = "#FFFFFF", filled = false, badge = fa
     V ${domeEnd} A ${rx} ${ry} 0 0 1 ${cx} ${top + h} Z
     M ${cx - domeX} ${divider} H ${cx + domeX} M ${cx} ${top + h} V ${divider}"
     stroke="${color}" stroke-width="${sw}"/>${disc}`;
+}
+
+/**
+ * A battery lying on its side, as shares of the canvas, sized to sit beside {@link mouseGlyph} on a canvas as large:
+ * its body from `left` to `right` and `top` to `bottom`, with corners of radius `radius`, and the terminal on its right,
+ * `terminal.width` wide and `terminal.height` tall. The charge fills the body from the left, `gap` inside its outline,
+ * and a charge above nothing fills at least `minimum` of it, so a battery nearly empty still shows some.
+ */
+export const BATTERY = /** @type {const} */ ({
+  left: 0.15,
+  right: 0.79,
+  top: 0.33,
+  bottom: 0.67,
+  radius: 0.07,
+  terminal: { width: 0.06, height: 0.14 },
+  gap: 0.045,
+  minimum: 0.12,
+});
+
+/**
+ * The options of {@link batteryGlyph}.
+ *
+ * @typedef {object} BatteryOptions
+ * @property {number} [charge] how full the battery is, from 0 to 1: an empty outline without one
+ * @property {string} [color] the battery's ink
+ */
+
+/**
+ * A battery lying on its side, its terminal on the right: an outline, as wide as the mouse's, filled from the left as far
+ * as its `charge`. Without a charge, the outline is empty.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {BatteryOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function batteryGlyph(size, { charge, color = "#FFFFFF" } = {}) {
+  const sw = size * MONITOR_STROKE;
+  const h = sw / 2;
+  const [left, right, top, bottom, radius, gap] = toCanvas(size, [
+    BATTERY.left,
+    BATTERY.right,
+    BATTERY.top,
+    BATTERY.bottom,
+    BATTERY.radius,
+    BATTERY.gap,
+  ]);
+  const [terminalWidth, terminalHeight] = toCanvas(size, [BATTERY.terminal.width, BATTERY.terminal.height]);
+  const cy = (top + bottom) / 2;
+  // The outline runs along the middle of its stroke, half a stroke inside the body's edge. The terminal starts under
+  // the outline, so the two join without a seam.
+  const body = `<path d="${roundedRect(left + h, top + h, right - h, bottom - h, radius - h)}"
+    stroke="${color}" stroke-width="${sw}"/>`;
+  const terminal = `<path d="${roundedRect(right - h, cy - terminalHeight / 2, right + terminalWidth, cy + terminalHeight / 2, terminalWidth / 2)}"
+    fill="${color}"/>`;
+  if (charge === undefined || charge <= 0) {
+    return `${body}\n    ${terminal}`;
+  }
+  const inset = sw + gap;
+  const full = right - left - 2 * inset;
+  const width = full * Math.max(BATTERY.minimum, Math.min(1, charge));
+  const fill = `<path d="${roundedRect(left + inset, top + inset, left + inset + width, bottom - inset, radius / 3)}"
+    fill="${color}"/>`;
+  return `${body}\n    ${terminal}\n    ${fill}`;
+}
+
+/**
+ * A lightning bolt, the sign of a battery charging, as shares of the canvas: the corners of its outline, from its top
+ * point, down its left side to its bottom point, and up its right side, about as tall as {@link mouseGlyph}.
+ */
+export const BOLT = /** @type {const} */ ({
+  points: [
+    [0.61, 0.19],
+    [0.31, 0.54],
+    [0.49, 0.54],
+    [0.39, 0.81],
+    [0.69, 0.46],
+    [0.51, 0.46],
+  ],
+});
+
+/**
+ * A lightning bolt, the sign of a battery charging: a solid zigzag, its corners rounded.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function boltGlyph(size, { color = "#FFFFFF" } = {}) {
+  const sw = size * MONITOR_STROKE;
+  const [first, ...rest] = BOLT.points.map(([x, y]) => `${x * size} ${y * size}`);
+  // A stroke as wide as the mouse's outline rounds its corners, and grows it by half a stroke all round.
+  return `<path d="M ${first} ${rest.map((point) => `L ${point}`).join(" ")} Z"
+    fill="${color}" stroke="${color}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+}
+
+// The margin the widest number, "100%", keeps from each side of its canvas, as a share of it, as labels keep (see
+// `scripts/text.mjs`).
+const NUMBER_MARGIN = 0.05;
+
+/**
+ * The options of {@link percentageGlyph}.
+ *
+ * @typedef {object} PercentageOptions
+ * @property {number} [percentage] the percentage to show, from 0 to 100: dashes without one
+ * @property {string} [color] the number's ink
+ */
+
+/**
+ * A percentage, such as "95%", set in the palette's font as paths, so it looks the same whatever fonts the machine has.
+ * Every percentage is set at one size, the one at which "100%", the widest, spans the canvas but for a margin on each
+ * side, and centered across the canvas by its ink. Its figures are centered down it, so every percentage sits on the
+ * same baseline. A percentage is rounded to a whole one, and kept from 0 to 100. Without one, three dashes stand in,
+ * centered both ways.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {PercentageOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function percentageGlyph(size, { percentage, color = "#FFFFFF" } = {}) {
+  const text = percentage === undefined ? "---" : `${Math.round(Math.min(100, Math.max(0, percentage)))}%`;
+  const scale = (size * (1 - 2 * NUMBER_MARGIN)) / inkWidth("100%");
+  const figures = [...text].map((character) => {
+    const figure = FIGURES.characters[character];
+    if (figure === undefined) {
+      throw new Error(`the figures have no "${character}"`);
+    }
+    return figure;
+  });
+  /** @type {string[]} */
+  const paths = [];
+  let pen = 0;
+  for (const figure of figures) {
+    paths.push(`<path transform="translate(${pen} 0)" d="${figure.path}"/>`);
+    pen += figure.advance;
+  }
+  const first = /** @type {import("./figures.mjs").Figure} */ (figures[0]);
+  const x = (size - inkWidth(text) * scale) / 2 - first.left * scale;
+  // The dashes are centered by their own ink, and the figures by their height, so a round figure's overshoot doesn't
+  // move the baseline.
+  const y =
+    percentage === undefined
+      ? size / 2 - ((first.top + first.bottom) / 2) * scale
+      : size / 2 + (FIGURES.height / 2) * scale;
+  return `<g transform="translate(${x} ${y}) scale(${scale})" fill="${color}">
+    ${paths.join("\n    ")}
+    </g>`;
+}
+
+/**
+ * How wide the ink of `text` is, in the font's units: from where its first character's ink starts to where its last
+ * one's ends.
+ *
+ * @param {string} text
+ * @returns {number}
+ */
+function inkWidth(text) {
+  const figures = [...text].map((character) => FIGURES.characters[character]);
+  const [first, last] = [figures[0], figures[figures.length - 1]];
+  if (first === undefined || last === undefined || figures.includes(undefined)) {
+    throw new Error(`the figures can't set "${text}"`);
+  }
+  const before = figures.slice(0, -1).reduce((sum, figure) => sum + (figure?.advance ?? 0), 0);
+  return before + last.right - first.left;
 }
