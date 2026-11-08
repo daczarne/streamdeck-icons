@@ -12,7 +12,8 @@ import opentype from "opentype.js";
 
 const FONT_FILE = path.join(path.dirname(fileURLToPath(import.meta.url)), "../fonts/NotoSans-Bold.ttf");
 const bytes = readFileSync(FONT_FILE);
-const font = opentype.parse(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+/** The palette's font, parsed: the labels are laid out from it here, and the figures in `generate-figures.mjs`. */
+export const font = opentype.parse(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
 
 // As measured on the monitor keys' labels: the height of a capital letter, and the distance from one line's baseline to
 // the next, as shares of the icon.

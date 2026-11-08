@@ -30,6 +30,7 @@ export namespace ACCENTS {
     let cobalt: string;
     let crimson: string;
     let gold: string;
+    let leaf: string;
     let ochre: string;
     let orange: string;
     let sage: string;

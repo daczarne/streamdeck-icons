@@ -122,8 +122,8 @@ jobs:
         run: npm run check:icons
       - name: Check the packs and the declarations match their code 🧪
         id: check_generated
-        # Regenerates every pack and the type declarations, and fails if that changes anything: the committed files
-        # must be what the code generates.
+        # Regenerates the figures, every pack and the type declarations, and fails if that changes anything: the committed
+        # files must be what the code generates.
         run: |
           npm run icons
           npm run types

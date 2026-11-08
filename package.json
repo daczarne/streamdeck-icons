@@ -31,7 +31,7 @@
     "types"
   ],
   "scripts": {
-    "icons": "node scripts/generate-packs.mjs",
+    "icons": "node scripts/generate-figures.mjs && node scripts/generate-packs.mjs",
     "types": "tsc -p tsconfig.types.json",
     "check:icons": "node scripts/check-packs.mjs",
     "lint": "biome ci",

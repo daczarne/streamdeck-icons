@@ -245,6 +245,49 @@ export function macStudioGlyph(size: number, { color }?: GlyphOptions): string;
  * @returns {string} its SVG markup
  */
 export function mouseGlyph(size: number, { color, filled, badge }?: MouseOptions): string;
+/**
+ * The options of {@link batteryGlyph}.
+ *
+ * @typedef {object} BatteryOptions
+ * @property {number} [charge] how full the battery is, from 0 to 1: an empty outline without one
+ * @property {string} [color] the battery's ink
+ */
+/**
+ * A battery lying on its side, its terminal on the right: an outline, as wide as the mouse's, filled from the left as far
+ * as its `charge`. Without a charge, the outline is empty.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {BatteryOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function batteryGlyph(size: number, { charge, color }?: BatteryOptions): string;
+/**
+ * A lightning bolt, the sign of a battery charging: a solid zigzag, its corners rounded.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {GlyphOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function boltGlyph(size: number, { color }?: GlyphOptions): string;
+/**
+ * The options of {@link percentageGlyph}.
+ *
+ * @typedef {object} PercentageOptions
+ * @property {number} [percentage] the percentage to show, from 0 to 100: dashes without one
+ * @property {string} [color] the number's ink
+ */
+/**
+ * A percentage, such as "95%", set in the palette's font as paths, so it looks the same whatever fonts the machine has.
+ * Every percentage is set at one size, the one at which "100%", the widest, spans the canvas but for a margin on each
+ * side, and centered across the canvas by its ink. Its figures are centered down it, so every percentage sits on the
+ * same baseline. A percentage is rounded to a whole one, and kept from 0 to 100. Without one, three dashes stand in,
+ * centered both ways.
+ *
+ * @param {number} size the side of its square canvas
+ * @param {PercentageOptions} [options]
+ * @returns {string} its SVG markup
+ */
+export function percentageGlyph(size: number, { percentage, color }?: PercentageOptions): string;
 export namespace MOUSE {
     let top: 0.19;
     let bottom: 0.81;
@@ -257,6 +300,24 @@ export namespace MOUSE {
         let y: 0.6;
         let r: 0.095;
     }
+}
+export namespace BATTERY {
+    export let left: 0.15;
+    export let right: 0.79;
+    let top_1: 0.33;
+    export { top_1 as top };
+    let bottom_1: 0.67;
+    export { bottom_1 as bottom };
+    export let radius: 0.07;
+    export namespace terminal {
+        let width: 0.06;
+        let height: 0.14;
+    }
+    export let gap: 0.045;
+    export let minimum: 0.12;
+}
+export namespace BOLT {
+    let points: readonly [readonly [0.61, 0.19], readonly [0.31, 0.54], readonly [0.49, 0.54], readonly [0.39, 0.81], readonly [0.69, 0.46], readonly [0.51, 0.46]];
 }
 /**
  * The options most glyphs take.
@@ -292,6 +353,32 @@ export type LockOptions = {
  * A badge drawn next to a thermometer, centered at (`cx`, `cy`) with radius `r` and strokes `sw` wide.
  */
 export type Badge = (cx: number, cy: number, r: number, sw: number, color: string) => string;
+/**
+ * The options of {@link batteryGlyph}.
+ */
+export type BatteryOptions = {
+    /**
+     * how full the battery is, from 0 to 1: an empty outline without one
+     */
+    charge?: number;
+    /**
+     * the battery's ink
+     */
+    color?: string;
+};
+/**
+ * The options of {@link percentageGlyph}.
+ */
+export type PercentageOptions = {
+    /**
+     * the percentage to show, from 0 to 100: dashes without one
+     */
+    percentage?: number;
+    /**
+     * the number's ink
+     */
+    color?: string;
+};
 /**
  * The options of {@link brightnessStepGlyph} and {@link temperatureStepGlyph}.
  */

@@ -13,7 +13,7 @@ Run the checks from CI, from the repository root, in this order: those of the `l
 1. `npm run typecheck`, which checks the JavaScript's types, as its doc comments declare them.
 1. `npm run check:docs`, which lists every function, class, method and constructor without a doc comment.
 1. `npm run check:icons`, which checks every pack against what Stream Deck's Icon Library needs.
-1. `npm run icons` and `npm run types`, then `git status --short`: regenerating the packs and the type declarations must change nothing. A change means the committed files aren't what the code generates.
+1. `npm run icons` and `npm run types`, then `git status --short`: regenerating the figures, the packs and the type declarations must change nothing. A change means the committed files aren't what the code generates.
 1. `npm run pack`, then `unzip -tq` on each file in `release/`: every pack is packed as a release packs it, and each file is a sound zip.
 
 Then check the length of Markdown headings, which no linter covers (see `docs/style_guide.md`). `git grep -n -P '^(?=.{81})#{1,6} ' -- '*.md'` lists every heading over 80 characters. Skip matches inside code blocks, where `#` starts a comment, and shorten the rest without changing their meaning. When a shortened heading is linked from a table of contents or another document, update those links too.

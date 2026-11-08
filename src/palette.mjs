@@ -41,6 +41,7 @@ export const ACCENTS = {
   cobalt: "#33517A", // the slot in the lock, on a `TILES.navy` tile
   crimson: "#9E2A27", // a red glyph on the light tiles, `grey` and `honey`, where brighter reds wash out
   gold: "#F5C542", // lights on: the Power key, and a power symbol on a dark tile
+  leaf: "#4CBF68", // a battery that's full or good, and charging, bright enough to read on `TILES.charcoal` at 72 px
   ochre: "#B07A00", // lights on, on the `grey` tile, where gold would wash out
   orange: "#E5892E", // the background of the dial's touch strip
   sage: "#4A7C59", // a step lighter than `TILES.green`, for a slot or keyhole on it, as `cobalt` is on `navy`
