@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Stream Deck icon packs, and the glyphs and palette they share with Stream Deck plugins.",
-  "license": "MIT",
+  "license": "MIT AND OFL-1.1",
   "author": "Daniel Czarnievicz",
   "repository": {
     "type": "git",
@@ -28,7 +28,8 @@
   },
   "files": [
     "src",
-    "types"
+    "types",
+    "LICENSE-OFL.txt"
   ],
   "scripts": {
     "icons": "node scripts/generate-figures.mjs && node scripts/generate-packs.mjs",

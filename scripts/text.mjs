@@ -1,7 +1,7 @@
 /**
  * Text on icons, written as paths: each letter becomes a shape, laid out from the font file, so Stream Deck draws it
- * the same whatever fonts the machine has. The font is the palette's, vendored in `fonts/` with its license and
- * checked against its hash, so the shapes don't change unless the file does.
+ * the same whatever fonts the machine has. The font is the palette's, vendored in `fonts/`, with its license in
+ * `LICENSE-OFL.txt`, and checked against its hash, so the shapes don't change unless the file does.
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
