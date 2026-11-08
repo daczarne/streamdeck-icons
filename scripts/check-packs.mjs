@@ -6,7 +6,7 @@
  * - every icons.json entry has a path, a name and tags, and its file exists, at 144 × 144 px if it's an SVG
  * - every file in icons/ is listed in icons.json
  * - no file name is longer than Elgato's limit
- * It also checks the vendored font that text is drawn from against its pinned hash, with its license next to it.
+ * It also checks the vendored font that text is drawn from against its pinned hash, and that its license is there.
  */
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
@@ -14,11 +14,13 @@ import path from "node:path";
 
 // Noto Sans Bold, the static TTF from the Noto project's distribution, notofonts/notofonts.github.io at
 // 4690144b8523e3adfbd34f1a148576f32b95d848, fonts/NotoSans/unhinted/ttf/NotoSans-Bold.ttf. Its license, OFL.txt, comes
-// from the font's source, notofonts/latin-greek-cyrillic at 71cf6f3ca9c185d809dd800ce9a9e58e1c16f1b1.
+// from the font's source, notofonts/latin-greek-cyrillic at 71cf6f3ca9c185d809dd800ce9a9e58e1c16f1b1. It's kept at the
+// root as LICENSE-OFL.txt, which the package ships, since the figures in src/figures.mjs are outlines from the font,
+// and which plugins that bundle them find there with the package's other license.
 const FONT = {
   file: "fonts/NotoSans-Bold.ttf",
   sha256: "87cb2d84472a7d66da659ee47b6cdb9552326e8c128245231f191b6ac72529d9",
-  license: "fonts/OFL.txt",
+  license: "LICENSE-OFL.txt",
 };
 
 // Every pack is released together, at the repository's version, which each manifest repeats.
