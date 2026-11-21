@@ -74,6 +74,7 @@ Supply-chain risk is a hard requirement here. The package's dependencies are dev
 - Commit messages explain the why and end with the `Co-Authored-By` trailer for Claude. Commit only when asked.
 - `.github/workflows/main.yaml` runs Markdown lint, CSpell, Biome, the type check, the doc comments check, the packs' check, a regeneration of the packs and the declarations that must change nothing, and a packing of every pack whose files must be sound zips, on every pull request and on `main`. On `main`, once every check has passed, its last job drafts a release when the version is new (see `docs/releases.md`). Locally, `/lint` and the `Lint` VS Code task run the same checks.
 - Write the pull request title and description with the `pr-description` skill.
+- Check the dependencies with the `dependencies-check` skill, which proposes the upgrades and changes nothing. Each upgrade is then its own pull request.
 - Draft issues with the `github-issues` skill, and post them only when asked.
 
 ## Style
