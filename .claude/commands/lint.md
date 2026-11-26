@@ -11,7 +11,7 @@ Run the checks from CI, from the repository root, in this order: those of the `l
 1. `cspell lint --config ".cspell.json" --dot --no-progress .`
 1. `npm run lint`, which runs Biome on the JavaScript: its lint rules, formatting and import order.
 1. `npm run typecheck`, which checks the JavaScript's types, as its doc comments declare them.
-1. `npm run check:docs`, which lists every function, class, method and constructor without a doc comment.
+1. `npm run check:docs`, which lists every function, class, method and constructor without a doc comment, and every doc comment that doesn't type its function's parameters and result.
 1. `npm run check:icons`, which checks every pack against what Stream Deck's Icon Library needs.
 1. `npm run icons` and `npm run types`, then `git status --short`: regenerating the figures, the packs and the type declarations must change nothing. A change means the committed files aren't what the code generates.
 1. `npm run pack`, then `unzip -tq` on each file in `release/`: every pack is packed as a release packs it, and each file is a sound zip.
@@ -22,7 +22,7 @@ Formatting findings are fixed directly, without asking. Everything else is repor
 
 - markdownlint, cspell and the heading check only cover formatting and spelling. Fix everything they report.
 - Biome's formatting and import order findings are fixed with `npm run format`. Its lint rules report problems in the code: report them.
-- The type check reports errors in the code: report them. A missing doc comment is reported too, not written on the spot: what it should say is a decision about the code.
+- The type check reports errors in the code: report them. A missing doc comment, or a missing tag, is reported too, not written on the spot: what it should say is a decision about the code.
 - `npm run check:icons` and the regenerated packs report errors in the packs or their code. Report them.
 - `npm run pack` and `unzip` report errors in the packing. Report them.
 

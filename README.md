@@ -62,7 +62,7 @@ npm run check:icons       # every pack: manifest complete, every icon listed, si
 npm run lint              # Biome: lint rules, formatting and import order, without changing anything
 npm run format            # Biome: apply the formatting and the import order
 npm run typecheck         # check the JavaScript's types, as its doc comments declare them
-npm run check:docs        # every function, class, method and constructor has a doc comment
+npm run check:docs        # a doc comment on every function, class, method and constructor, which types its parameters and result
 npm run pack              # check:icons, then write each pack's release/<id>.streamDeckIconPack
 npm run link              # link every pack into Stream Deck's IconPacks folder (macOS)
 npm run unlink            # remove the links
