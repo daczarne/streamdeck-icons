@@ -46,13 +46,15 @@ Comments explain intent and stay general. They don't repeat specifics the code a
 
 ### Doc comments
 
-Every function, class, method and constructor declared at the top of a file, or in a class there, has a doc comment (`/** … */`), in `src/` and `scripts/`. A closure inside a function is read with the function around it and needs none, though it still declares its types (`/** @type {…} */`) where they can't be inferred. `npm run check:docs` checks this over the files Biome covers.
+Every function, class, method and constructor declared at the top of a file, in a class there, or in a function that wraps the file and runs at once, has a doc comment (`/** … */`), in `src/` and `scripts/`. A closure inside a function is read with the function around it and needs none, though it still declares its types (`/** @type {…} */`) where they can't be inferred.
 
 A doc comment says what the declaration does or why it exists, and follows the rules for comments above: it doesn't repeat what the code states. Since the code is JavaScript, the doc comments also carry its types, which `npm run typecheck` checks:
 
 - Every parameter has a `@param` and every function a `@returns`, with its type. A description follows where the name doesn't explain itself.
 - A function that has to match a named function type, such as the thermometer's badges, takes that type with `@type` instead.
 - A shape used in more than one place is named with `@typedef`, next to the code that defines it, and imported elsewhere with `@import`. An object that has to match one, such as a pack definition, says so with `@satisfies`, which checks it without changing its type.
+
+`npm run check:docs` checks, over the JavaScript files Biome covers, that each of these declarations has a doc comment where TypeScript attaches it, with a typed `@param` for every parameter and a typed `@returns`, except on a constructor or a setter, or a `@type` that types the whole function. What a doc comment says is left to review.
 
 ### Spelling
 
